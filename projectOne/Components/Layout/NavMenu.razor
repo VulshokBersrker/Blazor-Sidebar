@@ -1,30 +1,36 @@
-﻿<div class="side-navbar grid-10">
+﻿
+
+<div class="side-navbar grid-10">
 
     <div class="section-10 top-row navbar-dark grid-10">
-        <div class="section-7 border">
-            <a class="" href="/">
-                <img src="/images/logo.png" class="logo"/>
-            </a>
-        </div>
+        <span class="@(isSidebarCollapsed == true ? "hidden" : "section-8 image-container")">
+            <div class="logo-container">
+                <a class="ps-2" href="/">
+                    <img src="/images/logo.png" class="logo"/>
+                </a>
+            </div>
+            
+        </span>
 
-        <div class="section-3 border image-container">
-            <img class="icon navbar-toggler border centered"  src="images/menu_icon.svg" alt="menu icon" />
+        <div class="section-2 image-container" @onclick=@(() => testFunction(isSidebarCollapsed))>
+            <img
+                
+                class="icon navbar-menu-toggle menu-icon-container" 
+                src="images/menu_icon.svg" alt="menu icon"
+            />
         </div>
     </div>
 
     @* <input title="Navigation menu" class="navbar-toggler" /> *@
 
-    <div class="nav-scrollable section-10" onclick="document.querySelector('.navbar-toggler').click()">
-        <nav class="nav flex-column">
+    <div class="nav-scrollable section-10" onclick="document.querySelector('.navbar-menu-toggle').click()">
 
-            <div class="nav-item px-3">
+        <nav class="grid-10">
+
+            <div class="section-10 nav-item px-3">
                 <div class="search-container">          
                     <div class="search-bar">
-                        <input 
-                            class=""
-                            type="text"
-                            placeholder="Search"
-                        />
+                        <input type="text" placeholder="Search" />
                         <img src="images/search_icon.svg" class="search-icon icon" />
                     </div>
                 </div>            
@@ -32,36 +38,73 @@
 
 
 
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            <div class="section-10 nav-item px-3">
+                <NavLink class="nav-link ps-2" href="" Match="NavLinkMatch.All"> 
+                    <span class="bi home-icon icon" aria-hidden="true"></span>
+                    <span class="nav-font">Home</span>
                 </NavLink>
             </div>
 
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="counter">
-                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> The Dugout
+            <div class="section-10 nav-item px-3">
+                <NavLink class="nav-link ps-2" href="counter">
+                    <span class="bi dugout-icon icon" aria-hidden="true"></span>
+                    <span class="nav-font">The Dugout</span>
                 </NavLink>
             </div>
 
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="weather">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Tasks
+            <div class="section-10 nav-item px-3">
+                <NavLink class="nav-link ps-2" href="weather">
+                    <span class="bi tasks-icon icon" aria-hidden="true"></span>
+                    <span class="nav-font">Tasks</span>
                 </NavLink>
             </div>
 
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="weather">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> SFC Way Deliverables
+            <div class="section-10 nav-item px-3">
+                <NavLink class="nav-link ps-2" href="weather">
+                    <span class="bi deliverables-icon icon" aria-hidden="true"></span>
+                    <span class="nav-font">SFC Way Deliverables</span>
                 </NavLink>
             </div>
 
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="weather">
-                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Event Tracker
+            <div class="section-10 nav-item px-3">
+                <NavLink class="nav-link ps-2" href="weather">
+                    <span class="bi event-icon icon" aria-hidden="true"></span> 
+                    <span class="nav-font">Event Tracker</span>
                 </NavLink>
             </div>
+
+            @* Need to add Venue Management, Reports, and Admin *@
+
+            <div class="section-10 nav-item px-3">
+                <NavLink class="nav-link ps-2" href="weather">
+                    <span class="bi time-sheet-icon icon" aria-hidden="true"></span>
+                    <span class="nav-font">Time Sheet</span>
+                </NavLink>
+            </div>
+
+
+
         </nav>
-    </div>
 
+        <div class="account-section grid-10">
+            <div class="section-7 nav-font text-overflow"> Matthew Alexanderson </div>
+
+            <div class="section-3 nav-font d-flex justify-content-end"> 
+                <a class=""> Signout </a>  
+            </div>
+            
+        </div>
+
+
+    </div>
 </div>
+
+
+
+@code {
+    private bool isSidebarCollapsed = false;
+
+    
+   
+
+}

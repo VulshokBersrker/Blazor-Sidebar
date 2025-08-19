@@ -102,7 +102,6 @@ F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\scopedcss\bundle\projectOne.styles.css
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\scopedcss\projectbundle\projectOne.bundle.scp.css
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mca1mp0noc-cbq73hyd7n.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\579ze4dm3r-w02qkwazbl.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\z6pn0l7bq2-7rl9n8980y.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\vd1yieq1mz-bqjiyaj88i.gz
@@ -149,8 +148,6 @@ F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\nx2rl2oge5-h1s4sie4z3.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\cf0fi5ch95-63fj8s7r0e.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\llyu8myx93-0j3bgjxly4.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-xy1uosmi67.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-xy1uosmi67.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\staticwebassets.build.json
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\staticwebassets.build.json.cache
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\staticwebassets.development.json
@@ -160,3 +157,16 @@ F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\projectOne.pdb
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\projectOne.genruntimeconfig.cache
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\ref\projectOne.dll
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mca1mp0noc-0j10ifu9il.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mmivpmcywa-4nn13vteyl.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\qdma60lual-m8sf4wncvr.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\h2d5j3b5hq-szrs0at109.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\jnkuec3bgs-okiltsm96f.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\7qm8tndsum-eoc4boydmt.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\p1eq9dzprh-jpecsdy8ln.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\yw2e9ffbr5-7nxfuv25xx.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\pediojnvl0-moyp4pxsc7.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\zbnfehlbrd-0pnff234m0.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-yvwaqeur82.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-yvwaqeur82.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
