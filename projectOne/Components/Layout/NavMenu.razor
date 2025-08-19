@@ -1,0 +1,67 @@
+﻿<div class="side-navbar grid-10">
+
+    <div class="section-10 top-row navbar-dark grid-10">
+        <div class="section-7 border">
+            <a class="" href="/">
+                <img src="/images/logo.png" class="logo"/>
+            </a>
+        </div>
+
+        <div class="section-3 border image-container">
+            <img class="icon navbar-toggler border centered"  src="images/menu_icon.svg" alt="menu icon" />
+        </div>
+    </div>
+
+    @* <input title="Navigation menu" class="navbar-toggler" /> *@
+
+    <div class="nav-scrollable section-10" onclick="document.querySelector('.navbar-toggler').click()">
+        <nav class="nav flex-column">
+
+            <div class="nav-item px-3">
+                <div class="search-container">          
+                    <div class="search-bar">
+                        <input 
+                            class=""
+                            type="text"
+                            placeholder="Search"
+                        />
+                        <img src="images/search_icon.svg" class="search-icon icon" />
+                    </div>
+                </div>            
+            </div>
+
+
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> The Dugout
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="weather">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Tasks
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="weather">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> SFC Way Deliverables
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="weather">
+                    <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Event Tracker
+                </NavLink>
+            </div>
+        </nav>
+    </div>
+
+</div>
