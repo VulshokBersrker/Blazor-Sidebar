@@ -9,7 +9,7 @@
   --hover-color: rgb(255, 255, 255);
 
 
-  --bg-color: #e5e6e7;
+  --bg-color: #237eda;
 
 }
 
@@ -137,7 +137,7 @@ body {
   grid-auto-rows: -webkit-min-content;
   grid-auto-rows: min-content;
   -moz-column-gap: 25px;
-  column-gap: 25px;
+  column-gap: 5px;
   row-gap: 10px;
 }
 
@@ -185,7 +185,7 @@ body {
 
 /* Padding for when the sidebar is collapsed */
 .navbar-padding {
-  padding-left: 450px;
+  padding-left: 120px;
 }
 
 

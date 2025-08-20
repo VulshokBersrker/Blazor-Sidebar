@@ -157,7 +157,6 @@ F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\projectOne.pdb
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\projectOne.genruntimeconfig.cache
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\ref\projectOne.dll
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mca1mp0noc-0j10ifu9il.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mmivpmcywa-4nn13vteyl.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\qdma60lual-m8sf4wncvr.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\h2d5j3b5hq-szrs0at109.gz
@@ -167,6 +166,6 @@ F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\yw2e9ffbr5-7nxfuv25xx.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\pediojnvl0-moyp4pxsc7.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\zbnfehlbrd-0pnff234m0.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-yvwaqeur82.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-yvwaqeur82.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mca1mp0noc-irrk1f2syz.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-fwh51y2l3z.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-fwh51y2l3z.gz
