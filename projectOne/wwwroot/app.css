@@ -130,6 +130,9 @@ body {
 .section-15 {
   grid-column-end:span 15;
 }
+.section-menu-icon {
+  grid-column-end:span 10;
+}
 
 .grid-10 {
   display: grid;
@@ -187,7 +190,32 @@ body {
   padding-left: 120px;
 }
 
+/* styles for old Phones */
+@media screen and (min-width: 320px) and (max-width: 399px) {
+  
+  .navbar-padding {
+    padding-top: 10px;
+    padding-left: 0px;
+  }
 
+  .section-menu-icon {
+    grid-column-end:span 2;
+  }
+  
+}
+/* styles for smaller Phones */
+@media screen and (min-width: 400px) and (max-width: 765px) {
+  
+  .navbar-padding {
+    padding-top: 10px;
+    padding-left: 0px;
+  }
+
+  .section-menu-icon {
+    grid-column-end:span 2;
+  }
+  
+}
 
 
 

@@ -4,7 +4,7 @@
 <div class="grid-10 @(isSidebarCollapsed == true ? "side-navbar-collapsed" : "side-navbar")">
 
     <div class="section-10 top-row navbar-dark grid-10">
-        <span class="@(isSidebarCollapsed == true ? "hidden" : "section-8 image-container")">
+        <span class="section-8 @(isSidebarCollapsed == true ? "hidden mobile-viewable" : "image-container")">
             <div class="logo-container">
                 <a class="ps-2" href="/">
                     <img src="/images/logo.png" class="logo"/>
@@ -13,14 +13,14 @@
             
         </span>
 
-        <span class="image-container @(isSidebarCollapsed == true ? "section-10" : "section-2")" @onclick=@(toggleSideBar) >
+        <span class="image-container @(isSidebarCollapsed == true ? "section-menu-icon" : "section-2")" @onclick=@(toggleSideBar) >
             <img class="icon navbar-menu-toggle menu-icon-container" src="images/menu_icon.svg" alt="menu icon" />
         </span>
     </div>
 
     @* <input title="Navigation menu" class="navbar-toggler" /> *@
 
-    <div class="nav-scrollable section-10" >
+    <div class="nav-scrollable section-10 @(isSidebarCollapsed == true ? "" : "mobile-viewable")" >
 
         <nav class="grid-10" >
 
@@ -146,8 +146,8 @@
 @* onclick="document.querySelector('.navbar-menu-toggle').click()" *@
 
 @code {
-    private bool isSidebarCollapsed = false;
-    private bool[] isIconMenuSubOpen = [true, false, false, false]; // Made for each sub menu section
+    private bool isSidebarCollapsed = true;
+    private bool[] isIconMenuSubOpen = [false, false, false, false]; // Made for each sub menu section
 
     // This function will toggle is the Sidebar to be closed or open
     protected void toggleSideBar() {
