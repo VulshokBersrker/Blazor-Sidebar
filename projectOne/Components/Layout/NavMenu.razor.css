@@ -5,12 +5,11 @@
 }
 
 .side-navbar {
-    /* background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%); */
     background-color: #141414;
     position: fixed;
     top: 0px;
     left: 0px;
-    max-width: 300px;
+    max-width: 265px;
 }
 
 .side-navbar-collapsed {
@@ -42,6 +41,7 @@
 .nav-font {
     font-size: 16px;
     color: #dfd7d7;
+    padding-left: 0.4rem;
 }
 
 .navbar-menu-toggle {
@@ -67,51 +67,59 @@
     background-color: rgba(0,0,0,0.4);
 }
 
-.bi {
-    display: inline-block;
-    position: relative;
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-right: 0.75rem;
-    top: -1px;
-    background-size: cover;
+span.bi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 2px;
+    width: 30px;
+    height: 30px;
 }
 
 .home-icon {
     background-image: url("../images/home.svg");
-    transform: scale(1.2);
+    background-repeat: no-repeat;
 }
 .dugout-icon {
     background-image: url("../images/dugout.svg");
-    transform: scale(1.2);
+    background-repeat: no-repeat;
 }
 .tasks-icon {
     background-image: url("../images/tasks.svg");
-    transform: scale(1.2);
+    background-repeat: no-repeat;
 }
 .deliverables-icon {
     background-image: url("../images/deliverables.svg");
-    transform: scale(1.2);
+    background-repeat: no-repeat;
 }
 .event-icon {
     background-image: url("../images/calendar.svg");
-    transform: scale(1.2);
+    background-repeat: no-repeat;
 }
 .venue-icon {
     background-image: url("../images/location.svg");
-    transform: scale(1.2);
+    background-repeat: no-repeat;
 }
 .reports-icon {
     background-image: url("../images/reports.svg");
-    transform: scale(1.2);
+    background-repeat: no-repeat;
 }
 .time-sheet-icon {
     background-image: url("../images/calendar.svg");
-    transform: scale(1.2);
+    background-repeat: no-repeat;
 }
 .admin-icon {
     background-image: url("../images/admin.svg");
-    transform: scale(1.2);
+    background-repeat: no-repeat;
+}
+.sign-out-icon {
+    background-image: url("../images/sign-out.svg");
+    background-repeat: no-repeat;
+}
+
+.icon-size {
+    transform: scale(1);
 }
 
 .arrow-icon {
@@ -134,6 +142,7 @@
 .nav-item {
     position: relative;
     font-size: 0.9rem;
+    padding-top: 0.2rem;
     padding-bottom: 0.2rem;
     padding-right: 1rem;
     padding-left: 1rem;
@@ -157,6 +166,7 @@
     align-items: center;
     line-height: 3rem;
     width: 100%;
+    padding-left: 0.1rem;
 }
 
 .nav-item ::deep a.active {
@@ -167,6 +177,15 @@
 .nav-item ::deep .nav-link:hover {
     background-color: rgba(255,255,255,0.1);
     color: white;
+}
+
+.sub-menu {
+    height: 80px;
+    display: block;
+}
+
+.sub-menu span {
+    margin-left: 15px;
 }
 
 .nav-scrollable {
@@ -185,6 +204,7 @@
 }
 .search-container {
   position: relative;
+
 }
 .search-button:hover .search-icon {
   cursor: pointer;
@@ -230,7 +250,7 @@
 
 .account-section {
     margin-top: auto;
-    padding: 0rem 1rem 2rem 0.5rem;
+    padding-bottom: 1.3rem;
 }
 
 /* Used on the user's name to limit the displayed length */
@@ -240,6 +260,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: -1rem;
 }
 
 
@@ -294,23 +315,26 @@
         width: 7vw;
         height: auto;
     }
+
+    .sub-menu {
+        height: 90px;
+        display: block;
+        font-size: 12px;
+    }
+
+    .account-section {
+        margin-top: auto;
+        padding-bottom: 2.5rem;
+    }    
   
 }
 /* 4K Resolutions - 3840x2160 */
 @media screen and (min-width: 3840px) {
     .side-navbar {
-        background-color: #141414;
-        position: fixed;
-        top: 0px;
-        left: 0px;
         width: 420px;
         max-width: 600px;
     }
     .side-navbar-collapsed {
-        background-color: #141414;
-        position: fixed;
-        top: 0px;
-        left: 0px;
         width: 90px;
     }
 
@@ -335,7 +359,7 @@
 
     .nav-font {
         font-size: 26px;
-        color: #dfd7d7;
+        padding-left: 1.5rem;
     }
 
     .top-row {
@@ -343,46 +367,26 @@
         background-color: rgba(0,0,0,0.4);
     }
 
-    .bi {
-        width: 1.25rem;
-        height: 1.25rem;
-        margin-right: 1.2rem;
-        top: -1px;
+    span.bi {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+        margin: 2px;
+        width: 30px;
+        height: 30px;
     }
 
-    .home-icon {
-        transform: scale(1.8);
-    }
-    .dugout-icon {
-        transform: scale(1.8);
-    }
-    .tasks-icon {
-        transform: scale(1.8);
-    }
-    .deliverables-icon {
-        transform: scale(1.8);
-    }
-    .event-icon {
-        transform: scale(1.8);
-    }
-    .venue-icon {
-        transform: scale(1.8);
-    }
-    .reports-icon {
-        transform: scale(1.8);
-    }
-    .time-sheet-icon {
-        transform: scale(1.8);
-    }
-    .admin-icon {
-        transform: scale(1.8);
+    .icon-size {
+        transform: scale(1.5);
     }
 
     .nav-item {
         font-size: 1rem;
-        padding-bottom: 0.7rem;
+        padding-bottom: 0.5rem;
         padding-right: 1rem;
         padding-left: 1rem;
+        /* height: 80px; */
     }
     .nav-item:first-of-type {
         padding-top: 0.5rem;
@@ -392,6 +396,12 @@
     }
     .nav-item ::deep .nav-link {
         height: 4rem;
+        padding-left: 0.7rem;
+    }
+
+    .sub-menu {
+        height: 150px;
+        display: block;
     }
 
     /* Search Bar CSS */
@@ -415,7 +425,23 @@
     }
 
     .account-section {
-        padding: 0rem 2rem 5rem 1rem;
+        margin-top: auto;
+        padding-bottom: 5rem;
+        /* padding-right: 1rem; */
+    }
+    .scale-1 {
+        height: 85px;
+    }
+
+    .arrow-icon {
+        position: absolute;
+        top: 22px;
+        right: 25px;
+        width: 28px;
+        height: 28px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url("../images/down.svg");
     }
 
 }
