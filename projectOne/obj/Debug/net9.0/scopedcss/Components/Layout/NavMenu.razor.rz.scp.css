@@ -4,11 +4,6 @@
     visibility: hidden;
 }
 
-.test[b-wyjfhg2fj8] {
-    appearance: none;
-    visibility: hidden;
-}
-
 .side-navbar[b-wyjfhg2fj8] {
     /* background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%); */
     background-color: #141414;
@@ -25,7 +20,6 @@
     left: 0px;
     width: 70px;
 }
-
 
 .logo-container[b-wyjfhg2fj8] {
     position: absolute;
@@ -44,7 +38,6 @@
     width: 10vw;
     height: auto;
 }
-
 
 .nav-font[b-wyjfhg2fj8] {
     font-size: 16px;
@@ -142,6 +135,8 @@
     position: relative;
     font-size: 0.9rem;
     padding-bottom: 0.2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
 }
 
 .nav-item:first-of-type[b-wyjfhg2fj8] {
@@ -226,22 +221,12 @@
 
 .search-bar-collapsed input[type=text][b-wyjfhg2fj8] {
     display: none;
-  width: 0%;
-  max-height: 50px;
-  background-color: rgba(0, 0, 0, 0.0);
-  border: 0px transparent rgba(183, 183, 183, 0) !important;
-  border-radius: 6px;
-  padding: 10px;
-  box-sizing: border-box;
-  font-size: 16px;
-  color: rgba(183, 183, 183, 0);
 }
 
 .scale-1[b-wyjfhg2fj8] {
     height: 60px;
     padding: 15px;
 }
-
 
 .account-section[b-wyjfhg2fj8] {
     margin-top: auto;
@@ -274,3 +259,172 @@
         overflow-y: auto;
     }
 }
+
+
+/* styles for old Phones */
+@media screen and (min-width: 320px) and (max-width: 399px) {
+  
+  
+}
+/* styles for smaller Phones */
+@media screen and (min-width: 400px) and (max-width: 765px) {
+  
+  
+  
+}
+/* styles for smaller iPads/Kindle */
+@media screen and (min-width: 766px) and (max-width: 838px) { 
+  
+}
+/* styles for newer iPads */
+@media screen and (min-width: 1010px) and (max-width: 1030px) { 
+  
+
+  
+}
+/* Laptop with MDPI Screen - 720p Screens - 1280x720, plus landscape iPad */
+@media screen and (min-width: 1040px) and (max-width: 1366px) {
+    
+  
+
+}
+/* 2K Resolutions - 2560x1440 */
+@media screen and (min-width: 1921px) and (max-width: 3839px) {
+    .logo[b-wyjfhg2fj8] {
+        width: 7vw;
+        height: auto;
+    }
+  
+}
+/* 4K Resolutions - 3840x2160 */
+@media screen and (min-width: 3840px) {
+    .side-navbar[b-wyjfhg2fj8] {
+        background-color: #141414;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 420px;
+        max-width: 600px;
+    }
+    .side-navbar-collapsed[b-wyjfhg2fj8] {
+        background-color: #141414;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 90px;
+    }
+
+    .logo-container[b-wyjfhg2fj8] {
+        position: absolute;
+        top: 5px;
+        left: 0px;
+    }
+
+    .menu-icon-container[b-wyjfhg2fj8] {
+        position: absolute;
+        top: 30px;
+        left: 30%;
+        transform: translate(-50%, -50%);
+        transform: scale(1.7);
+    }
+
+    .logo[b-wyjfhg2fj8] {
+        width: 8vw;
+        height: auto;
+    }
+
+    .nav-font[b-wyjfhg2fj8] {
+        font-size: 26px;
+        color: #dfd7d7;
+    }
+
+    .top-row[b-wyjfhg2fj8] {
+        min-height: 100px;
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .bi[b-wyjfhg2fj8] {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 1.2rem;
+        top: -1px;
+    }
+
+    .home-icon[b-wyjfhg2fj8] {
+        transform: scale(1.8);
+    }
+    .dugout-icon[b-wyjfhg2fj8] {
+        transform: scale(1.8);
+    }
+    .tasks-icon[b-wyjfhg2fj8] {
+        transform: scale(1.8);
+    }
+    .deliverables-icon[b-wyjfhg2fj8] {
+        transform: scale(1.8);
+    }
+    .event-icon[b-wyjfhg2fj8] {
+        transform: scale(1.8);
+    }
+    .venue-icon[b-wyjfhg2fj8] {
+        transform: scale(1.8);
+    }
+    .reports-icon[b-wyjfhg2fj8] {
+        transform: scale(1.8);
+    }
+    .time-sheet-icon[b-wyjfhg2fj8] {
+        transform: scale(1.8);
+    }
+    .admin-icon[b-wyjfhg2fj8] {
+        transform: scale(1.8);
+    }
+
+    .nav-item[b-wyjfhg2fj8] {
+        font-size: 1rem;
+        padding-bottom: 0.7rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+    .nav-item:first-of-type[b-wyjfhg2fj8] {
+        padding-top: 0.5rem;
+    }
+    .nav-item:last-of-type[b-wyjfhg2fj8] {
+        padding-bottom: 0.5rem;
+    }
+    .nav-item[b-wyjfhg2fj8]  .nav-link {
+        height: 4rem;
+    }
+
+    /* Search Bar CSS */
+    .search-bar input[type=text][b-wyjfhg2fj8] {
+        width: 100%;
+        max-height: 90px;
+        background-color: rgba(0, 0, 0, 0.0);
+        border: 1px solid rgba(183, 183, 183, 0.498);
+        border-radius: 6px;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 26px;
+        color: rgb(183, 183, 183);
+    }
+    .search-icon[b-wyjfhg2fj8] {
+        position: absolute;
+        min-width: 60px;
+        transform: scale(1);
+        right: 5px;
+        top: 2px;
+    }
+
+    .account-section[b-wyjfhg2fj8] {
+        padding: 0rem 2rem 5rem 1rem;
+    }
+
+}
+
+
+/* Galaxy S21 Media Query for landscape orientation:  */
+@media only screen and (min-width: 360px) and (orientation: landscape)
+{ /* Your Styles... */ }
+
+/* Galaxy S21 Media Query for portrait orientation:  */
+@media only screen and (min-height: 800px) and (orientation: portrait)
+{ /* Your Styles... */ }

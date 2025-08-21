@@ -1,7 +1,7 @@
 ﻿@rendermode InteractiveServer
 
 
-<div class="@(isSidebarCollapsed == true ? "side-navbar-collapsed grid-10" : "side-navbar grid-10")">
+<div class="grid-10 @(isSidebarCollapsed == true ? "side-navbar-collapsed" : "side-navbar")">
 
     <div class="section-10 top-row navbar-dark grid-10">
         <span class="@(isSidebarCollapsed == true ? "hidden" : "section-8 image-container")">
@@ -13,9 +13,9 @@
             
         </span>
 
-        <div class="@(isSidebarCollapsed == true ? "section-10 image-container" : "section-2 image-container")" @onclick=@(toggleSideBar) >
+        <span class="image-container @(isSidebarCollapsed == true ? "section-10" : "section-2")" @onclick=@(toggleSideBar) >
             <img class="icon navbar-menu-toggle menu-icon-container" src="images/menu_icon.svg" alt="menu icon" />
-        </div>
+        </span>
     </div>
 
     @* <input title="Navigation menu" class="navbar-toggler" /> *@
@@ -24,44 +24,44 @@
 
         <nav class="@(isSidebarCollapsed == true ? "text-center" : "grid-10")" >
 
-            <div class="section-10 nav-item px-3">
-                <div class="search-container">          
+            <div class="section-10 nav-item">
+                <div class="@(isSidebarCollapsed == true ? "nav-link" : "search-container")" @onclick="() => { if(isSidebarCollapsed == true) {toggleSideBar();} }">          
                     <div class="search-bar ">
                         <input type="text" placeholder="Search" class="@(isSidebarCollapsed == true ? "hidden" : "")"/>
                         <img src="images/search_icon.svg" class="@(isSidebarCollapsed == true ? "centered icon scale-1" : "search-icon icon")"/>
                     </div>
-                </div>            
+                </div>
             </div>
 
-            <div class="section-10 nav-item px-3">
+            <div class="section-10 nav-item">
                 <NavLink class="nav-link ps-2" href="" Match="NavLinkMatch.All"> 
                     <span class="bi home-icon icon" aria-hidden="true"></span>
                     <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Home</span>
                 </NavLink>
             </div>
 
-            <div class="section-10 nav-item px-3">
+            <div class="section-10 nav-item">
                 <NavLink class="nav-link ps-2" href="counter">
                     <span class="bi dugout-icon icon" aria-hidden="true"></span>
                     <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">The Dugout</span>
                 </NavLink>
             </div>
 
-            <div class="section-10 nav-item px-3">
+            <div class="section-10 nav-item">
                 <NavLink class="nav-link ps-2" href="weather">
                     <span class="bi tasks-icon icon" aria-hidden="true"></span>
                     <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Tasks</span>
                 </NavLink>
             </div>
 
-            <div class="section-10 nav-item px-3">
+            <div class="section-10 nav-item">
                 <NavLink class="nav-link ps-2" href="weather">
                     <span class="bi deliverables-icon icon" aria-hidden="true"></span>
                     <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">SFC Way Deliverables</span>
                 </NavLink>
             </div>
 
-            <div class="section-10 nav-item px-3">
+            <div class="section-10 nav-item">
                 <NavLink class="nav-link ps-2" href="weather">
                     <span class="bi event-icon icon" aria-hidden="true"></span> 
                     <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Event Tracker</span>
@@ -70,7 +70,7 @@
 
             @* Need to add Venue Management, Reports, and Admin *@
 
-            <div class="section-10 nav-item px-3" @onclick='@(() => toggleSubMenu(0))'>
+            <div class="section-10 nav-item" @onclick='@(() => toggleSubMenu(0))'>
                 <NavLink class="nav-link ps-2" >
                     <span class="bi venue-icon icon" aria-hidden="true"></span> 
                     <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Venue Management</span>
@@ -89,7 +89,7 @@
                 </div>
             </div>
 
-            <div class="section-10 nav-item px-3" @onclick='@(() => toggleSubMenu(1))'>
+            <div class="section-10 nav-item" @onclick='@(() => toggleSubMenu(1))'>
                 <NavLink class="nav-link ps-2" >
                     <span class="bi reports-icon icon" aria-hidden="true"></span> 
                     <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Reports</span>
@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <div class="section-10 nav-item px-3" @onclick='@(() => toggleSubMenu(2))'>
+            <div class="section-10 nav-item" @onclick='@(() => toggleSubMenu(2))'>
                 <NavLink class="nav-link ps-2" >
                     <span class="bi admin-icon icon" aria-hidden="true"></span> 
                     <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Admin</span>
@@ -146,25 +146,28 @@
 @* onclick="document.querySelector('.navbar-menu-toggle').click()" *@
 
 @code {
-    @* private bool ShowIconMenu = false; *@
-    private bool isSidebarCollapsed = false;
-    private bool[] isIconMenuSubOpen = [false, false, false, false];
+    private bool isSidebarCollapsed = true;
+    private bool[] isIconMenuSubOpen = [false, false, false, false]; // Made for each sub menu section
 
+    // This function will toggle is the Sidebar to be closed or open
     protected void toggleSideBar() {
         isSidebarCollapsed = !isSidebarCollapsed;
-        Console.WriteLine("is Navbar Collapsed: " + isSidebarCollapsed);
+        @* Console.WriteLine("is Navbar Collapsed: " + isSidebarCollapsed); *@
     }
 
+    // This function will toggle the specific submenu the user is trying to open
     protected void toggleSubMenu(int subMenuNumber) {
         if(isSidebarCollapsed == true) {
             isSidebarCollapsed = false;
         }
         isIconMenuSubOpen[subMenuNumber] = !isIconMenuSubOpen[subMenuNumber];
-        Console.WriteLine("Sub Menu: " + subMenuNumber + " is " + isIconMenuSubOpen[subMenuNumber]);
+        @* Console.WriteLine("Sub Menu: " + subMenuNumber + " is " + isIconMenuSubOpen[subMenuNumber]); *@
 
         
     }
 
+    // This function is check to see if the aa subMenu is open, and close it if the Sidebar is Collapsed to remove an
+    // unneeded html appearances
     protected bool IsSubMenuOpen(int subMenuNumber) {
         if(isSidebarCollapsed == true) {
             isIconMenuSubOpen[subMenuNumber] = false;
@@ -172,8 +175,5 @@
         }
         return isIconMenuSubOpen[subMenuNumber];
     }
-
-    
-
 
 }
