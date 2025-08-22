@@ -187,7 +187,7 @@ body {
 
 /* Padding for when the sidebar is collapsed */
 .navbar-padding {
-  padding-left: 120px;
+  padding-left: 0px;
 }
 
 /* styles for old Phones */

@@ -6,7 +6,7 @@
 
 .side-navbar[b-wyjfhg2fj8] {
     background-color: #141414;
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
     max-width: 265px;
@@ -14,7 +14,7 @@
 
 .side-navbar-collapsed[b-wyjfhg2fj8] {
     background-color: #141414;
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
     width: 70px;
@@ -34,7 +34,7 @@
 }
 
 .logo[b-wyjfhg2fj8] {
-    width: 10vw;
+    width: 9vw;
     height: auto;
 }
 

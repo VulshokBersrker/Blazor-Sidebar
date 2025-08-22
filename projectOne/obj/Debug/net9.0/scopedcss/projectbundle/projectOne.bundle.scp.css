@@ -102,7 +102,7 @@ main[b-4fh4ctlexs] {
 
 .side-navbar[b-wyjfhg2fj8] {
     background-color: #141414;
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
     max-width: 265px;
@@ -110,7 +110,7 @@ main[b-4fh4ctlexs] {
 
 .side-navbar-collapsed[b-wyjfhg2fj8] {
     background-color: #141414;
-    position: fixed;
+    position: absolute;
     top: 0px;
     left: 0px;
     width: 70px;
@@ -130,7 +130,7 @@ main[b-4fh4ctlexs] {
 }
 
 .logo[b-wyjfhg2fj8] {
-    width: 10vw;
+    width: 9vw;
     height: auto;
 }
 
