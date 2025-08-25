@@ -4,29 +4,23 @@
     visibility: hidden;
 }
 
+/* General Navbar Styles */
+
 .side-navbar {
     background-color: #141414;
-    position: absolute;
     top: 0px;
     left: 0px;
-    max-width: 265px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    overflow: hidden;
+    max-height: 100vh;
+    z-index: 100;
 }
 
-.side-navbar-collapsed {
-    background-color: #141414;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 70px;
-}
-
-.logo-container {
-    position: absolute;
-    top: 5px;
-    left: 0px;
-}
 
 .menu-icon-container {
+    cursor: pointer;
     position: absolute;
     top: 25px;
     left: 50%;
@@ -38,43 +32,41 @@
     height: auto;
 }
 
-.nav-font {
-    font-size: 16px;
-    color: #dfd7d7;
-    padding-left: 0.4rem;
-}
-
-.navbar-menu-toggle {
-    /* appearance: none; */
-    cursor: pointer;
-    /* width: 3.5rem;
-    height: 2.5rem; */
-    /* color: white;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    border: 0px transparent #fff !important;
-    background: url("images/menu_icon.svg") no-repeat center;
-    background-repeat: no-repeat; */
-}
-
-.navbar-menu-toggle:checked {
-    background-color: rgba(255, 255, 255, 0.0);
-}
-
 .top-row {
     min-height: 50px;
     background-color: rgba(0,0,0,0.4);
 }
 
-span.bi {
+.nav-item {
+    position: relative;
+    font-size: 0.9rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.nav-item ::deep .nav-link {
+    color: #d7d7d7;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    height: 2.3rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 2px;
-    margin: 2px;
-    width: 30px;
-    height: 30px;
+    line-height: 3rem;
+    width: 100%;
+    padding-left: 0.1rem;
+}
+
+.nav-item ::deep a.active {
+    background-color: rgba(255,255,255,0.37);
+    color: white;
+}
+
+.nav-item ::deep .nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
 }
 
 .home-icon {
@@ -117,7 +109,6 @@ span.bi {
     background-image: url("../images/sign-out.svg");
     background-repeat: no-repeat;
 }
-
 .icon-size {
     transform: scale(1);
 }
@@ -134,59 +125,95 @@ span.bi {
 }
 .arrow-down {
     transform: rotate(0deg);
+    transition: 0.4s ease-in-out;
 }
 .arrow-up {
     transform: rotate(180deg);
+    transition: 0.4s ease-in-out;
 }
 
-.nav-item {
-    position: relative;
-    font-size: 0.9rem;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
+
+/* --------------------------- OPEN Side Navbar Styles ---------------------------*/
+
+.side-navbar.open {
+    width: 265px;
+    /* min-width: 265px; */
+    transition: 0.2s ease-in-out;
 }
 
-.nav-item:first-of-type {
-    padding-top: 0.3rem;
+.side-navbar ::deep .logo-container {
+    position: absolute;
+    top: 5px;
+    left: 0px;
 }
 
-.nav-item:last-of-type {
-    padding-bottom: 0.3rem;
+.side-navbar ::deep .nav-font {
+    font-size: 16px;
+    color: #dfd7d7;
+    padding-left: 0.4rem;
 }
 
-.nav-item ::deep .nav-link {
-    color: #d7d7d7;
-    background: none;
-    border: none;
-    border-radius: 4px;
-    height: 2.3rem;
+.side-navbar ::deep span.bi {
     display: flex;
     align-items: center;
-    line-height: 3rem;
-    width: 100%;
-    padding-left: 0.1rem;
+    justify-content: center;
+    padding: 2px;
+    margin: 2px;
+    width: 30px;
+    height: 30px;
 }
 
-.nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.37);
-    color: white;
+/* --------------------------- CLOSED Side Navbar Styles --------------------------- */
+
+.side-navbar.closed {
+    width: 76px;
+    transition: 0.2s ease-in-out;
 }
 
-.nav-item ::deep .nav-link:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
+.side-navbar.closed ::deep .logo-container {
+    display: none;
+    visibility: hidden;
 }
 
-.sub-menu {
-    height: 80px;
-    display: block;
+.side-navbar.closed ::deep .nav-font {
+    display: none;
+    visibility: hidden;
 }
 
+.side-navbar.closed ::deep span.bi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+/* --------------------------- SUB MENU Styles --------------------------- */
+
+.sub-menu.open {
+    opacity: 1;
+    padding-top: 10px;
+    max-height: 520px;
+    transform: translateY(0);
+    transition: 0.4s ease-in-out;
+}
+.sub-menu.closed {
+    opacity: 0;
+    visibility:hidden;
+    padding-top: 0px;
+    max-height: 0px;
+    transform: translateY(20%);
+    transition: 0.4s ease-in-out;
+}
 .sub-menu span {
     margin-left: 15px;
 }
+
+
+
+
 
 .nav-scrollable {
     display: none;
@@ -195,6 +222,10 @@ span.bi {
 .navbar-menu-toggle:checked ~ .nav-scrollable {
     display: block;
 }
+
+/* .navbar-menu-toggle:checked {
+    background-color: rgba(255, 255, 255, 0.0);
+} */
 
 /* Search Bar CSS */
 .nav-search-section {
@@ -236,7 +267,6 @@ span.bi {
     transform: scale(0.8);
     right: 0px;
     top: 0px;
-
 }
 
 .search-bar-collapsed input[type=text] {
@@ -251,7 +281,6 @@ span.bi {
 .account-section {
     margin-top: auto;
     padding-top: 3rem;
-    padding-bottom: 1.3rem;
 }
 
 /* Used on the user's name to limit the displayed length */
@@ -478,13 +507,3 @@ span.bi {
 
 }
 
-
-
-
-/* Galaxy S21 Media Query for landscape orientation:  */
-@media only screen and (min-width: 360px) and (orientation: landscape)
-{ /* Your Styles... */ }
-
-/* Galaxy S21 Media Query for portrait orientation:  */
-@media only screen and (min-height: 800px) and (orientation: portrait)
-{ /* Your Styles... */ }

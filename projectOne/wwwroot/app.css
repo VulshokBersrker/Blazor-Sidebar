@@ -186,8 +186,24 @@ body {
 /* ------------------------- SIDEBAR ------------------------- */
 
 /* Padding for when the sidebar is collapsed */
-.navbar-padding {
-  padding-left: 0px;
+.sidebar-padding {
+  padding-left: 100px;
+  transition: 0.2s ease-in-out;
+}
+
+/* Advanced styling for navbar open and closed settings */
+.main-container:has(.side-navbar.closed) {
+  .sidebar-padding {
+    padding-left: 100px;
+    transition: 0.2s ease-in-out;
+  }
+}
+
+.main-container:has(.side-navbar.open) {
+  .sidebar-padding {
+    padding-left: 300px;
+    transition: 0.2s ease-in-out;
+  }
 }
 
 /* styles for old Phones */

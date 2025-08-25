@@ -1,25 +1,20 @@
 ﻿@rendermode InteractiveServer
 
 
-<div class="grid-10 @(isSidebarCollapsed == true ? "side-navbar-collapsed" : "side-navbar")">
+<div class="grid-10 side-navbar @(isSidebarCollapsed == true ? " closed" : " open")" >
 
     <div class="section-10 top-row navbar-dark grid-10">
         <span class="image-container @(isSidebarCollapsed == true ? "section-menu-icon" : "section-3")" @onclick=@(toggleSideBar) >
-            <img class="icon navbar-menu-toggle menu-icon-container" src="images/menu_icon.svg" alt="menu icon" />
+            <img class="icon menu-icon-container" src="images/menu_icon.svg" alt="menu icon" />
         </span>
         
         <span class="section-7 @(isSidebarCollapsed == true ? "hidden mobile-viewable" : "image-container")">
             <div class="logo-container">
-                @* <a class="ps-2" href="/"> *@
-                    <img src="/images/logo.png" class="logo"/>
-                @* </a> *@
+                <img src="/images/logo.png" class="logo"/>
             </div>
         </span>
 
-        
     </div>
-
-    @* <input title="Navigation menu" class="navbar-toggler" /> *@
 
     <div class="nav-scrollable section-10 @(isSidebarCollapsed == true ? "" : "mobile-viewable")" >
 
@@ -37,94 +32,94 @@
             <div class="section-10 nav-item">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All"> 
                     <span class="bi home-icon icon icon-size" aria-hidden="true"></span>
-                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Home</span>
+                    <span class="nav-font">Home</span>
                 </NavLink>
             </div>
 
             <div class="section-10 nav-item">
                 <NavLink class="nav-link" href="counter">
                     <span class="bi dugout-icon icon icon-size" aria-hidden="true"></span>
-                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">The Dugout</span>
+                    <span class="nav-font">The Dugout</span>
                 </NavLink>
             </div>
 
             <div class="section-10 nav-item">
                 <NavLink class="nav-link" href="weather">
                     <span class="bi tasks-icon icon icon-size" aria-hidden="true"></span>
-                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Tasks</span>
+                    <span class="nav-font">Tasks</span>
                 </NavLink>
             </div>
 
             <div class="section-10 nav-item">
                 <NavLink class="nav-link" href="weather">
                     <span class="bi deliverables-icon icon icon-size" aria-hidden="true"></span>
-                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">SFC Way Deliverables</span>
+                    <span class="nav-font">SFC Way Deliverables</span>
                 </NavLink>
             </div>
 
             <div class="section-10 nav-item">
                 <NavLink class="nav-link" href="weather">
                     <span class="bi event-icon icon icon-size" aria-hidden="true"></span> 
-                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Event Tracker</span>
+                    <span class="nav-font">Event Tracker</span>
                 </NavLink>
             </div>
-
-            @* Need to add Venue Management, Reports, and Admin *@
 
             <div class="section-10 nav-item" @onclick='@(() => toggleSubMenu(0))'>
                 <NavLink class="nav-link" >
                     <span class="bi venue-icon icon icon-size" aria-hidden="true"></span> 
-                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Venue Management</span>
+                    <span class="nav-font">Venue Management</span>
                     <span class="arrow-icon @(IsSubMenuOpen(0) ? " arrow-up icon" : " arrow-down icon") @(isSidebarCollapsed == true ? " hidden" : "")" aria-hidden="true"></span>
                 </NavLink>
 
-                
-                    @* @for(int i = 0; i < worker.getLength(); i++) {
+                    @* Test function for possible dynamic links *@
+                    @* @if(IsSubMenuOpen(0) == true) {
                         <div class="sub-menu">
-                            <NavLink class="nav-link mb-2" href="@{worker.getSubMenuHyperLinks(i)}">
-                                <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">@(worker.getSubMenuTitles(i))</span>
-                            </NavLink>
+                            @foreach(var index in Enumerable.Range(0, worker.getLength()  ) ) {
+                                
+                                <NavLink class="nav-link mb-2" href="@{worker.getSubMenuHyperLinks(index)}">
+                                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">@(worker.getSubMenuTitles(index))</span>
+                                </NavLink>
+                                
+                            }
                         </div>
-                    } *@
-                    @if(IsSubMenuOpen(0) == true) {
-                        <div class="sub-menu">
+                    } *@                
 
-                       
-                        @foreach(var index in Enumerable.Range(0, worker.getLength()  ) ) {
-                            
-                            <NavLink class="nav-link mb-2" href="@{worker.getSubMenuHyperLinks(index)}">
-                                <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">@(worker.getSubMenuTitles(index))</span>
-                            </NavLink>
-                            
-                        }
-                        </div>
-                    }
-                    
-                
-
-                @* <div class="@(IsSubMenuOpen(0) ? "sub-menu" : "hidden")">
+                <div class="sub-menu @(IsSubMenuOpen(0) ? "open" : "closed")">
                     <NavLink class="nav-link mb-2" href="/">
-                        <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Item 1</span>
+                        <span class="nav-font">Item 1</span>
+                    </NavLink>
+                    <NavLink class="nav-link mb-2" href="counter">
+                        <span class="nav-font">Item 2</span>
+                    </NavLink>
+                    <NavLink class="nav-link mb-2" href="counter">
+                        <span class="nav-font">Item 3</span>
+                    </NavLink>
+                    <NavLink class="nav-link mb-2" href="counter">
+                        <span class="nav-font">Item 4</span>
+                    </NavLink>
+                    <NavLink class="nav-link mb-2" href="/">
+                        <span class="nav-font">Item 5</span>
                     </NavLink>
                     <NavLink class="nav-link" href="/">
-                        <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Item 2</span>
+                        <span class="nav-font">Item 6</span>
                     </NavLink>
-                </div> *@
+                    
+                </div>
             </div>
 
             <div class="section-10 nav-item" @onclick='@(() => toggleSubMenu(1))'>
                 <NavLink class="nav-link" >
                     <span class="bi reports-icon icon icon-size" aria-hidden="true"></span> 
-                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Reports</span>
+                    <span class="nav-font">Reports</span>
                     <span class="arrow-icon icon @(IsSubMenuOpen(1) ? " arrow-up" : " arrow-down") @(isSidebarCollapsed == true ? " hidden" : "")" aria-hidden="true"></span>
                 </NavLink>
 
-                <div class="@(IsSubMenuOpen(1) ? "sub-menu" : "hidden")">
+                <div class="sub-menu @(IsSubMenuOpen(1) ? "open" : "closed")">
                     <NavLink class="nav-link mb-2" href="/">
-                        <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font") ">Sponsorships Report</span>
+                        <span class="nav-font">Sponsorships Report</span>
                     </NavLink>
                     <NavLink class="nav-link" href="/">
-                        <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Deliverables Scoreboard</span>
+                        <span class="nav-font">Deliverables Scoreboard</span>
                     </NavLink>
                 </div>
             </div>
@@ -132,21 +127,19 @@
             <div class="section-10 nav-item" @onclick='@(() => toggleSubMenu(2))'>
                 <NavLink class="nav-link" >
                     <span class="bi admin-icon icon icon-size" aria-hidden="true"></span> 
-                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Admin</span>
+                    <span class="nav-font">Admin</span>
                     <span class="arrow-icon @(IsSubMenuOpen(2) ? " arrow-up icon" : " arrow-down icon") @(isSidebarCollapsed == true ? " hidden" : "")" aria-hidden="true"></span>
                 </NavLink>
 
-                <div class="@(IsSubMenuOpen(2) ? "sub-menu" : "hidden")">
-                    <NavLink class="nav-link mb-2" href="/">
-                        <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Item 1</span>
+                <div class="sub-menu @(IsSubMenuOpen(2) ? "open" : "closed")">
+                    <NavLink class="nav-link mb-2" href="counter">
+                        <span class="nav-font">Item 1</span>
                     </NavLink>
-                    <NavLink class="nav-link" href="/">
-                        <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">Item 2</span>
+                    <NavLink class="nav-link" href="counter">
+                        <span class="nav-font">Item 2</span>
                     </NavLink>
                 </div>
             </div>
-
-
 
         </nav>
 
@@ -164,7 +157,6 @@
             </span>
         </div>
 
-
     </div>
 </div>
 
@@ -172,6 +164,7 @@
 
 @code {
 
+    @*  -------------------- START TESTING AREA --------------------  *@
     class subMenuLinks {
         // The reference Number for the Sub Menu
         protected int subMenuNumber = 0;
@@ -209,17 +202,19 @@
     public static string[] work2 = ["Item 22", "Item 33"];
     subMenuLinks worker = new subMenuLinks(0, work2, links);
 
+    // test function
     protected void wwww() {
         Console.WriteLine(worker.getSubMenuNumber());
         Console.WriteLine(worker.getSubMenuHyperLinks(0));
         Console.WriteLine(worker.getSubMenuTitles(0));
     }
 
-    
+    @*  -------------------- END TESTING AREA --------------------  *@
+
 
 
     private bool isSidebarCollapsed = false;
-    private bool[] isIconMenuSubOpen = [true, false, false, false]; // Made for each sub menu section
+    private bool[] isIconMenuSubOpen = [false, false, false, false]; // Made for each sub menu section
 
     // This function will toggle is the Sidebar to be closed or open
     protected void toggleSideBar() {

@@ -5,43 +5,13 @@
     flex-direction: column;
 }
 
+
+
 main[b-4fh4ctlexs] {
-    flex: 1;
+    padding: 16px;
 }
 
-.top-row[b-4fh4ctlexs] {
-    /* background-color: #f7f7f7; */
-    /* border-bottom: 1px solid #d6d5d5; */
-    justify-content: flex-end;
-    height: 3.5rem;
-    display: flex;
-    align-items: center;
-}
 
-.top-row[b-4fh4ctlexs]  a, .top-row[b-4fh4ctlexs]  .btn-link {
-    white-space: nowrap;
-    margin-left: 1.5rem;
-    text-decoration: none;
-}
-
-.top-row[b-4fh4ctlexs]  a:hover, .top-row[b-4fh4ctlexs]  .btn-link:hover {
-    text-decoration: underline;
-}
-
-.top-row[b-4fh4ctlexs]  a:first-child {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-@media (max-width: 640.98px) {
-    .top-row[b-4fh4ctlexs] {
-        justify-content: space-between;
-    }
-
-    .top-row[b-4fh4ctlexs]  a, .top-row[b-4fh4ctlexs]  .btn-link {
-        margin-left: 0;
-    }
-}
 
 @media (min-width: 641px) {
     .page[b-4fh4ctlexs] {
@@ -53,23 +23,6 @@ main[b-4fh4ctlexs] {
         height: 100vh;
         position: sticky;
         top: 0;
-    }
-
-    .top-row[b-4fh4ctlexs] {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-    }
-
-    .top-row.auth[b-4fh4ctlexs]  a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
-
-    .top-row[b-4fh4ctlexs], article[b-4fh4ctlexs] {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
     }
 }
 
@@ -87,12 +40,12 @@ main[b-4fh4ctlexs] {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss[b-4fh4ctlexs] {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss[b-4fh4ctlexs] {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 /* _content/projectOne/Components/Layout/NavMenu.razor.rz.scp.css */
 .hidden[b-wyjfhg2fj8] {
     display: none;
@@ -100,29 +53,23 @@ main[b-4fh4ctlexs] {
     visibility: hidden;
 }
 
+/* General Navbar Styles */
+
 .side-navbar[b-wyjfhg2fj8] {
     background-color: #141414;
-    position: absolute;
     top: 0px;
     left: 0px;
-    max-width: 265px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    overflow: hidden;
+    max-height: 100vh;
+    z-index: 100;
 }
 
-.side-navbar-collapsed[b-wyjfhg2fj8] {
-    background-color: #141414;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 70px;
-}
-
-.logo-container[b-wyjfhg2fj8] {
-    position: absolute;
-    top: 5px;
-    left: 0px;
-}
 
 .menu-icon-container[b-wyjfhg2fj8] {
+    cursor: pointer;
     position: absolute;
     top: 25px;
     left: 50%;
@@ -134,43 +81,41 @@ main[b-4fh4ctlexs] {
     height: auto;
 }
 
-.nav-font[b-wyjfhg2fj8] {
-    font-size: 16px;
-    color: #dfd7d7;
-    padding-left: 0.4rem;
-}
-
-.navbar-menu-toggle[b-wyjfhg2fj8] {
-    /* appearance: none; */
-    cursor: pointer;
-    /* width: 3.5rem;
-    height: 2.5rem; */
-    /* color: white;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    border: 0px transparent #fff !important;
-    background: url("images/menu_icon.svg") no-repeat center;
-    background-repeat: no-repeat; */
-}
-
-.navbar-menu-toggle:checked[b-wyjfhg2fj8] {
-    background-color: rgba(255, 255, 255, 0.0);
-}
-
 .top-row[b-wyjfhg2fj8] {
     min-height: 50px;
     background-color: rgba(0,0,0,0.4);
 }
 
-span.bi[b-wyjfhg2fj8] {
+.nav-item[b-wyjfhg2fj8] {
+    position: relative;
+    font-size: 0.9rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.nav-item[b-wyjfhg2fj8]  .nav-link {
+    color: #d7d7d7;
+    background: none;
+    border: none;
+    border-radius: 4px;
+    height: 2.3rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 2px;
-    margin: 2px;
-    width: 30px;
-    height: 30px;
+    line-height: 3rem;
+    width: 100%;
+    padding-left: 0.1rem;
+}
+
+.nav-item[b-wyjfhg2fj8]  a.active {
+    background-color: rgba(255,255,255,0.37);
+    color: white;
+}
+
+.nav-item[b-wyjfhg2fj8]  .nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
 }
 
 .home-icon[b-wyjfhg2fj8] {
@@ -213,7 +158,6 @@ span.bi[b-wyjfhg2fj8] {
     background-image: url("../images/sign-out.svg");
     background-repeat: no-repeat;
 }
-
 .icon-size[b-wyjfhg2fj8] {
     transform: scale(1);
 }
@@ -230,59 +174,95 @@ span.bi[b-wyjfhg2fj8] {
 }
 .arrow-down[b-wyjfhg2fj8] {
     transform: rotate(0deg);
+    transition: 0.4s ease-in-out;
 }
 .arrow-up[b-wyjfhg2fj8] {
     transform: rotate(180deg);
+    transition: 0.4s ease-in-out;
 }
 
-.nav-item[b-wyjfhg2fj8] {
-    position: relative;
-    font-size: 0.9rem;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
+
+/* --------------------------- OPEN Side Navbar Styles ---------------------------*/
+
+.side-navbar.open[b-wyjfhg2fj8] {
+    width: 265px;
+    /* min-width: 265px; */
+    transition: 0.2s ease-in-out;
 }
 
-.nav-item:first-of-type[b-wyjfhg2fj8] {
-    padding-top: 0.3rem;
+.side-navbar[b-wyjfhg2fj8]  .logo-container {
+    position: absolute;
+    top: 5px;
+    left: 0px;
 }
 
-.nav-item:last-of-type[b-wyjfhg2fj8] {
-    padding-bottom: 0.3rem;
+.side-navbar[b-wyjfhg2fj8]  .nav-font {
+    font-size: 16px;
+    color: #dfd7d7;
+    padding-left: 0.4rem;
 }
 
-.nav-item[b-wyjfhg2fj8]  .nav-link {
-    color: #d7d7d7;
-    background: none;
-    border: none;
-    border-radius: 4px;
-    height: 2.3rem;
+.side-navbar[b-wyjfhg2fj8]  span.bi {
     display: flex;
     align-items: center;
-    line-height: 3rem;
-    width: 100%;
-    padding-left: 0.1rem;
+    justify-content: center;
+    padding: 2px;
+    margin: 2px;
+    width: 30px;
+    height: 30px;
 }
 
-.nav-item[b-wyjfhg2fj8]  a.active {
-    background-color: rgba(255,255,255,0.37);
-    color: white;
+/* --------------------------- CLOSED Side Navbar Styles --------------------------- */
+
+.side-navbar.closed[b-wyjfhg2fj8] {
+    width: 76px;
+    transition: 0.2s ease-in-out;
 }
 
-.nav-item[b-wyjfhg2fj8]  .nav-link:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
+.side-navbar.closed[b-wyjfhg2fj8]  .logo-container {
+    display: none;
+    visibility: hidden;
 }
 
-.sub-menu[b-wyjfhg2fj8] {
-    height: 80px;
-    display: block;
+.side-navbar.closed[b-wyjfhg2fj8]  .nav-font {
+    display: none;
+    visibility: hidden;
 }
 
+.side-navbar.closed[b-wyjfhg2fj8]  span.bi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+}
+
+/* --------------------------- SUB MENU Styles --------------------------- */
+
+.sub-menu.open[b-wyjfhg2fj8] {
+    opacity: 1;
+    padding-top: 10px;
+    max-height: 520px;
+    transform: translateY(0);
+    transition: 0.4s ease-in-out;
+}
+.sub-menu.closed[b-wyjfhg2fj8] {
+    opacity: 0;
+    visibility:hidden;
+    padding-top: 0px;
+    max-height: 0px;
+    transform: translateY(20%);
+    transition: 0.4s ease-in-out;
+}
 .sub-menu span[b-wyjfhg2fj8] {
     margin-left: 15px;
 }
+
+
+
+
 
 .nav-scrollable[b-wyjfhg2fj8] {
     display: none;
@@ -291,6 +271,10 @@ span.bi[b-wyjfhg2fj8] {
 .navbar-menu-toggle:checked ~ .nav-scrollable[b-wyjfhg2fj8] {
     display: block;
 }
+
+/* .navbar-menu-toggle:checked {
+    background-color: rgba(255, 255, 255, 0.0);
+} */
 
 /* Search Bar CSS */
 .nav-search-section[b-wyjfhg2fj8] {
@@ -332,7 +316,6 @@ span.bi[b-wyjfhg2fj8] {
     transform: scale(0.8);
     right: 0px;
     top: 0px;
-
 }
 
 .search-bar-collapsed input[type=text][b-wyjfhg2fj8] {
@@ -347,7 +330,6 @@ span.bi[b-wyjfhg2fj8] {
 .account-section[b-wyjfhg2fj8] {
     margin-top: auto;
     padding-top: 3rem;
-    padding-bottom: 1.3rem;
 }
 
 /* Used on the user's name to limit the displayed length */
@@ -574,13 +556,3 @@ span.bi[b-wyjfhg2fj8] {
 
 }
 
-
-
-
-/* Galaxy S21 Media Query for landscape orientation:  */
-@media only screen and (min-width: 360px) and (orientation: landscape)
-{ /* Your Styles... */ }
-
-/* Galaxy S21 Media Query for portrait orientation:  */
-@media only screen and (min-height: 800px) and (orientation: portrait)
-{ /* Your Styles... */ }
