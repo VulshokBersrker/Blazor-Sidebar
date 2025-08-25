@@ -3,15 +3,13 @@
 
 <div class="grid-10 side-navbar @(isSidebarCollapsed == true ? " closed" : " open")" >
 
-    <div class="section-10 top-row navbar-dark grid-10">
-        <span class="image-container @(isSidebarCollapsed == true ? "section-menu-icon" : "section-3")" @onclick=@(toggleSideBar) >
-            <img class="icon menu-icon-container" src="images/menu_icon.svg" alt="menu icon" />
+    <div class="section-10 top-row navbar-dark ">
+        <span class=" section-menu-icon" @onclick=@(toggleSideBar) >
+           <img class="icon menu-icon-container" src="images/menu_icon.svg" alt="menu icon" />
         </span>
         
-        <span class="section-7 @(isSidebarCollapsed == true ? "hidden mobile-viewable" : "image-container")">
-            <div class="logo-container">
-                <img src="/images/logo.png" class="logo"/>
-            </div>
+        <span class="logo-container @(isSidebarCollapsed == true ? "hidden mobile-viewable" : " ")">
+            <img src="/images/logo.png" class="logo"/>
         </span>
 
     </div>
@@ -21,13 +19,15 @@
         <nav class="grid-10" >
 
             <div class="section-10 nav-item">
-                <div class="@(isSidebarCollapsed == true ? "nav-link" : "search-container")" @onclick="() => { if(isSidebarCollapsed == true) {toggleSideBar();} }">          
+                <div class="@(isSidebarCollapsed == true ? "nav-link" : "")" @onclick="() => { if(isSidebarCollapsed == true) {toggleSideBar();} }">          
                     <div class="search-bar">
                         <input type="text" placeholder="Search" class="@(isSidebarCollapsed == true ? "hidden" : "")"/>
-                        <img src="images/search_icon.svg" class="@(isSidebarCollapsed == true ? "centered icon scale-1" : "search-icon icon")"/>
+                        <img src="images/search_icon.svg" class="search-icon icon"/>
                     </div>
                 </div>
             </div>
+
+
 
             <div class="section-10 nav-item">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All"> 
@@ -68,7 +68,7 @@
                 <NavLink class="nav-link" >
                     <span class="bi venue-icon icon icon-size" aria-hidden="true"></span> 
                     <span class="nav-font">Venue Management</span>
-                    <span class="arrow-icon @(IsSubMenuOpen(0) ? " arrow-up icon" : " arrow-down icon") @(isSidebarCollapsed == true ? " hidden" : "")" aria-hidden="true"></span>
+                    <span class="arrow-icon icon @(IsSubMenuOpen(0) ? " arrow-up" : " arrow-down")" aria-hidden="true"></span>
                 </NavLink>
 
                     @* Test function for possible dynamic links *@
@@ -111,7 +111,7 @@
                 <NavLink class="nav-link" >
                     <span class="bi reports-icon icon icon-size" aria-hidden="true"></span> 
                     <span class="nav-font">Reports</span>
-                    <span class="arrow-icon icon @(IsSubMenuOpen(1) ? " arrow-up" : " arrow-down") @(isSidebarCollapsed == true ? " hidden" : "")" aria-hidden="true"></span>
+                    <span class="arrow-icon icon @(IsSubMenuOpen(1) ? " arrow-up" : " arrow-down") " aria-hidden="true"></span>
                 </NavLink>
 
                 <div class="sub-menu @(IsSubMenuOpen(1) ? "open" : "closed")">
@@ -128,7 +128,7 @@
                 <NavLink class="nav-link" >
                     <span class="bi admin-icon icon icon-size" aria-hidden="true"></span> 
                     <span class="nav-font">Admin</span>
-                    <span class="arrow-icon @(IsSubMenuOpen(2) ? " arrow-up icon" : " arrow-down icon") @(isSidebarCollapsed == true ? " hidden" : "")" aria-hidden="true"></span>
+                    <span class="arrow-icon icon @(IsSubMenuOpen(2) ? " arrow-up" : " arrow-down")" aria-hidden="true"></span>
                 </NavLink>
 
                 <div class="sub-menu @(IsSubMenuOpen(2) ? "open" : "closed")">

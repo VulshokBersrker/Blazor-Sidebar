@@ -130,9 +130,9 @@ body {
 .section-15 {
   grid-column-end:span 15;
 }
-.section-menu-icon {
+/* .section-menu-icon {
   grid-column-end:span 10;
-}
+} */
 
 .grid-10 {
   display: grid;
@@ -188,21 +188,22 @@ body {
 /* Padding for when the sidebar is collapsed */
 .sidebar-padding {
   padding-left: 100px;
-  transition: 0.2s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 /* Advanced styling for navbar open and closed settings */
+/* Check if there are side-navbar closed tags */
 .main-container:has(.side-navbar.closed) {
   .sidebar-padding {
     padding-left: 100px;
-    transition: 0.2s ease-in-out;
+    transition: 0.5s ease-in-out;
   }
 }
-
+/* Check if there are side-navbar open tags */
 .main-container:has(.side-navbar.open) {
   .sidebar-padding {
     padding-left: 300px;
-    transition: 0.2s ease-in-out;
+    transition: 0.5s ease-in-out;
   }
 }
 
