@@ -1,14 +1,13 @@
 ﻿@rendermode InteractiveServer
 
-
 <div class="grid-10 side-navbar @(isSidebarCollapsed == true ? " closed" : " open")" >
 
     <div class="section-10 top-row navbar-dark ">
-        <span class=" section-menu-icon" @onclick=@(toggleSideBar) >
+        <span class="section-menu-icon" @onclick=@(toggleSideBar) >
            <img class="icon menu-icon-container" src="images/menu_icon.svg" alt="menu icon" />
         </span>
         
-        <span class="logo-container @(isSidebarCollapsed == true ? "hidden mobile-viewable" : " ")">
+        <span class="logo-container">
             <img src="/images/logo.png" class="logo"/>
         </span>
 
@@ -26,8 +25,6 @@
                     </div>
                 </div>
             </div>
-
-
 
             <div class="section-10 nav-item">
                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All"> 

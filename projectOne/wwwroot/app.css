@@ -210,32 +210,64 @@ body {
 /* styles for old Phones */
 @media screen and (min-width: 320px) and (max-width: 399px) {
   
-  .navbar-padding {
-    padding-top: 10px;
-    padding-left: 0px;
+  .main-container:has(.side-navbar.closed) {
+    .sidebar-padding {
+      padding-top: 60px;
+      padding-left: 0px;
+    }
   }
-
-  .section-menu-icon {
-    grid-column-end:span 2;
+  /* Check if there are side-navbar open tags */
+  .main-container:has(.side-navbar.open) {
+    .sidebar-padding {
+      padding-top: 60px;
+      padding-left: 0px;
+    }
+    /* Lock the body when the menu is open */
+    .content {
+      position: fixed;
+    }
   }
   
 }
 /* styles for smaller Phones */
 @media screen and (min-width: 400px) and (max-width: 765px) {
   
-  .navbar-padding {
-    padding-top: 10px;
-    padding-left: 0px;
+  .main-container:has(.side-navbar.closed) {
+    .sidebar-padding {
+      padding-top: 60px;
+      padding-left: 0px;
+    }
+  }
+  /* Check if there are side-navbar open tags */
+  .main-container:has(.side-navbar.open) {
+    .sidebar-padding {
+      padding-top: 60px;
+      padding-left: 0px;
+    }
+    /* Lock the body when the menu is open */
+    .content {
+      position: fixed;
+    }
   }
 
-  .section-menu-icon {
-    grid-column-end:span 2;
-  }
   
 }
+@media screen and (min-width: 3840px) { 
 
-
-
+  /* Advanced styling for navbar open and closed settings */
+  /* Check if there are side-navbar closed tags */
+  .main-container:has(.side-navbar.closed) {
+    .sidebar-padding {
+      padding-left: 150px;
+    }
+  }
+  /* Check if there are side-navbar open tags */
+  .main-container:has(.side-navbar.open) {
+    .sidebar-padding {
+      padding-left: 480px;
+    }
+  }
+}
 
 
 

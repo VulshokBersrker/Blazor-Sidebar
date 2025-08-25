@@ -6,9 +6,7 @@
 
 /* General Navbar Styles */
 
-.nav-scrollable[b-wyjfhg2fj8] {
-    display: none;
-}
+
 .navbar-menu-toggle:checked ~ .nav-scrollable[b-wyjfhg2fj8] {
     display: block;
 }
@@ -56,7 +54,7 @@
 .nav-item[b-wyjfhg2fj8] {
     position: relative;
     font-size: 0.9rem;
-    padding-top: 0.2rem;
+    padding-top: 0.21rem;
     padding-bottom: 0.2rem;
     padding-right: 1rem;
     padding-left: 1rem;
@@ -167,7 +165,7 @@
 
 .side-navbar.open[b-wyjfhg2fj8]  .logo-container {
     position: absolute;
-    left: 73px;
+    left: 78px;
     top: 0px;
     display: inline-block;
     padding-top: 5px;  
@@ -324,48 +322,167 @@
 
 
 /* styles for old Phones */
-@media screen and (min-width: 320px) and (max-width: 399px) {
-  
-  
+@media screen and (min-width: 320px) and (max-width: 399px) { 
+    .account-section[b-wyjfhg2fj8] {
+        margin-top: auto !important;
+        padding-top: 8rem !important;
+        padding-bottom: 0rem !important;
+    }
+
 }
 /* styles for smaller Phones */
 @media screen and (min-width: 320px) and (max-width: 765px) {
-  
-    .side-navbar[b-wyjfhg2fj8] {
-        background-color: #141414;
-        position: relative;
-        width: 100vw;
-        max-width: 100vw;
-    }
-
-    .side-navbar-collapsed[b-wyjfhg2fj8] {
-        background-color: #141414;
-        position: relative;
-        width: 100vw;
-        max-width: 100vw;
-    }
 
     .logo[b-wyjfhg2fj8] {
         width: 42vw;
         height: auto;
     }
 
-    .mobile-viewable[b-wyjfhg2fj8] {
-        display: block !important;
-        visibility: visible !important;
-        appearance:inherit;
+    .nav-item[b-wyjfhg2fj8] {
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
     }
-  
+
+    .nav-item[b-wyjfhg2fj8]  .nav-link {
+        height: 3.2rem;
+    }
+    
+    /* --------------------------- OPEN Side Navbar Styles ---------------------------*/
+
+    .side-navbar.open[b-wyjfhg2fj8] {
+        width: 100vw;
+        max-width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        overflow-y: scroll;
+    }
+
+    .side-navbar.open[b-wyjfhg2fj8]  .logo-container {
+        position: absolute;
+        left: 200px;
+        top: 0px;
+        padding-top: 5px;  
+        width: 50%;
+    }
+
+    .side-navbar.open[b-wyjfhg2fj8]  .nav-font {
+        font-size: 16px;
+    }
+
+    .side-navbar.open[b-wyjfhg2fj8]  span.bi {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+        margin-left: 0px;
+        width: 30px;
+        height: 30px;
+        /* Stops the icons from shrinking during animations */
+        min-height: 30px;
+        min-width: 30px;
+    }
+
+    /* Search Section */
+    .side-navbar.open[b-wyjfhg2fj8]  .search-bar input[type=text] {
+        text-indent: 28px;
+    }
+    .side-navbar.open[b-wyjfhg2fj8]  .search-icon {
+        position: absolute;
+        min-width: 50px;
+        transform: scale(0.8);
+        left: 10px;
+        top: -3px;
+    }
+
+    /* --------------------------- CLOSED Side Navbar Styles --------------------------- */
+
+    .side-navbar.closed[b-wyjfhg2fj8] {
+        width: 100vw;
+        max-width: 100vw;
+        max-height: 50px;
+    }
+
+    .side-navbar.closed[b-wyjfhg2fj8]  .logo-container {
+        display: block;
+        visibility: visible;
+        position: absolute;
+        left: 200px;
+        top: 0px;
+        padding-top: 5px;  
+        width: 50%;
+    }
+
+    /* --------------------------- SUB MENU Styles --------------------------- */
+
+    .sub-menu.open[b-wyjfhg2fj8] {
+        opacity: 1;
+        padding-top: 10px;
+        max-height: 520px;
+        transform: translateY(0);
+        transition: 0.5s ease-in-out;
+    }
+    .sub-menu.closed[b-wyjfhg2fj8] {
+        opacity: 0;
+        visibility:hidden;
+        padding-top: 0px;
+        max-height: 0px;
+        transform: translateY(20%);
+        transition: 0.5s ease-in-out;
+    }
+    .sub-menu span[b-wyjfhg2fj8] {
+        margin-left: 15px;
+    }
+
+    .account-section[b-wyjfhg2fj8] {
+        margin-top: calc(15vh - 50px);
+        padding-left: 1.4rem;
+        padding-right: 1rem;
+        padding-top: 6rem;
+        padding-bottom: 0rem;
+    }
   
 }
 /* styles for smaller iPads/Kindle */
 @media screen and (min-width: 766px) and (max-width: 838px) { 
+
+
+    .sign-out-icon[b-wyjfhg2fj8] {
+        background-image: url("../images/sign-out.svg");
+        background-repeat: no-repeat;
+    }
+
+    .side-navbar.open[b-wyjfhg2fj8]  .logo-container {
+        position: absolute;
+        left: 73px;
+        top: 0px;
+        display: inline-block;
+        padding-top: 5px;  
+        width:50%;
+    }
+
+    .side-navbar.open[b-wyjfhg2fj8]  span.bi {
+        padding: 2px;
+        margin-left: 5px;
+        width: 30px;
+        height: 30px;
+        /* Stops the icons from shrinking during animations */
+        min-height: 30px;
+        min-width: 30px;
+    }
+
+
+    .logo[b-wyjfhg2fj8] {
+        width: 21vw;
+        height: auto;
+    }
   
     .account-section[b-wyjfhg2fj8] {
         margin-top: auto;
         padding-top: 3rem;
         padding-bottom: 1.3rem;
-        margin-left: 1rem;
+        margin-left: 0.1rem;
     }
 
     .text-overflow[b-wyjfhg2fj8] {
@@ -376,11 +493,38 @@
         text-overflow: ellipsis;
         margin-left: -1rem;
     }
+    
 }
 /* styles for newer iPads */
-@media screen and (min-width: 1010px) and (max-width: 1030px) { }
+@media screen and (min-width: 1010px) and (max-width: 1030px) {
+    .side-navbar.open[b-wyjfhg2fj8]  .logo-container {
+        position: absolute;
+        left: 73px;
+        top: 0px;
+        display: inline-block;
+        padding-top: 5px;  
+        width:50%;
+    }
+
+    .logo[b-wyjfhg2fj8] {
+        width: 12vw;
+        height: auto;
+    }
+}
 /* Laptop with MDPI Screen - 720p Screens - 1280x720, plus landscape iPad */
-@media screen and (min-width: 1040px) and (max-width: 1366px) { }
+@media screen and (min-width: 1040px) and (max-width: 1366px) {
+    .logo[b-wyjfhg2fj8] {
+        width: 14vw;
+        height: auto;
+    }
+}
+/* Laptop with HiDPI Screen */
+@media screen and (min-width: 1367px) and (max-width: 1440px) {
+    .logo[b-wyjfhg2fj8] {
+        width: 12vw;
+        height: auto;
+    }
+}
 /* 2K Resolutions - 2560x1440 */
 @media screen and (min-width: 1921px) and (max-width: 3839px) {
     .logo[b-wyjfhg2fj8] {
@@ -388,112 +532,131 @@
         height: auto;
     }
 
-    .sub-menu[b-wyjfhg2fj8] {
-        height: 90px;
-        display: block;
-        font-size: 12px;
+    .sub-menu.open[b-wyjfhg2fj8] {
+        max-height: 720px;
     }
 
     .account-section[b-wyjfhg2fj8] {
         margin-top: auto;
-        padding-bottom: 2.5rem;
+        padding-bottom: 1.7rem;
     }    
   
 }
 /* 4K Resolutions - 3840x2160 */
 @media screen and (min-width: 3840px) {
-    .side-navbar[b-wyjfhg2fj8] {
-        width: 420px;
-        max-width: 600px;
-    }
-    .side-navbar-collapsed[b-wyjfhg2fj8] {
-        width: 90px;
-    }
 
-    .logo-container[b-wyjfhg2fj8] {
-        position: absolute;
-        top: 5px;
-        left: 0px;
+    /* Menu Icon */
+    .section-menu-icon[b-wyjfhg2fj8] {
+        padding-top: 20px;
+        width: 50%;
+        padding-left: 0.8rem;
     }
-
     .menu-icon-container[b-wyjfhg2fj8] {
-        position: absolute;
-        top: 30px;
-        left: 30%;
-        transform: translate(-50%, -50%);
-        transform: scale(1.7);
+        cursor: pointer;
+        width: 62px;
+        height: 62px;
     }
-
     .logo[b-wyjfhg2fj8] {
         width: 8vw;
         height: auto;
     }
 
-    .nav-font[b-wyjfhg2fj8] {
-        font-size: 26px;
-        padding-left: 1.5rem;
-    }
-
     .top-row[b-wyjfhg2fj8] {
         min-height: 100px;
-        background-color: rgba(0,0,0,0.4);
     }
 
-    span.bi[b-wyjfhg2fj8] {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2px;
-        margin: 2px;
-        width: 30px;
-        height: 30px;
-    }
-
-    .icon-size[b-wyjfhg2fj8] {
-        transform: scale(1.5);
-    }
-
-    .nav-item[b-wyjfhg2fj8] {
-        font-size: 1rem;
-        padding-bottom: 0.5rem;
-        padding-right: 1rem;
-        padding-left: 1rem;
-        /* height: 80px; */
-    }
-    .nav-item:first-of-type[b-wyjfhg2fj8] {
-        padding-top: 0.5rem;
-    }
-    .nav-item:last-of-type[b-wyjfhg2fj8] {
-        padding-bottom: 0.5rem;
-    }
     .nav-item[b-wyjfhg2fj8]  .nav-link {
         height: 4rem;
         padding-left: 0.7rem;
     }
 
-    .sub-menu[b-wyjfhg2fj8] {
-        height: 150px;
-        display: block;
+    .icon-size[b-wyjfhg2fj8] {
+        transform: scale(1.5);
+    }
+    .arrow-icon[b-wyjfhg2fj8] {
+        top: 22px;
+        right: 25px;
+        width: 28px;
+        height: 28px;
+    }
+    
+    /* --------------------------- OPEN Side Navbar Styles ---------------------------*/
+
+    .side-navbar.open[b-wyjfhg2fj8] {
+        width: 420px;
     }
 
-    /* Search Bar CSS */
-    .search-bar input[type=text][b-wyjfhg2fj8] {
-        width: 100%;
-        max-height: 90px;
-        background-color: rgba(0, 0, 0, 0.0);
-        border: 1px solid rgba(183, 183, 183, 0.498);
-        border-radius: 6px;
-        padding: 10px;
-        box-sizing: border-box;
-        font-size: 26px;
-        color: rgb(183, 183, 183);
+    .side-navbar.open[b-wyjfhg2fj8]  .logo-container {
+        left: 100px;
+        top: 10px;
+        padding-top: 6px;  
     }
-    .search-icon[b-wyjfhg2fj8] {
-        position: absolute;
+
+    .side-navbar.open[b-wyjfhg2fj8]  .nav-font {
+        font-size: 26px;
+        padding-left: 1.5rem;
+    }
+
+    .side-navbar.open[b-wyjfhg2fj8]  span.bi {
+        padding: 2px;
+        margin-left: 2px;
+        width: 32px;
+        height: 32px;
+        /* Stops the icons from shrinking during animations */
+        min-height: 32px;
+        min-width: 32px;
+    }
+
+    /* Search Section */
+    .side-navbar.open[b-wyjfhg2fj8]  .search-bar input[type=text] {
+        max-height: 100px;
+        padding-top: 12px;
+        padding-bottom: 11px;
+        font-size: 26px;
+        text-indent: 55px;
+    }
+    .side-navbar.open[b-wyjfhg2fj8]  .search-icon {
         min-width: 60px;
         transform: scale(1);
-        right: 5px;
-        top: 2px;
+        left: 16px;
+        top: 7px;
+    }
+
+    /* --------------------------- CLOSED Side Navbar Styles --------------------------- */
+
+    .side-navbar.closed[b-wyjfhg2fj8] {
+        width: 90px;
+        transition: 0.5s ease-in-out;
+    }
+
+    .side-navbar.closed[b-wyjfhg2fj8]  span.bi {
+        display: flex;
+        padding: 2px;
+        margin: 2px;
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Search Section */
+
+    .side-navbar.closed[b-wyjfhg2fj8]  .search-bar {
+        max-height: 70px;
+    }
+    .side-navbar.closed[b-wyjfhg2fj8]  .search-icon {
+        min-width: 60px;
+        transform: scale(1);
+        left: 16px;
+        top: 7px;
+    }
+
+    /* --------------------------- SUB MENU Styles --------------------------- */
+
+    .sub-menu.open[b-wyjfhg2fj8] {
+        padding-top: 15px;
+        max-height: 1520px;
+    }
+    .sub-menu span[b-wyjfhg2fj8] {
+        margin-left: 20px;
     }
 
     .account-section[b-wyjfhg2fj8] {
@@ -501,20 +664,5 @@
         padding-bottom: 5rem;
         /* padding-right: 1rem; */
     }
-    .scale-1[b-wyjfhg2fj8] {
-        height: 85px;
-    }
-
-    .arrow-icon[b-wyjfhg2fj8] {
-        position: absolute;
-        top: 22px;
-        right: 25px;
-        width: 28px;
-        height: 28px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-image: url("../images/down.svg");
-    }
 
 }
-
