@@ -34,6 +34,13 @@
             </div>
 
             <div class="section-10 nav-item">
+                <NavLink class="nav-link" href="modular-calendar">
+                    <span class="bi event-icon icon icon-size" aria-hidden="true"></span>
+                    <span class="nav-font">Calendar Component</span>
+                </NavLink>
+            </div>
+
+            <div class="section-10 nav-item">
                 <NavLink class="nav-link" href="counter">
                     <span class="bi dugout-icon icon icon-size" aria-hidden="true"></span>
                     <span class="nav-font">The Dugout</span>
@@ -66,20 +73,7 @@
                     <span class="bi venue-icon icon icon-size" aria-hidden="true"></span> 
                     <span class="nav-font">Venue Management</span>
                     <span class="arrow-icon icon @(IsSubMenuOpen(0) ? " arrow-up" : " arrow-down")" aria-hidden="true"></span>
-                </NavLink>
-
-                    @* Test function for possible dynamic links *@
-                    @* @if(IsSubMenuOpen(0) == true) {
-                        <div class="sub-menu">
-                            @foreach(var index in Enumerable.Range(0, worker.getLength()  ) ) {
-                                
-                                <NavLink class="nav-link mb-2" href="@{worker.getSubMenuHyperLinks(index)}">
-                                    <span class="@(isSidebarCollapsed == true ? "hidden" : "nav-font")">@(worker.getSubMenuTitles(index))</span>
-                                </NavLink>
-                                
-                            }
-                        </div>
-                    } *@                
+                </NavLink>               
 
                 <div class="sub-menu @(IsSubMenuOpen(0) ? "open" : "closed")">
                     <NavLink class="nav-link mb-2" href="/">
@@ -171,49 +165,7 @@
 @code {
 
     @*  -------------------- START TESTING AREA --------------------  *@
-    class subMenuLinks {
-        // The reference Number for the Sub Menu
-        protected int subMenuNumber = 0;
-        protected string[] subMenuTitles = [];
-        protected string[] subMenuHyperLinks = [];
-
-        public subMenuLinks(int referenceNumber) {
-            this.subMenuNumber = referenceNumber;
-        }
-
-        public subMenuLinks(int referenceNumber, string[] titles, string[] hyperLinks) {
-            this.subMenuNumber = referenceNumber;
-            this.subMenuTitles = titles;
-            this.subMenuHyperLinks = hyperLinks;
-        }
-
-        // Getters
-        public int getSubMenuNumber() {
-            return subMenuNumber;
-        }
-        public string getSubMenuTitles(int index) {
-            return subMenuTitles[index];
-        }
-
-        public string getSubMenuHyperLinks(int index) {
-            return subMenuHyperLinks[index];
-        }
-        public int getLength() {
-            Console.WriteLine("Length: " + subMenuTitles.Length);
-            return subMenuTitles.Length;
-        }
-    }
-
-    private static string[] links = ["/", "/"];
-    public static string[] work2 = ["Item 22", "Item 33"];
-    subMenuLinks worker = new subMenuLinks(0, work2, links);
-
-    // test function
-    protected void wwww() {
-        Console.WriteLine(worker.getSubMenuNumber());
-        Console.WriteLine(worker.getSubMenuHyperLinks(0));
-        Console.WriteLine(worker.getSubMenuTitles(0));
-    }
+    
 
     @*  -------------------- END TESTING AREA --------------------  *@
 
@@ -226,7 +178,7 @@
     protected void toggleSideBar() {
         isSidebarCollapsed = !isSidebarCollapsed;
         @* Console.WriteLine("is Navbar Collapsed: " + isSidebarCollapsed); *@
-        wwww();
+        
     }
 
     // This function will toggle the specific submenu the user is trying to open

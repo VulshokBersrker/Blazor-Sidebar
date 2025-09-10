@@ -1,0 +1,218 @@
+@using Microsoft.Extensions.WebEncoders.Testing
+@rendermode InteractiveServer
+
+<div class="calendar-month-layout">
+    <div class="month">
+        <div>
+            @* These arrows will change the months *@
+            <span class="calendar-arrow-icon arrow-left icon-size" @onclick="@(() => { monthsAway--; CreateMonth(); })"/>
+            <span>@monthName <span>@year</span> </span>
+            <span class="calendar-arrow-icon arrow-right icon-size" @onclick="@(() => { monthsAway++; CreateMonth(); })" />
+        </div>
+    </div>
+
+    <ul class="weekdays">
+        <li id="0">Sun</li>
+        <li id="1">Mon</li>
+        <li id="2">Tue</li>
+        <li id="3">Wed</li>
+        <li id="4">Thur</li>
+        <li id="5">Fri</li>
+        <li id="6">Sat</li>        
+    </ul>
+
+    <ul class="days">
+        @* Previous Month *@
+        @{for(int i = prevMonthDays.Length - 1; i >= 0; i--) {
+                @if(prevMonthDays[i] != 0) {
+                    var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, 1));
+
+                    // Error handling for January
+                    if(month - 1 == 0) {  calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year - 1, 12, prevMonthDays[i])); }
+                    else { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month - 1, prevMonthDays[i])); }
+
+                    @if(currentDate == ((month - 1) + "/" + i + "/" + year)) {
+                        <li class="active outsideMonth" id="@((month - 1) + "/" + prevMonthDays[i] + "/" + year)">
+                        @prevMonthDays[i]
+                        @if (calendarItem != null) {
+                            <span class="hidden">@calendarItem.Name</span>
+                        }
+                        </li>
+                    }
+                    else {
+                        <li class="outsideMonth position-relative"  id="@((month - 1) + "/" + prevMonthDays[i] + "/" + year)">
+                        @prevMonthDays[i]
+                        @if (calendarItem != null) {
+                            <span class="h">@calendarItem.Name</span>
+                        }
+                        </li>
+                    }
+                }
+            }
+        }
+
+        @* Current Month *@
+        @{for (int i = 1; i <= monthEnd.Day; i++) {
+            var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, i));
+            
+            @if(currentDate == (month + "/" + i + "/" + year)) {
+                <li class="active" id="@((month ) + "/" + i + "/" + year)">
+                @i
+                @if (calendarItem != null) {
+                    <span class="hidden">@calendarItem.Name</span>
+                }
+                </li>
+            }
+            else {
+                <li class="" id="@((month) + "/" + i + "/" + year)">
+                @i
+                @if (calendarItem != null) {
+                    <span class="@calendarItem.eventType"></span>
+                    <span class="h">@calendarItem.Name</span>
+                }
+                </li>
+            }
+        }
+        }
+
+        @* Next Month *@
+        @{for(int i = 0; i < nextMonthDays.Length; i++) {
+                @if(nextMonthDays[i] != 0) {
+                    var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, 1) );
+                    
+                    // Error handling for December
+                    if(month + 1 == 13) { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year + 1, 1, nextMonthDays[i])); }
+                    else { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month + 1, nextMonthDays[i])); }
+            
+                    @if(currentDate == ((month + 1) + "/" + i + "/" + year)) {
+                        <li class="active outsideMonth" id="@((month + 1) + "/" + nextMonthDays[i] + "/" + year)">
+                        @nextMonthDays[i]
+                        @if (calendarItem != null) {
+                            <span class="hidden">@calendarItem.Name</span>
+                        }
+                        </li>
+                    }
+                    else {
+                        <li class="outsideMonth position-relative"  id="@((month + 1) + "/" + nextMonthDays[i] + "/" + year)">
+                        @nextMonthDays[i]
+                        @if (calendarItem != null) {
+                            <span class="h">@calendarItem.Name</span>
+                        }
+                        </li>
+                    }
+                }
+            }
+        }
+    </ul>
+</div>
+
+
+
+@code {
+
+    @* Current Day value *@
+    protected string currentDate = DateTime.Now.ToShortDateString();
+    
+    // Calender Event Type
+    protected record CalendarEvents(DateTime Date, string Name, string eventType);    
+
+    // Selected Month Values
+    protected string monthName = "";
+	DateTime monthEnd;
+	protected int monthsAway = 0;
+	protected int year = 0;
+	protected int month = 0;
+	List<CalendarEvents> events = new List<CalendarEvents>();
+
+    // Previous Month Values
+    protected int[] prevMonthDays = new int[7];
+    // Next Month Values
+    protected int[] nextMonthDays = new int[7];
+	protected override void OnInitialized() {
+        // Compile all the events for the viewable time period
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 21), "Test day 1", "venue-event"));
+		events.Add(new CalendarEvents(new DateTime(2025, 8, 31), "Test day 2", "holiday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 25), "Christmas", "birthday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
+        // Create the calendar
+		CreateMonth();
+	}
+
+	void CreateMonth() {
+        // Create a temp data to get the month and year
+		var tempDate = DateTime.Now.AddMonths(monthsAway);
+		month = tempDate.Month;
+		year = tempDate.Year;
+
+        // Set the start and end days for the month
+		DateTime monthStart = new DateTime(year, month, 1);
+		monthEnd = monthStart.AddMonths(1).AddDays(-1);
+		monthName = monthStart.Month switch {
+			1 => "January",
+			2 => "February",
+			3 => "March",
+			4 => "April",
+			5 => "May",
+			6 => "June",
+			7 => "July",
+			8 => "August",
+			9 => "September",
+			10 => "October",
+			11 => "November",
+			12 => "December",
+			_ => ""
+		};
+
+
+
+        @* ---- This Section is for the days that will appear on the calender outside the current month ---- *@
+        // All values in the previous and next month dates need to be reset to 0 when changing months
+        for(int i = 0; i < prevMonthDays.Length; i++) { prevMonthDays[i] = 0; }
+        for(int i = 0; i < nextMonthDays.Length; i++) { nextMonthDays[i] = 0; }
+
+        @* Previous Month Section *@
+
+        // Get the previous month values
+        int prevMonthLastDay = DateTime.DaysInMonth(year, monthEnd.Month);
+        DateTime temp = new DateTime(year, monthEnd.Month, prevMonthLastDay);
+        // If the current month is January, set the previous month to December of the previous year
+        if(monthEnd.Month == 1) {
+            prevMonthLastDay = DateTime.DaysInMonth(year - 1, 12);
+            temp = new DateTime(year - 1, 12, prevMonthLastDay);
+        }
+        // If the current month is not January
+        else {
+            prevMonthLastDay = DateTime.DaysInMonth(year, monthEnd.Month - 1);
+            temp = new DateTime(year, monthEnd.Month - 1, prevMonthLastDay);
+        }
+                
+        // Get the last day of the previous month's day of week value (0-6)
+        int prevMonthLastDayName = (int)temp.DayOfWeek;
+        // Now set the values
+        for(int i = 0; i <= prevMonthLastDayName; i++) {
+            prevMonthDays[i] = prevMonthLastDay - i;
+        }
+
+        @* Next Month Section *@
+
+        // If the current month is December, set the next month to January of next year
+        DateTime temp2 = new DateTime(year, monthEnd.Month, 1);
+        if(monthEnd.Month == 12) {
+            temp2 = new DateTime(year + 1, 1, 1);
+        }
+        // If the current month is not December
+        else {
+            temp2 = new DateTime(year, monthEnd.Month + 1, 1);
+        }
+        
+        // Get the next month values
+        int nextMonthLastDayName = (int)temp2.DayOfWeek;
+        // Now set the values
+        for(int i = nextMonthLastDayName; i < 7; i++) {
+            nextMonthDays[i - nextMonthLastDayName] = i - nextMonthLastDayName + 1;
+        }
+
+	}
+    
+
+}

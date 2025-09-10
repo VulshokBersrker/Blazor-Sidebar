@@ -1,3 +1,221 @@
+/* _content/projectOne/Components/Calendar/ModularCalendar.razor.rz.scp.css */
+.calendar-month-layout[b-vqpjjdyixa] {
+  border-radius: 10px;
+  overflow: hidden;
+  width: 30%;
+}
+
+.month[b-vqpjjdyixa] {
+  padding: 20px 25px;
+  width: 100%;
+  background: #ffffff;
+  text-align: center;
+  
+}
+
+/* Month list */
+.month div[b-vqpjjdyixa] {
+  margin: 0;
+  padding: 0; 
+  position: relative;
+}
+
+.month div span[b-vqpjjdyixa] {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.calendar-arrow-icon[b-vqpjjdyixa] {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../images/down.svg");
+}
+
+.calendar-arrow-icon.arrow-left[b-vqpjjdyixa] {
+  position: absolute;
+  top: 5px;
+  left: 0px;
+}
+.calendar-arrow-icon.arrow-right[b-vqpjjdyixa] {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+}
+
+/* Weekdays (Mon-Sun) */
+.weekdays[b-vqpjjdyixa] {
+  /* Layout Styles */
+  margin: 0;
+  padding: 10px 0;
+  background-color:#ddd;
+  /* Grid Styles */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  -moz-column-gap: 25px;
+  column-gap: 5px;
+  row-gap: 10px;
+}
+
+.weekdays li[b-vqpjjdyixa] {
+  /* Font Styles */
+  color: #000000;
+  text-align: center;
+  font-weight: 500;
+  list-style-type: none;  
+  /* Grid Styles */
+  grid-column-end:span 1;
+}
+
+/* Days (1-31) */
+.days[b-vqpjjdyixa] {
+  /* Layout Styles */
+  padding: 10px 0;
+  background: #eee;
+  margin: 0;
+  /* Grid Styles */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  -moz-column-gap: 25px;
+  column-gap: 5px;
+  row-gap: 10px;
+  /* border: 1px solid #000; */
+}
+
+.days li[b-vqpjjdyixa] {
+  /* Text Styles */
+  list-style-type: none;
+  text-align: center;
+  font-size: 18px;
+  color: #000000;
+  /* Grid Styles */
+  grid-column-end: span 1;
+  min-height: 40px;
+  /* Position Styles */
+  position: relative;
+  z-index: 5;
+
+  align-items: center;
+  align-content: center;
+}
+
+/* Highlight the "current" day */
+.days li.active[b-vqpjjdyixa] {
+  /* Text Styles */
+  color: white !important;  
+}
+
+.active[b-vqpjjdyixa]::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 49%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--active-color);
+  transform: translate(-50%, -50%);
+}
+
+/* Show which days are outside the current month */
+.days li.outsideMonth[b-vqpjjdyixa] {
+  color: rgb(129, 129, 129);
+}
+
+
+
+/* Event Styling */
+
+span.h[b-vqpjjdyixa] {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: black;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 6px;
+  white-space: nowrap;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 5;
+  top: 70%;
+  left: 0%;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+
+li:hover span.h[b-vqpjjdyixa] {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+li:hover span.h[b-vqpjjdyixa]::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+
+li:has( span.venue-event)[b-vqpjjdyixa] {
+  /* position: absolute; */
+  /* content: ""; */
+  /* left: 50%;
+  top: 34%; */
+  background: var(--venue-event-color);
+}
+
+.birthday[b-vqpjjdyixa] {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 34%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--active-color);
+  transform: translate(-50%, -50%);
+}
+
+.venue-event[b-vqpjjdyixa] {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  border: #000000 1px solid;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius:  100%;
+}
+
+
+
+.important-event[b-vqpjjdyixa] {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 34%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--active-color);
+  transform: translate(-50%, -50%);
+}
 /* _content/projectOne/Components/Layout/MainLayout.razor.rz.scp.css */
 .page[b-4fh4ctlexs] {
     position: relative;
@@ -88,7 +306,8 @@ main[b-4fh4ctlexs] {
 }
 
 .logo[b-wyjfhg2fj8] {
-    width: 9vw;
+    /* Make this hard pixels instead */
+    width: 170px;
     height: auto;
 }
 
@@ -177,25 +396,7 @@ main[b-4fh4ctlexs] {
     transform: scale(1);
 }
 
-.arrow-icon[b-wyjfhg2fj8] {
-    position: absolute;
-    top: 9px;
-    right: 21px;
-    width: 22px;
-    height: 22px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url("../images/down.svg");
-}
-/* Arrow Icon Rotation Styles */
-.arrow-down[b-wyjfhg2fj8] {
-    transform: rotate(0deg);
-    transition: 0.4s ease-in-out;
-}
-.arrow-up[b-wyjfhg2fj8] {
-    transform: rotate(180deg);
-    transition: 0.4s ease-in-out;
-}
+
 
 /* Search Bar CSS */
 .search-icon:hover[b-wyjfhg2fj8] {
@@ -248,16 +449,16 @@ main[b-4fh4ctlexs] {
 
 /* Search Section */
 .side-navbar.open[b-wyjfhg2fj8]  .search-bar input[type=text] {
-  width: 100%;
-  max-height: 37px;
-  background-color: rgba(0, 0, 0, 0.0);
-  border: 1px solid rgba(183, 183, 183, 0.498);
-  border-radius: 6px;
-  padding: 10px;
-  box-sizing: border-box;
-  font-size: 16px;
-  color: rgb(183, 183, 183);
-  text-indent: 35px;
+    width: 100%;
+    max-height: 37px;
+    background-color: rgba(0, 0, 0, 0.0);
+    border: 1px solid rgba(183, 183, 183, 0.498);
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: rgb(183, 183, 183);
+    text-indent: 35px;
 }
 .side-navbar.open[b-wyjfhg2fj8]  .search-icon {
     position: absolute;

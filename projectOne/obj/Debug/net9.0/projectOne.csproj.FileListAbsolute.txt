@@ -167,6 +167,7 @@ F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\pediojnvl0-moyp4pxsc7.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\zbnfehlbrd-0pnff234m0.gz
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\z3phjbzvgj-s8mozkk097.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mca1mp0noc-rz4y9fkat8.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-9orckqiwlh.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-9orckqiwlh.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\scopedcss\Components\Calendar\ModularCalendar.razor.rz.scp.css
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mca1mp0noc-tj3jf4h22s.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-j859rjhjic.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-j859rjhjic.gz

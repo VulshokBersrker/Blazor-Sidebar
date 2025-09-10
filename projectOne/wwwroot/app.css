@@ -11,6 +11,11 @@
 
   --bg-color: #237eda;
 
+
+  /* Calendar Variables */
+  --active-color: rgb(21, 88, 171);
+  --venue-event-color: rgb(207, 161, 23);
+
 }
 
 * {
@@ -130,9 +135,6 @@ body {
 .section-15 {
   grid-column-end:span 15;
 }
-/* .section-menu-icon {
-  grid-column-end:span 10;
-} */
 
 .grid-10 {
   display: grid;
@@ -182,6 +184,35 @@ body {
 .icon {
   filter: invert(84%) sepia(9%) saturate(4%) hue-rotate(1deg) brightness(200%) contrast(92%);
 }
+
+.arrow-icon {
+  position: absolute;
+  top: 9px;
+  right: 21px;
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../images/down.svg");
+}
+/* Arrow Icon Rotation Styles */
+.arrow-down {
+  transform: rotate(0deg);
+  transition: 0.4s ease-in-out;
+}
+.arrow-up {
+  transform: rotate(180deg);
+  transition: 0.4s ease-in-out;
+}
+.arrow-left {
+  transform: rotate(90deg);
+  transition: 0.4s ease-in-out;
+}
+.arrow-right {
+  transform: rotate(-90deg);
+  transition: 0.4s ease-in-out;
+}
+
 
 /* ------------------------- SIDEBAR ------------------------- */
 
