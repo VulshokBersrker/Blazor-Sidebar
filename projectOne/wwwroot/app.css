@@ -36,6 +36,10 @@ body {
   font-style: normal;
 }
 
+/* Weird Bootstrap override */
+ol, ul {
+  padding-left: 0rem;
+}
 
 /*--------------------------GLOBAL TAGS--------------------------*/
 
