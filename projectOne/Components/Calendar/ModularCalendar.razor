@@ -1,127 +1,446 @@
 @using Microsoft.Extensions.WebEncoders.Testing
 @rendermode InteractiveServer
 
-<div class="calendar-month-layout">
-    <div class="month">
-        <div>
-            @* These arrows will change the months *@
-            <span class="calendar-arrow-icon arrow-left icon-size" @onclick="@(() => { monthsAway--; CreateMonth(); })"/>
-            <span>@monthName <span>@year</span> </span>
-            <span class="calendar-arrow-icon arrow-right icon-size" @onclick="@(() => { monthsAway++; CreateMonth(); })" />
+
+<div class="grid-20">
+
+    @* Calendars *@
+    <div class="section-5 grid-10">
+        @* First Calendar *@
+        <div class="calendar-month-layout section-10">
+            <div class="month">
+                <div>
+                    @* These arrows will change the months *@
+                    <span class="calendar-arrow-icon arrow-left icon-size icon" @onclick="@(() => { monthsAway--; CreateMonth(); })"/>
+                    <span>@monthName <span>@year</span> </span>
+                    <span class="calendar-arrow-icon arrow-right icon-size icon" @onclick="@(() => { monthsAway++; CreateMonth(); })" />
+                </div>
+            </div>
+
+            <ul class="weekdays">
+                <li id="0">Sun</li>
+                <li id="1">Mon</li>
+                <li id="2">Tue</li>
+                <li id="3">Wed</li>
+                <li id="4">Thu</li>
+                <li id="5">Fri</li>
+                <li id="6">Sat</li>        
+            </ul>
+
+            <ul class="days">
+                @* Previous Month *@
+                @{for(int i = prevMonthDays.Length - 1; i >= 0; i--) {
+                        @if(prevMonthDays[i] != 0) {
+                            string date = ((month - 1) + "/" + prevMonthDays[i] + "/" + year);
+                            @* var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, 1)); *@
+
+                            // Error handling for January
+                            @* if(month - 1 == 0) {  calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year - 1, 12, prevMonthDays[i])); }
+                            else { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month - 1, prevMonthDays[i])); } *@
+
+                            @if(currentDate == ((month - 1) + "/" + i + "/" + year) ) {
+                                @* Error handling for January *@
+                                @if(month - 1 == 0) {
+                                    <li class="day" id="@(12 + "/" + prevMonthDays[i] + "/" + (year - 1))">
+                                        <span class="active outsideMonth">@prevMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="hidden">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                else {
+                                    <li class="day"  id="@((month - 1) + "/" + prevMonthDays[i] + "/" + year)">
+                                        <span class="active outsideMonth">@prevMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                
+                            }
+                            else {
+                                @* Error handling for January *@
+                                @if(month - 1 == 0) {
+                                    <li class="day" id="@(12 + "/" + prevMonthDays[i] + "/" + (year - 1))">
+                                        <span class="outsideMonth">@prevMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="hidden">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                else {
+                                    <li class="day"  id="@((month - 1) + "/" + prevMonthDays[i] + "/" + year)">
+                                        <span class="outsideMonth">@prevMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                            }
+                        }
+                    }
+                }
+
+                @* Current Month *@
+                @{for (int i = 1; i <= monthEnd.Day; i++) {
+                    @* var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, i)); *@
+                    string date = (month + "/" + i + "/" + year);
+                    
+                    @if(currentDate == (month + "/" + i + "/" + year)) {
+                        <li
+                            class="day @(selectedDate == (month + "/" + i + "/" + year) ? "selected-date" : "")"
+                            id="@(month  + "/" + i + "/" + year)"
+                            @onclick="@( () => changeSelectedDate(date) )"
+                        >
+                            <span class="active">@i</span>
+                            @* @if (calendarItem != null) {
+                                <ul class="event-container">
+                                    <li class="@calendarItem.eventType" > </li>
+                                    <li class="@calendarItem.eventType" />
+                                </ul>
+                            } *@
+                        </li>
+                    }
+                    else {
+                        <li
+                            class="day @(selectedDate == (month + "/" + i + "/" + year) ? "selected-date" : "")"
+                            id="@(month + "/" + i + "/" + year)"
+                            value="@(month + "/" + i + "/" + year)"
+                            @onclick="@( (e) => changeSelectedDate(date) )"
+                        >
+                            <span>@i</span>
+                            @* @if (calendarItem != null) {
+                                <ul class="event-container border">
+                                    <li class="@calendarItem.eventType" />
+                                    <li class="@calendarItem.eventType" />
+                                </ul>
+                                
+                                <span class="h">@calendarItem.Name</span>
+                            } *@
+                        </li>
+                    }
+                }
+                }
+
+                @* Next Month *@
+                @{for(int i = 0; i < nextMonthDays.Length; i++) {
+                        @if(nextMonthDays[i] != 0) {
+                            @* var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, 1) ); *@
+                            
+                            // Error handling for December
+                            @* if(month + 1 == 13) { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year + 1, 1, nextMonthDays[i])); }
+                            else { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month + 1, nextMonthDays[i])); } *@
+
+                            
+                    
+                            @if(currentDate == ((month + 1) + "/" + i + "/" + year)) {
+                                if(month + 1 == 13) {
+                                    <li class="day" id="@(1 + "/" + nextMonthDays[i] + "/" + (year + 1))">
+                                        <span class="active outsideMonth">@nextMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                else {
+                                    <li class="day" id="@((month + 1) + "/" + nextMonthDays[i] + "/" + year)">
+                                        <span class="active outsideMonth">@nextMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <ul class="event-container">
+                                                <li class="@calendarItem.eventType" />
+                                                <li class="@calendarItem.eventType" />
+                                            </ul>
+
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                
+                            }
+                            else {
+                                if(month + 1 == 13) {
+                                    <li class="day" id="@(1 + "/" + nextMonthDays[i] + "/" + (year + 1))">
+                                        <span class="outsideMonth">@nextMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                else {
+                                    <li class="day" id="@((month + 1) + "/" + nextMonthDays[i] + "/" + year)">
+                                        <span class="outsideMonth">@nextMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <ul class="event-container">
+                                                <li class="@calendarItem.eventType" />
+                                                <li class="@calendarItem.eventType" />
+                                            </ul>
+
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                            }
+                        }
+                    }
+                }
+            </ul>
+        </div>
+
+
+        @* Second Calendar - Needs to be updated to show the next month at start, plus separate values, or separate components? *@
+        @* Calendar currently share states/data, will update when either do *@
+        <div class="calendar-month-layout section-10">
+            <div class="month">
+                <div>
+                    @* These arrows will change the months *@
+                    <span class="calendar-arrow-icon arrow-left icon-size icon" @onclick="@(() => { monthsAway--; CreateMonth(); })"/>
+                    <span>@monthName <span>@year</span> </span>
+                    <span class="calendar-arrow-icon arrow-right icon-size icon" @onclick="@(() => { monthsAway++; CreateMonth(); })" />
+                </div>
+            </div>
+
+            <ul class="weekdays">
+                <li id="0">Sun</li>
+                <li id="1">Mon</li>
+                <li id="2">Tue</li>
+                <li id="3">Wed</li>
+                <li id="4">Thu</li>
+                <li id="5">Fri</li>
+                <li id="6">Sat</li>        
+            </ul>
+
+            <ul class="days">
+                @* Previous Month *@
+                @{for(int i = prevMonthDays.Length - 1; i >= 0; i--) {
+                        @if(prevMonthDays[i] != 0) {
+                            string date = ((month - 1) + "/" + prevMonthDays[i] + "/" + year);
+                            @* var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, 1)); *@
+
+                            // Error handling for January
+                            @* if(month - 1 == 0) {  calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year - 1, 12, prevMonthDays[i])); }
+                            else { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month - 1, prevMonthDays[i])); } *@
+
+                            @if(currentDate == ((month - 1) + "/" + i + "/" + year) ) {
+                                @* Error handling for January *@
+                                @if(month - 1 == 0) {
+                                    <li class="day" id="@(12 + "/" + prevMonthDays[i] + "/" + (year - 1))">
+                                        <span class="active outsideMonth">@prevMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="hidden">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                else {
+                                    <li class="day"  id="@((month - 1) + "/" + prevMonthDays[i] + "/" + year)">
+                                        <span class="active outsideMonth">@prevMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                
+                            }
+                            else {
+                                @* Error handling for January *@
+                                @if(month - 1 == 0) {
+                                    <li class="day" id="@(12 + "/" + prevMonthDays[i] + "/" + (year - 1))">
+                                        <span class="outsideMonth">@prevMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="hidden">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                else {
+                                    <li class="day"  id="@((month - 1) + "/" + prevMonthDays[i] + "/" + year)">
+                                        <span class="outsideMonth">@prevMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                            }
+                        }
+                    }
+                }
+
+                @* Current Month *@
+                @{for (int i = 1; i <= monthEnd.Day; i++) {
+                    @* var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, i)); *@
+                    string date = (month + "/" + i + "/" + year);
+                    
+                    @if(currentDate == (month + "/" + i + "/" + year)) {
+                        <li
+                            class="day @(selectedDate == (month + "/" + i + "/" + year) ? "selected-date" : "")"
+                            id="@(month  + "/" + i + "/" + year)"
+                            @onclick="@( () => changeSelectedDate(date) )"
+                        >
+                            <span class="active">@i</span>
+                            @* @if (calendarItem != null) {
+                                <ul class="event-container">
+                                    <li class="@calendarItem.eventType" > </li>
+                                    <li class="@calendarItem.eventType" />
+                                </ul>
+                            } *@
+                        </li>
+                    }
+                    else {
+                        <li
+                            class="day @(selectedDate == (month + "/" + i + "/" + year) ? "selected-date" : "")"
+                            id="@(month + "/" + i + "/" + year)"
+                            value="@(month + "/" + i + "/" + year)"
+                            @onclick="@( (e) => changeSelectedDate(date) )"
+                        >
+                            <span>@i</span>
+                            @* @if (calendarItem != null) {
+                                <ul class="event-container border">
+                                    <li class="@calendarItem.eventType" />
+                                    <li class="@calendarItem.eventType" />
+                                </ul>
+                                
+                                <span class="h">@calendarItem.Name</span>
+                            } *@
+                        </li>
+                    }
+                }
+                }
+
+                @* Next Month *@
+                @{for(int i = 0; i < nextMonthDays.Length; i++) {
+                        @if(nextMonthDays[i] != 0) {
+                            @* var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, 1) ); *@
+                            
+                            // Error handling for December
+                            @* if(month + 1 == 13) { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year + 1, 1, nextMonthDays[i])); }
+                            else { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month + 1, nextMonthDays[i])); } *@
+
+                            
+                    
+                            @if(currentDate == ((month + 1) + "/" + i + "/" + year)) {
+                                if(month + 1 == 13) {
+                                    <li class="day" id="@(1 + "/" + nextMonthDays[i] + "/" + (year + 1))">
+                                        <span class="active outsideMonth">@nextMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                else {
+                                    <li class="day" id="@((month + 1) + "/" + nextMonthDays[i] + "/" + year)">
+                                        <span class="active outsideMonth">@nextMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <ul class="event-container">
+                                                <li class="@calendarItem.eventType" />
+                                                <li class="@calendarItem.eventType" />
+                                            </ul>
+
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                
+                            }
+                            else {
+                                if(month + 1 == 13) {
+                                    <li class="day" id="@(1 + "/" + nextMonthDays[i] + "/" + (year + 1))">
+                                        <span class="outsideMonth">@nextMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                                else {
+                                    <li class="day" id="@((month + 1) + "/" + nextMonthDays[i] + "/" + year)">
+                                        <span class="outsideMonth">@nextMonthDays[i]</span>
+                                        @* @if (calendarItem != null) {
+                                            <ul class="event-container">
+                                                <li class="@calendarItem.eventType" />
+                                                <li class="@calendarItem.eventType" />
+                                            </ul>
+
+                                            <span class="h">@calendarItem.Name</span>
+                                        } *@
+                                    </li>
+                                }
+                            }
+                        }
+                    }
+                }
+            </ul>
         </div>
     </div>
 
-    <ul class="weekdays">
-        <li id="0">Sun</li>
-        <li id="1">Mon</li>
-        <li id="2">Tue</li>
-        <li id="3">Wed</li>
-        <li id="4">Thur</li>
-        <li id="5">Fri</li>
-        <li id="6">Sat</li>        
-    </ul>
+    @* Forecast *@
+    <div class="section-10 forecast-container">
+        <div class="forecast">Forecast</div>
+        
+        <div class="forecast-days">
+            @for(int i = 0; i < 13; i++) {
+                string dayName = DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("ddd");
+                int dayNumber = DateTime.ParseExact(selectedDate, "d", null).Day + i;
 
-    <ul class="days">
-        @* Previous Month *@
-        @{for(int i = prevMonthDays.Length - 1; i >= 0; i--) {
-                @if(prevMonthDays[i] != 0) {
-                    @* var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, 1)); *@
-
-                    // Error handling for January
-                    @* if(month - 1 == 0) {  calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year - 1, 12, prevMonthDays[i])); }
-                    else { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month - 1, prevMonthDays[i])); } *@
-
-                    @if(currentDate == ((month - 1) + "/" + i + "/" + year)) {
-                        <li class="day active" id="@((month - 1) + "/" + prevMonthDays[i] + "/" + year)">
-                        <span class="outsideMonth">@prevMonthDays[i]</span>
-                        @* @if (calendarItem != null) {
-                            <span class="hidden">@calendarItem.Name</span>
-                        } *@
-                        </li>
-                    }
-                    else {
-                        <li class="day outsideMonth"  id="@((month - 1) + "/" + prevMonthDays[i] + "/" + year)">
-                        <span class="outsideMonth">@prevMonthDays[i]</span>
-                        @* @if (calendarItem != null) {
-                            <span class="h">@calendarItem.Name</span>
-                        } *@
-                        </li>
-                    }
+                // The first day of the forecast
+                @if(i == 0) {
+                    <div
+                        class="section-1"
+                        id="@DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy")"
+                    >
+                        <div class="day-name today">Today</div>
+                        <div class="event-number">@forecastArray[i]</div>
+                    </div>
+                    
+                }
+                else {
+                    <div
+                        class="section-1"
+                        id="@DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy")"
+                    >
+                        <div class="day-name">@dayName</div>
+                        <div class="day-number">@dayNumber</div>
+                        <div class="event-number">@forecastArray[i]</div>
+                    </div>
+                    
                 }
             }
-        }
+        </div>
 
-        @* Current Month *@
-        @{for (int i = 1; i <= monthEnd.Day; i++) {
-            @* var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, i)); *@
-            
-            @if(currentDate == (month + "/" + i + "/" + year)) {
-                <li class="day" id="@((month ) + "/" + i + "/" + year)">
-                <span class="active">@i</span>
-                @* @if (calendarItem != null) {
-                    <ul class="event-container">
-                        <li class="@calendarItem.eventType" > </li>
-                        <li class="@calendarItem.eventType" />
-                    </ul>
-                } *@
-                </li>
-            }
-            else {
-                <li class="day" id="@((month) + "/" + i + "/" + year)">
-                <span>@i</span>
-                @* @if (calendarItem != null) {
-                    <ul class="event-container border">
-                        <li class="@calendarItem.eventType" />
-                        <li class="@calendarItem.eventType" />
-                    </ul>
-                    
-                    <span class="h">@calendarItem.Name</span>
-                } *@
-                </li>
-            }
-        }
-        }
 
-        @* Next Month *@
-        @{for(int i = 0; i < nextMonthDays.Length; i++) {
-                @if(nextMonthDays[i] != 0) {
-                    @* var calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month, 1) ); *@
-                    
-                    // Error handling for December
-                    @* if(month + 1 == 13) { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year + 1, 1, nextMonthDays[i])); }
-                    else { calendarItem = events.FirstOrDefault(n => n.Date == new DateTime(year, month + 1, nextMonthDays[i])); } *@
-            
-                    @if(currentDate == ((month + 1) + "/" + i + "/" + year)) {
-                        <li class="day" id="@((month + 1) + "/" + nextMonthDays[i] + "/" + year)">
-                        <span class="active outsideMonth">@nextMonthDays[i]</span>
-                        @* @if (calendarItem != null) {
-                            <span class="h">@calendarItem.Name</span>
-                        } *@
-                        </li>
-                    }
-                    else {
-                        <li class="day" id="@((month + 1) + "/" + nextMonthDays[i] + "/" + year)">
-                        <span class="outsideMonth">@nextMonthDays[i]</span>
-                        @* @if (calendarItem != null) {
-                            <ul class="event-container">
-                                <li class="@calendarItem.eventType" />
-                                <li class="@calendarItem.eventType" />
-                            </ul>
-
-                            <span class="h">@calendarItem.Name</span>
-                        } *@
-                        </li>
-                    }
+        @* Display the list of events on the forecast days *@
+        <div class="forecast-breakdown-container">
+            <ul>
+                @foreach(var item in events) {
+                    @* Add an if to check if the date range is inside the forecast *@
+                    <li class="event-breakdown">
+                        <span class="calendar-arrow-icon arrow-down icon-size icon" />
+                        <div class="event-date font-2"> @item.Date.ToString("ddd, MMM dd")</div>
+                        <div class="event-name font-1">@item.Name</div>
+                    </li>
                 }
-            }
-        }
-    </ul>
+            </ul>
+            
+
+        </div>
+    </div>
+
+    @* Notes *@
+    <div class="section-5 border">
+        test
+    </div>
 
 </div>
 
 
 
+
+
+
+
+
+
+
+
 @code {
+
+    protected string selectedDate = "";
 
     @* Current Day value *@
     protected string currentDate = DateTime.Now.ToShortDateString();
@@ -147,11 +466,20 @@
 		events.Add(new CalendarEvents(new DateTime(2025, 8, 31), "Test day 2", "holiday"));
 		events.Add(new CalendarEvents(new DateTime(2025, 9, 25), "Christmas", "birthday"));
 		events.Add(new CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
+        
+        events.Add(new CalendarEvents(new DateTime(2025, 9, 21), "Test day 3", "venue-event"));
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 4", "holiday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 12), "Test Day 5", "birthday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 16), "Test Day 6", "important-event"));
         // Create the calendar
 		CreateMonth();
+
+        selectedDate = currentDate;
+        // Create Forecast Section
+        createForecast();
 	}
 
-	void CreateMonth() {
+	protected void CreateMonth() {
         // Create a temp data to get the month and year
 		var tempDate = DateTime.Now.AddMonths(monthsAway);
 		month = tempDate.Month;
@@ -227,4 +555,25 @@
 	}
     
 
+    protected void changeSelectedDate(string value) {
+        Console.WriteLine(value);
+        selectedDate = value;
+
+    }
+
+    int[] forecastArray = new int[13];
+
+    protected void createForecast() {
+
+        foreach(var item in events) {
+            for(int j = 0; j < forecastArray.Length; j++) {
+                if(item.Date.ToString("MM/dd/yyyy") == DateTime.ParseExact(selectedDate, "d", null).AddDays(j).ToString("MM/dd/yyyy")) {
+                    Console.WriteLine("True");
+                    forecastArray[j]++;
+                    break;
+                }
+            }
+        }
+        
+    }
 }

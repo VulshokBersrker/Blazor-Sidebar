@@ -8,13 +8,29 @@
   --header-color: rgb(17, 17, 17);
   --hover-color: rgb(255, 255, 255);
 
-
-  --bg-color: #237eda;
+  --bg-color: rgb(240, 240, 240);
 
 
   /* Calendar Variables */
+  --calendar-bg-color: rgb(240, 240, 240);
+  --selected-date-color: rgb(185, 185, 185);
   --active-color: rgb(21, 88, 171);
   --venue-event-color: rgb(207, 161, 23);
+
+
+
+  /* Dark mode */
+  --font-color-dark: rgb(227, 227, 227);
+  --header-color-dark: rgb(227, 227, 227);
+  --hover-color-dark: rgb(255, 255, 255);
+
+  --bg-color-dark: rgb(63, 63, 63);
+
+  /* Calendar Variables */
+  --calendar-bg-color-dark: rgb(53, 53, 53);
+  --selected-date-color-dark: rgb(122, 122, 122);
+  --active-color-dark: rgb(10, 61, 123);
+  --venue-event-color-dark: rgb(207, 161, 23);
 
 }
 
@@ -22,7 +38,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: var(--font-color);
+  color: var(--font-color-dark);
 }
 
 
@@ -31,7 +47,7 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--bg-color) !important;
+  background-color: var(--bg-color-dark) !important;
   font-weight: 400;
   font-style: normal;
 }
@@ -148,6 +164,24 @@ ol, ul {
   -moz-column-gap: 25px;
   column-gap: 5px;
   row-gap: 10px;
+}
+.grid-15 {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  -moz-column-gap: 15px;
+  column-gap: 15px;
+  row-gap: 15px;
+}
+.grid-20 {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  -moz-column-gap: 15px;
+  column-gap: 15px;
+  row-gap: 15px;
 }
 
 .image-container {
