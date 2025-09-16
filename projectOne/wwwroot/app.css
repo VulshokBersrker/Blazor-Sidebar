@@ -26,8 +26,13 @@
 
   --bg-color-dark: rgb(63, 63, 63);
 
+  --dark-first-color: rgb(30, 30, 30);
+  --dark-second-color: rgb(41, 41, 41);
+  --dark-third-color: rgb(4, 87, 87);
+  --dark-fourth-color: rgb(4, 67, 67);
+  --dark-fifth-color: rgb(228, 228, 228);
+
   /* Calendar Variables */
-  --calendar-bg-color-dark: rgb(30, 30, 30);
   --selected-date-color-dark: rgb(122, 122, 122);
   --active-color-dark: rgb(10, 61, 123);
   --venue-event-color-dark: rgb(207, 161, 23);

@@ -298,7 +298,7 @@
         <div class="forecast-days">
             @for(int i = 0; i < 13; i++) {
                 string dayName = DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("ddd");
-                int dayNumber = DateTime.ParseExact(selectedDate, "d", null).Day + i;
+                int dayNumber = DateTime.ParseExact(selectedDate, "d", null).AddDays(i).Day;
 
                 // The first day of the forecast
                 @if(i == 0) {
@@ -329,23 +329,36 @@
         @* Display the list of events on the forecast days *@
         <div class="forecast-breakdown-container">
             <ul>
-                @foreach(var item in events) {
-                    @* Add an if to check if the date range is inside the forecast *@
-                    <li class="event-breakdown">
-                        <span class="calendar-arrow-icon arrow-down icon-size icon" />
-                        <div class="event-date font-2"> @item.Date.ToString("ddd, MMM dd")</div>
-                        <div class="event-name font-1">@item.Name</div>
-                    </li>
-                }
+                @* Cycle through the days in the forecast *@
+                @for(int i = 0; i < 13; i++) {
+                    int t = i;
+                    @* Find all the events in that day *@
+                    IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n => 
+                        n.Date.ToShortDateString() == DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("d")  
+                    );
+                    if(eventsOnThisDay.Count() != 0) {
+                        <li class="event-breakdown">
+                            <span
+                                class="calendar-arrow-icon arrow-down icon-size icon @(forecastMenus[t] ? "arrow-up" : "arrow-down")"
+                                id="@i"
+                                @onclick="@(() => toggleForecastList(t))"
+                            />
+                            <div class="event-date font-2"> @DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("ddd, MMM dd")</div>
+                            
+                            @foreach(CalendarEvents item in eventsOnThisDay) {
+                                <div class="event-name font-1  @(forecastMenus[t] ? "closed" : "open") ">@item.Name</div>
+                            }
+                               
+                        </li>
+                    }
+                }                
             </ul>
-            
-
         </div>
     </div>
 
     @* Notes *@
-    <div class="section-5 border">
-        test
+    <div class="section-5 notes-container text-center">
+        Future use - Notes and Details
     </div>
 
 </div>
@@ -394,9 +407,10 @@
     protected int calendarLength_S = 0;
 
 
+    // ------------------- Functions ------------------- 
 
 	protected override void OnInitialized() {
-        // Compile all the events for the viewable time period
+        // Compile all the events for the viewable time period - in Testing mode, so using more than the selectedDay range
 		events.Add(new CalendarEvents(new DateTime(2025, 9, 21), "Test day 1", "venue-event"));
 		events.Add(new CalendarEvents(new DateTime(2025, 8, 31), "Test day 2", "holiday"));
 		events.Add(new CalendarEvents(new DateTime(2025, 9, 25), "Christmas", "birthday"));
@@ -406,7 +420,8 @@
 		events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 4", "holiday"));
 		events.Add(new CalendarEvents(new DateTime(2025, 9, 12), "Test Day 5", "birthday"));
 		events.Add(new CalendarEvents(new DateTime(2025, 9, 16), "Test Day 6", "important-event"));
-        // Create the calendar
+
+        // Create the calendars
 		CreateFirstCalendar();
         CreateSecondCalendar();
 
@@ -415,6 +430,7 @@
         createForecast();
 	}
 
+    // Create and Update the First Calendar
 	protected void CreateFirstCalendar() {
         // Create a temp data to get the month and year
 		DateTime tempDate = DateTime.Now.AddMonths(monthsAway);
@@ -495,6 +511,7 @@
 
 	}
 
+    // Create and Update the Second Calendar
     protected void CreateSecondCalendar() {
         // Create a temp data to get the month and year
 		DateTime tempDate = DateTime.Now.AddMonths(monthsAway_S + 1);
@@ -577,7 +594,7 @@
 
 	}
     
-
+    // Changes the selected Date from the string gotten from the element
     protected void changeSelectedDate(string value) {
         @* Console.WriteLine(value); *@
         selectedDate = value;
@@ -587,6 +604,7 @@
 
     int[] forecastArray = new int[13];
 
+    // create the event forecast list
     protected void createForecast() {
 
         Array.Clear(forecastArray);
@@ -601,6 +619,12 @@
             }
         }
         
+    }
+
+    // Opens and Closes the forecast list
+    bool[] forecastMenus = new bool [13];
+    protected void toggleForecastList(int subMenuNumber) {
+        forecastMenus[subMenuNumber] = !forecastMenus[subMenuNumber];
     }
 
 }
