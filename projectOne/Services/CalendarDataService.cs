@@ -1,4 +1,29 @@
 
+public interface IDataService : IDisposable
+{
+    Task<string> GetValueAsync();
+    Task<bool> SaveValueAsync(string value);
+  
+}
+public class CalendarDataService : IDataService
+{
+    public CalendarDataService()  => Console.WriteLine("DataService constructed!");  // not a proper IDisposable implementation,
+    // but it'll do for demo purposes
+    public void Dispose()
+    {
+        Console.WriteLine("DataService disposed!");
+    }
+    public Task<string> GetValueAsync()
+    {
+        Console.WriteLine("TODO: Get value from database...");
+        return Task.FromResult("Hello World!");
+    }
+    public Task<bool> SaveValueAsync(string value)
+    {
+        Console.WriteLine($"TODO: Save value '{value}' to database...");
+        return Task.FromResult(true);
+    }
+}
 
 
 public class CalendarService
@@ -81,41 +106,42 @@ public class CalendarService
 
 
         // ---- This Section is for the days that will appear on the calendar outside the current month ---- 
-        
+
         // Previous Month Section
 
         // Get the previous month values
-        int prevMonthLastDay = DateTime.DaysInMonth( monthEnd.AddMonths(-1).Year , monthEnd.AddMonths(-1).Month );
-        DateTime temp = new DateTime(monthEnd.AddMonths(-1).Year , monthEnd.AddMonths(-1).Month, prevMonthLastDay);
+        int prevMonthLastDay = DateTime.DaysInMonth(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month);
+        DateTime temp = new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, prevMonthLastDay);
         // Now set the values
         for (int i = 0; i <= (int)temp.DayOfWeek; i++)
         {
-            monthView.Add(new CalendarDayDetails(new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, (prevMonthLastDay - i ) ), 0));
+            monthView.Add(new CalendarDayDetails(new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, (prevMonthLastDay - i)), 0));
         }
-        
+
         // Current Month
         for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
         {
-            monthView.Add(new CalendarDayDetails(new DateTime(year, month, i ), 0));
+            monthView.Add(new CalendarDayDetails(new DateTime(year, month, i), 0));
         }
 
         // Next Month Section
-        
+
         // Get the next month values
-        int nextMonthLastDayName = (int)new DateTime(monthEnd.AddMonths(1).Year , monthEnd.AddMonths(1).Month, 1).DayOfWeek;
+        int nextMonthLastDayName = (int)new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, 1).DayOfWeek;
         // Now set the values
-        for (int i = 0; i < (14 - nextMonthLastDayName) ; i++)
+        for (int i = 0; i < (14 - nextMonthLastDayName); i++)
         {
             // Stop the list from getting longer than 6 weeks (42 days)
             if (monthView.Count() >= 42) { break; }
-            monthView.Add(new CalendarDayDetails(new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, ( i + 1 ) ), 0));
+            monthView.Add(new CalendarDayDetails(new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, (i + 1)), 0));
         }
     }
 
 
-    
+
     // Changes the selected Date from the string gotten from the element
-    protected void changeSelectedDate(string value) {
+    protected void changeSelectedDate(string value)
+    {
         this.selectedDate = value;
     }
 
@@ -126,7 +152,7 @@ public class CalendarService
 
 
     // --------------- Getters --------------- 
-    
+
     // Get the value to see if this Calendar is the first Calendar or not
     protected bool getIsFirstCalendar()
     {

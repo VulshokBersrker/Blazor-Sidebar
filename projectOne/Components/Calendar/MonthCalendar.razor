@@ -1,6 +1,8 @@
 @using System.Globalization
 @rendermode InteractiveServer
 
+@inject CalendarDataService CalendarService
+
 
 <div class="calendar-month-layout section-10">
     <div class="month">
@@ -64,6 +66,7 @@
     [Parameter]
     public bool isFirstCalendar { get; set; }
 
+
     protected string selectedDate = "";
 
     @* Current Day value *@
@@ -81,6 +84,7 @@
 	List<CalendarEvents> events = new List<CalendarEvents>();
 
 
+    // This will be expanded to add the list of events happening each day for the event markers on the calendar
     protected record CalendarDayDetails(DateTime Date, int numEvents);
 
     protected List<CalendarDayDetails> monthView = new List<CalendarDayDetails>();
@@ -89,7 +93,7 @@
 
     // ------------------- Functions ------------------- 
 
-	protected override void OnInitialized() {
+	protected override async Task OnInitializedAsync() {
         // Compile all the events for the viewable time period - in Testing mode, so using more than the selectedDay range
 		events.Add(new CalendarEvents(new DateTime(2025, 9, 21), "Test day 1", "venue-event"));
 		events.Add(new CalendarEvents(new DateTime(2025, 8, 31), "Test day 2", "holiday"));
@@ -108,12 +112,19 @@
         // Create the calendars
 		CreateCalendar();
 
-        testtt();
 
         selectedDate = currentDate;
 
 
+        string value = await CalendarService.GetValueAsync();
+        Console.WriteLine(value);
+
+
 	}
+
+    protected void Save() {
+        CalendarService.SaveValueAsync("test");
+    }
 
     // Create and Update the First Calendar
 	protected void CreateCalendar() {
@@ -179,38 +190,6 @@
 	}
 
 
-    protected void testtt() {
-        // Create a temp data to get the month and year
-		DateTime tempDate = DateTime.Now.AddMonths(monthsAway);
-		int month_t = tempDate.Month;
-		int year_t = tempDate.Year;
-
-        // Set the start and end days for the month
-		DateTime monthStart = new DateTime(year, month, 1);
-		DateTime monthEnd_t = monthStart.AddMonths(1).AddDays(-1);
-		string monthName_t = monthStart.Month switch {
-			1 => "January",
-			2 => "February",
-			3 => "March",
-			4 => "April",
-			5 => "May",
-			6 => "June",
-			7 => "July",
-			8 => "August",
-			9 => "September",
-			10 => "October",
-			11 => "November",
-			12 => "December",
-			_ => ""
-		};
-
-        GregorianCalendar newww = new GregorianCalendar();
-        @* Console.WriteLine(newww.GetMonth(DateTime.Now) + " / " + newww.GetDayOfMonth(DateTime.Now) + " / " + newww.GetYear(DateTime.Now));
-        Console.WriteLine(newww.GetEra(DateTime.Now) );
-        Console.WriteLine(); *@
-
-
-    }
     // Changes the selected Date from the string gotten from the element
     protected void changeSelectedDate(string value) {
         @* Console.WriteLine(value); *@
