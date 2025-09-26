@@ -1,0 +1,130 @@
+
+.calendar-arrow-icon[b-lhx9ghj0x4] {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../images/down.svg");
+}
+
+.calendar-arrow-icon.arrow-down[b-lhx9ghj0x4] {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+}
+
+/* ----------------- FORECAST SECTION ----------------- */
+
+.forecast-container[b-lhx9ghj0x4] {
+  padding: 0.5rem;
+  border: 2px solid #757575;
+  background-color: var(--dark-second-color);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.forecast[b-lhx9ghj0x4] {
+  border: 2px solid #757575;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  /* Font Styles */
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.forecast-days[b-lhx9ghj0x4] {
+  /* Format Styles */
+  margin-top: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  /* Grid Styles */
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  -moz-column-gap: 10px;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.forecast-days .section-1[b-lhx9ghj0x4] {
+  /* Center days both horizontally and vertically */
+  text-align: center;
+  display: inline-block;
+  margin: auto;
+}
+
+.day-name[b-lhx9ghj0x4] {
+  font-size: 12px;
+  font-weight: bold;
+}
+/* First day styles */
+.day-name.today[b-lhx9ghj0x4] {
+  font-size: 14px;
+  font-weight: bold;
+}
+.day-number[b-lhx9ghj0x4] {
+  font-size: 12px;
+  font-weight: bold;
+}
+.event-number[b-lhx9ghj0x4] {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+
+.forecast-breakdown-container[b-lhx9ghj0x4] {
+  /* Format Styles */
+  margin-top: 1rem;
+  border: 2px solid #757575;
+  border-radius: 10px;
+  color: var(--font-color-dark);
+  
+  /* Scroll Styles */
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-height: 701px;
+  max-height: 701px;
+  scroll-behavior: smooth;
+}
+
+.event-breakdown[b-lhx9ghj0x4] {
+  padding: 0.8rem 0.8rem 0.8rem 2.6rem;
+  position: relative;
+}
+.event-date[b-lhx9ghj0x4] {
+  padding-left: 1.3rem;
+  font-weight: bold;
+}
+.event-name[b-lhx9ghj0x4] {
+  padding-left: 3.6rem;
+}
+.event-name[b-lhx9ghj0x4]:before {
+  content: "";
+  position: absolute;
+  display: list-item;
+  list-style-type: disc;
+  list-style-position: inside;
+  margin-left: -1rem;
+}
+
+.event-name.open[b-lhx9ghj0x4] {
+  opacity: 1;
+  padding-top: 7px;
+  max-height: 520px;
+  transform: translateY(0);
+  transition: 0.5s ease-in-out;
+}
+.event-name.closed[b-lhx9ghj0x4] {
+  opacity: 0;
+  visibility:hidden;
+  padding-top: 0px;
+  max-height: 0px;
+  transform: translateY(20%);
+  transition: 0.5s ease-in-out;
+}

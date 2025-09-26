@@ -1,0 +1,130 @@
+@using Microsoft.Extensions.WebEncoders.Testing
+@rendermode InteractiveServer
+
+<div class="section-10 forecast-container">
+    <div class="forecast">Forecast</div>
+    
+    <div class="forecast-days">
+        @for(int i = 0; i < 13; i++) {
+            string dayName = DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("ddd");
+            int dayNumber = DateTime.ParseExact(selectedDate, "d", null).AddDays(i).Day;
+
+            // The first day of the forecast
+            @if(i == 0) {
+                <div
+                    class="section-1"
+                    id="@DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy")"
+                >
+                    <div class="day-name today">Today</div>
+                    <div class="event-number">@forecastArray[i]</div>
+                </div>
+                
+            }
+            else {
+                <div
+                    class="section-1"
+                    id="@DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy")"
+                >
+                    <div class="day-name">@dayName</div>
+                    <div class="day-number">@dayNumber</div>
+                    <div class="event-number">@forecastArray[i]</div>
+                </div>
+                
+            }
+        }
+    </div>
+
+
+    @* Display the list of events on the forecast days *@
+    <div class="forecast-breakdown-container">
+        <ul>
+            @* Cycle through the days in the forecast *@
+            @for(int i = 0; i < 13; i++) {
+                int t = i;
+                @* Find all the events in that day *@
+                IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n => 
+                    n.Date.ToShortDateString() == DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("d")  
+                );
+                if(eventsOnThisDay.Count() != 0) {
+                    <li class="event-breakdown">
+                        <span
+                            class="calendar-arrow-icon arrow-down icon-size icon @(forecastMenus[t] ? "arrow-up" : "arrow-down")"
+                            id="@i"
+                            @onclick="@(() => toggleForecastList(t))"
+                        />
+                        <div class="event-date font-2"> @DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("ddd, MMM dd")</div>
+                        
+                        @foreach(CalendarEvents item in eventsOnThisDay) {
+                            <div class="event-name font-1  @(forecastMenus[t] ? "closed" : "open") ">@item.Name</div>
+                        }
+                            
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+@code {
+
+    protected string selectedDate = "";
+
+    @* Current Day value *@
+    protected string currentDate = DateTime.Now.ToShortDateString();
+    
+    // Calendar Event Type
+    protected record CalendarEvents(DateTime Date, string Name, string eventType);    
+
+	List<CalendarEvents> events = new List<CalendarEvents>();
+
+
+    // ------------------- Functions ------------------- 
+
+	protected override void OnInitialized() {
+        // Compile all the events for the viewable time period - in Testing mode, so using more than the selectedDay range
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 21), "Test day 1", "venue-event"));
+		events.Add(new CalendarEvents(new DateTime(2025, 8, 31), "Test day 2", "holiday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 25), "Christmas", "birthday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
+        
+        events.Add(new CalendarEvents(new DateTime(2025, 9, 21), "Test day 3", "venue-event"));
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 4", "holiday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 12), "Test Day 5", "birthday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 9, 16), "Test Day 6", "important-event"));
+
+
+        selectedDate = currentDate;
+        // Create Forecast Section
+        createForecast();
+	}
+
+    int[] forecastArray = new int[13];
+
+    // create the event forecast list
+    protected void createForecast() {
+
+        Array.Clear(forecastArray);
+
+        foreach(CalendarEvents item in events) {
+            for(int j = 0; j < forecastArray.Length; j++) {
+                if(item.Date.ToString("MM/dd/yyyy") == DateTime.ParseExact(selectedDate, "d", null).AddDays(j).ToString("MM/dd/yyyy")) {
+                    @* Console.WriteLine("True"); *@
+                    forecastArray[j]++;
+                    break;
+                }
+            }
+        }
+        
+    }
+
+    // Opens and Closes the forecast list
+    bool[] forecastMenus = new bool [13];
+    protected void toggleForecastList(int subMenuNumber) {
+        forecastMenus[subMenuNumber] = !forecastMenus[subMenuNumber];
+    }
+
+}

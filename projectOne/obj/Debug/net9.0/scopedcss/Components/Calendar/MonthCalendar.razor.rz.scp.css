@@ -1,0 +1,225 @@
+.calendar-month-layout[b-0rvo3cyfm9] {
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.month[b-0rvo3cyfm9] {
+  padding: 20px 25px;
+  width: 100%;
+  background: var(--dark-first-color);
+  text-align: center;  
+}
+
+/* Month list */
+.month div[b-0rvo3cyfm9] {
+  margin: 0;
+  padding: 0; 
+  position: relative;
+}
+
+.month div span[b-0rvo3cyfm9] {
+  color: var(--font-color-dark);
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.calendar-arrow-icon[b-0rvo3cyfm9] {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../images/down.svg");
+}
+
+.calendar-arrow-icon.arrow-left[b-0rvo3cyfm9] {
+  position: absolute;
+  top: 5px;
+  left: 0px;
+}
+.calendar-arrow-icon.arrow-right[b-0rvo3cyfm9] {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+}
+
+
+/* Weekdays (Mon-Sun) */
+.weekdays[b-0rvo3cyfm9] {
+  /* Layout Styles */
+  margin: 0;
+  padding: 10px 0;
+  background-color:var(--dark-second-color);
+  /* Grid Styles */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  -moz-column-gap: 25px;
+  column-gap: 5px;
+  row-gap: 10px;
+}
+
+.weekdays li[b-0rvo3cyfm9] {
+  /* Font Styles */
+  color: var(--font-color-dark);
+  text-align: center;
+  font-weight: 500;
+  list-style-type: none;  
+  /* Grid Styles */
+  grid-column-end:span 1;
+}
+
+/* Days (1-31) */
+.days[b-0rvo3cyfm9] {
+  /* Layout Styles */
+  padding: 10px 0;
+  background: var(--dark-first-color);
+  margin: 0;
+  /* Grid Styles */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: -webkit-min-content;
+  grid-auto-rows: min-content;
+  -moz-column-gap: 25px;
+  column-gap: 5px;
+  row-gap: 10px;
+}
+
+.days li.day[b-0rvo3cyfm9] {
+  /* Text Styles */
+  list-style-type: none;
+  text-align: center;
+  font-size: 18px;
+  color: var(--font-color-dark);
+  /* Grid Styles */
+  grid-column-end: span 1;
+  min-height: 42px;
+  /* Position Styles */
+  position: relative;
+  z-index: 5;
+  align-items: center;
+  align-content: center;
+}
+
+/* Highlight the "current" day */
+.days li.day .active[b-0rvo3cyfm9] {
+  /* Text Styles */
+  color: white !important;  
+}
+
+.active[b-0rvo3cyfm9]::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--active-color-dark);
+  transform: translate(-50%, -50%);
+}
+
+/* Show which days are outside the current month */
+.days .outsideMonth[b-0rvo3cyfm9] {
+  color: rgb(129, 129, 129);
+}
+
+.selected-date[b-0rvo3cyfm9] {
+  background-color: var(--selected-date-color-dark) !important;
+  border: 5px solid var(--selected-date-color-dark) !important;
+  border-radius: 8px;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+
+.weekend[b-0rvo3cyfm9] {
+  color: rgb(69, 160, 160) !important;
+}
+
+/* -- Event Styling -- */
+.event-container[b-0rvo3cyfm9] {
+  width: 80%;
+  height: 20%;
+  margin: auto;
+  position: absolute;
+  left: 10%;
+  bottom: 1%;
+}
+ul li[b-0rvo3cyfm9] {
+  list-style-type: none;  
+}
+
+
+span.h[b-0rvo3cyfm9] {
+  visibility: hidden;
+  padding: 0.25em 0.5em;
+  background-color: black;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 6px;
+  white-space: nowrap;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 5;
+  top: 100%;
+  left: 0%;
+  transition-property: visibility;
+  transition-delay: 0s;
+}
+
+li:hover span.h[b-0rvo3cyfm9] {
+  visibility: visible;
+  transition-delay: 0.3s;
+}
+
+li:hover span.h[b-0rvo3cyfm9]::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.birthday[b-0rvo3cyfm9] {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  border: #000000 1px solid;
+  height: 0.5rem;
+  width: 0.5rem;
+  z-index: 8;
+  border-radius: 100%;
+}
+
+.venue-event[b-0rvo3cyfm9] {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  border: #000000 1px solid;
+  height: 0.5rem;
+  width: 0.5rem;
+  z-index: 8;
+  border-radius: 100%;  
+}
+
+.important-event[b-0rvo3cyfm9] {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  border: #000000 1px solid;
+  height: 0.5rem;
+  width: 0.5rem;
+  z-index: 8;
+  border-radius: 100%;
+}
+

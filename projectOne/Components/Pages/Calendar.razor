@@ -1,4 +1,13 @@
 @page "/modular-calendar"
 
 
-<ModularCalendar />
+@* <ModularCalendar /> *@
+
+<div class="grid-20">
+    <div class="section-5 grid-10">
+        <MonthCalendar isFirstCalendar=@true />
+        <MonthCalendar  isFirstCalendar=@false />
+    </div>
+    
+    <CalendarForecast />
+</div>
