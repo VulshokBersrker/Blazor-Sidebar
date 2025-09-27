@@ -1,6 +1,5 @@
-@using System.Globalization
-@rendermode InteractiveServer
 
+@rendermode InteractiveServer
 @inject CalendarDataService CalendarService
 
 
@@ -32,7 +31,7 @@
                 <li
                     class="day @(selectedDate == item.Date.ToShortDateString() ? "selected-date" : "")"
                     id="@(item.Date.ToShortDateString())"
-                    @onclick="@( (e) => changeSelectedDate(item.Date.ToShortDateString()) )"
+                    @onclick="@( (e) => {CalendarService.setSelectedDate(item.Date.ToShortDateString());  } )"
                 >
                     <span class=" @(item.Date.Month != month ? "outsideMonth" : "")
                         @( currentDate == item.Date.ToShortDateString() ? "active" : "")
@@ -45,7 +44,7 @@
                 <li
                     class="day @(selectedDate == item.Date.ToShortDateString() ? "selected-date" : "")"
                     id="@(item.Date.ToShortDateString())"
-                    @onclick="@( (e) => changeSelectedDate(item.Date.ToShortDateString()) )"
+                    @onclick="@( (e) => {CalendarService.setSelectedDate(item.Date.ToShortDateString());  } )"
                 >
                     <span class=" @( currentDate == item.Date.ToShortDateString() ? "active" : "") 
                         @(item.Date.DayOfWeek == DayOfWeek.Saturday ? "weekend" : "") 
@@ -93,7 +92,7 @@
 
     // ------------------- Functions ------------------- 
 
-	protected override async Task OnInitializedAsync() {
+	protected override void OnInitialized() {
         // Compile all the events for the viewable time period - in Testing mode, so using more than the selectedDay range
 		events.Add(new CalendarEvents(new DateTime(2025, 9, 21), "Test day 1", "venue-event"));
 		events.Add(new CalendarEvents(new DateTime(2025, 8, 31), "Test day 2", "holiday"));
@@ -112,19 +111,14 @@
         // Create the calendars
 		CreateCalendar();
 
+        @* monthView = CalendarService.GenerateCalendarLayout(); *@
 
-        selectedDate = currentDate;
-
-
-        string value = await CalendarService.GetValueAsync();
-        Console.WriteLine(value);
+        CalendarService.selectedDateChange += selectedDateChanged;
 
 
+        CalendarService.setSelectedDate(currentDate);
+        selectedDate = CalendarService.onSelectedDateChange();
 	}
-
-    protected void Save() {
-        CalendarService.SaveValueAsync("test");
-    }
 
     // Create and Update the First Calendar
 	protected void CreateCalendar() {
@@ -170,6 +164,11 @@
         {
             monthView.Add(new CalendarDayDetails(new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, (prevMonthLastDay - i ) ), 0));
         }
+        // Reverse the list so the previous month's days are in the proper order
+        if(monthView.Count() > 0) {
+            monthView.Reverse();
+        }
+        
         
         // Current Month
         for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
@@ -198,4 +197,11 @@
        
     }
 
+
+    private async void selectedDateChanged(object? sender, string value) {
+        await InvokeAsync(() => {
+            selectedDate = CalendarService.onSelectedDateChange();
+            StateHasChanged();
+        });
+    }
 }
