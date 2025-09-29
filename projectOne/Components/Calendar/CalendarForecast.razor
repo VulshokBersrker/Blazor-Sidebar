@@ -18,9 +18,8 @@
                         id="@DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy")"
                     >
                         <div class="day-name today">Today</div>
-                        <div class="event-number weekend">@forecastArray[i]</div>
+                        <div class="event-number">@forecastArray[i]</div>
                     </div>
-                    
                 }
                 else {
                     <div
@@ -29,9 +28,8 @@
                     >
                         <div class="day-name">@dayName</div>
                         <div class="day-number">@dayNumber</div>
-                        <div class="event-number weekend">@forecastArray[i]</div>
+                        <div class="event-number">@forecastArray[i]</div>
                     </div>
-                    
                 }
             }
         </div>
@@ -73,54 +71,21 @@
 
     protected string selectedDate = "";
 
-    @* Current Day value *@
-    protected string currentDate = DateTime.Now.ToShortDateString(); 
+    int[] forecastArray = new int[13];
 
 	List<CalendarDataService.CalendarEvents> events = new List<CalendarDataService.CalendarEvents>();
 
     // ------------------- Functions ------------------- 
 
 	protected override void OnInitialized() {
-        // Compile all the events for the viewable time period - in Testing mode, so using more than the selectedDay range
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 2), "Test day 1", "venue-event"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 31), "Test day 2", "holiday"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 25), "Christmas", "birthday"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
-        
-        events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 2), "Test day 3", "venue-event"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 30), "Test day 4", "holiday"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 12), "Test Day 5", "birthday"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 16), "Test Day 6", "important-event"));
-
-
-        selectedDate = currentDate;
 
         CalendarService.selectedDateChange += selectedDateChanged;
         selectedDate = CalendarService.onSelectedDateChange();
 
-
-        // Create Forecast Section
-        createForecast();
+        // Create Forecast Section and get all the events within range
+        forecastArray = CalendarService.createForecast();
+        events = CalendarService.getEventsForecast();
 	}
-
-    int[] forecastArray = new int[13];
-
-    // create the event forecast list
-    protected void createForecast() {
-
-        Array.Clear(forecastArray);
-
-        foreach(CalendarDataService.CalendarEvents item in events) {
-            for(int j = 0; j < forecastArray.Length; j++) {
-                if(item.Date.ToString("MM/dd/yyyy") == DateTime.ParseExact(selectedDate, "d", null).AddDays(j).ToString("MM/dd/yyyy")) {
-                    @* Console.WriteLine("True"); *@
-                    forecastArray[j]++;
-                    break;
-                }
-            }
-        }
-        
-    }
 
     // Opens and Closes the forecast list
     bool[] forecastMenus = new bool [13];
@@ -128,13 +93,15 @@
         forecastMenus[subMenuNumber] = !forecastMenus[subMenuNumber];
     }
 
-
     private async void selectedDateChanged(object? sender, string value) {
         await InvokeAsync(() => {
+            // Update the forecast
             selectedDate = CalendarService.onSelectedDateChange();
-            createForecast();
+            forecastArray = CalendarService.createForecast();
+            events = CalendarService.getEventsForecast();
+            // reset the forecast dropdowns to all false/open
+            Array.Clear(forecastMenus);
             StateHasChanged();
         });
     }
-
 }

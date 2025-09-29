@@ -29,6 +29,16 @@ public class CalendarDataService : IDataService
     {
         Console.WriteLine("DataService constructed!");
         selectedDate = "";
+
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 2), "Test day 1", "venue-event"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 31), "Test day 2", "holiday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 25), "Christmas", "birthday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
+        
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 2), "Test day 3", "venue-event"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 30), "Test day 4", "holiday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 12), "Test Day 5", "birthday"));
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 16), "Test Day 6", "important-event"));
     }
 
     public void Dispose()
@@ -105,6 +115,42 @@ public class CalendarDataService : IDataService
         return new CalendarLayoutInfo(monthView, monthName, month, year);
     }
 
+    public int[] createForecast()
+    {
+        int[] forecastArray = new int[13];
+
+        foreach(CalendarEvents item in events)
+        {
+            for (int j = 0; j < forecastArray.Length; j++)
+            {
+                if (item.Date.ToString("MM/dd/yyyy") == DateTime.ParseExact(selectedDate, "d", null).AddDays(j).ToString("MM/dd/yyyy"))
+                {
+                    forecastArray[j]++;
+                    break;
+                }
+            }
+        }
+        return forecastArray;
+    }
+
+    // Only get the events that happen in the forecast range
+    public List<CalendarEvents> getEventsForecast()
+    {
+        List<CalendarEvents> temp = new List<CalendarEvents>();
+
+        foreach (CalendarEvents item in events)
+        {
+            for (int i = 0; i < 13; i++)
+            {
+                if (item.Date.ToString("MM/dd/yyyy") == DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy"))
+                {
+                    temp.Add(item);
+                    break;
+                }
+            }
+        }
+        return temp;
+    }
 
     // Changes the selected Date from the string gotten from the element
     public void setSelectedDate(string value)
@@ -126,7 +172,6 @@ public class CalendarDataService : IDataService
     }
     
 
-
     // Placeholder functions that can be used for fetches on the event data
     public Task<string> GetValueAsync()
     {
@@ -138,6 +183,5 @@ public class CalendarDataService : IDataService
         Console.WriteLine($"TODO: Save value '{value}' to database...");
         return Task.FromResult(true);
     }
-
 
 }
