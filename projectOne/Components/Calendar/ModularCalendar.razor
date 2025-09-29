@@ -627,4 +627,74 @@
         forecastMenus[subMenuNumber] = !forecastMenus[subMenuNumber];
     }
 
+
+    protected List<CalendarDataService.CalendarDayDetails> monthView = new List<CalendarDataService.CalendarDayDetails>();
+
+    protected void CreateCalendar() {
+        // Clear the list to keep the formatting correct
+        monthView.Clear();
+
+        // Create a temp data to get the month and year
+        DateTime tempDate = DateTime.Now.AddMonths(monthsAway);
+        month = tempDate.Month;
+        year = tempDate.Year;
+
+        // Set the start and end days for the month
+        DateTime monthStart = new DateTime(year, month, 1);
+        monthEnd = monthStart.AddMonths(1).AddDays(-1);
+        monthName = monthStart.Month switch
+        {
+            1 => "January",
+            2 => "February",
+            3 => "March",
+            4 => "April",
+            5 => "May",
+            6 => "June",
+            7 => "July",
+            8 => "August",
+            9 => "September",
+            10 => "October",
+            11 => "November",
+            12 => "December",
+            _ => ""
+        };
+
+
+        // ---- This Section is for the days that will appear on the calendar outside the current month ---- 
+        
+
+        // Previous Month Section
+
+        // Get the previous month values
+        int prevMonthLastDay = DateTime.DaysInMonth( monthEnd.AddMonths(-1).Year , monthEnd.AddMonths(-1).Month );
+        DateTime temp = new DateTime(monthEnd.AddMonths(-1).Year , monthEnd.AddMonths(-1).Month, prevMonthLastDay);
+        // Now set the values
+        for (int i = 0; i <= (int)temp.DayOfWeek; i++)
+        {
+            monthView.Add(new CalendarDataService.CalendarDayDetails(new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, (prevMonthLastDay - i ) ), 0));
+        }
+        // Reverse the list so the previous month's days are in the proper order
+        if(monthView.Count() > 0) {
+            monthView.Reverse();
+        }
+        
+        
+        // Current Month
+        for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
+        {
+            monthView.Add(new CalendarDataService.CalendarDayDetails(new DateTime(year, month, i ), 0));
+        }
+
+        // Next Month Section
+        // Get the next month values
+        int nextMonthLastDayName = (int)new DateTime(monthEnd.AddMonths(1).Year , monthEnd.AddMonths(1).Month, 1).DayOfWeek;
+        // Now set the values
+        for (int i = 0; i < (14 - nextMonthLastDayName) ; i++)
+        {
+            // Stop the list from getting longer than 6 weeks (42 days)
+            if(monthView.Count() >= 42) { break; }
+            monthView.Add(new CalendarDataService.CalendarDayDetails(new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, ( i + 1 ) ), 0));
+        }
+	}
+
 }

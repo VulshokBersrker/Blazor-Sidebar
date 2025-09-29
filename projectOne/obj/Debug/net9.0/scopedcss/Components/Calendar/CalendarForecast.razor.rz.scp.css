@@ -1,4 +1,3 @@
-
 .calendar-arrow-icon[b-lhx9ghj0x4] {
   cursor: pointer;
   width: 22px;
@@ -7,7 +6,6 @@
   background-repeat: no-repeat;
   background-image: url("../images/down.svg");
 }
-
 .calendar-arrow-icon.arrow-down[b-lhx9ghj0x4] {
   position: absolute;
   top: 15px;
@@ -16,23 +14,28 @@
 
 /* ----------------- FORECAST SECTION ----------------- */
 
-.forecast-container[b-lhx9ghj0x4] {
+.forecast-border[b-lhx9ghj0x4] {
   padding: 0.5rem;
   border: 2px solid #757575;
   background-color: var(--dark-second-color);
   border-radius: 10px;
   overflow: hidden;
 }
+.forecast-container[b-lhx9ghj0x4] {
+  border-radius: 10px;
+  overflow: hidden;
+}
 
 .forecast[b-lhx9ghj0x4] {
-  border: 2px solid #757575;
-  border-radius: 10px;
   text-align: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 20px 25px;
+  width: 100%;
+  background: var(--dark-first-color);
+  text-align: center;
   /* Font Styles */
   font-size: 24px;
-  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;   
 }
 
 .forecast-days[b-lhx9ghj0x4] {
@@ -40,8 +43,8 @@
   margin-top: 1rem;
   border-radius: 10px;
   text-align: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   /* Grid Styles */
   display: grid;
   grid-template-columns: repeat(13, 1fr);
@@ -75,21 +78,20 @@
 .event-number[b-lhx9ghj0x4] {
   font-size: 18px;
   font-weight: 400;
+  color: rgb(69, 160, 160) !important;
 }
 
 
 .forecast-breakdown-container[b-lhx9ghj0x4] {
   /* Format Styles */
   margin-top: 1rem;
-  border: 2px solid #757575;
-  border-radius: 10px;
-  color: var(--font-color-dark);
+  background: var(--dark-first-color);
   
   /* Scroll Styles */
   overflow-y: scroll;
   overflow-x: hidden;
-  min-height: 701px;
-  max-height: 701px;
+  /* min-height: 720px; */
+  height: 719px;
   scroll-behavior: smooth;
 }
 

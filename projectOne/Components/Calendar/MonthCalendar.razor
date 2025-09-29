@@ -7,9 +7,9 @@
     <div class="month">
         <div>
             @* These arrows will change the months *@
-            <span class="calendar-arrow-icon arrow-left icon-size icon" @onclick="@(() => { monthsAway--; CreateCalendar(); })"/>
-            <span>@monthName <span>@year</span> </span>
-            <span class="calendar-arrow-icon arrow-right icon-size icon" @onclick="@(() => { monthsAway++; CreateCalendar(); })" />
+            <span class="calendar-arrow-icon arrow-left icon-size icon" @onclick="@((e) => {  CalendarService.setMonthsAway(-1, isFirstCalendar); })"/>
+            <span>@CalendarDisplayInfo.monthName <span>@CalendarDisplayInfo.year</span> </span>
+            <span class="calendar-arrow-icon arrow-right icon-size icon" @onclick="@((e) => {  CalendarService.setMonthsAway(1, isFirstCalendar); })" />
         </div>
     </div>
 
@@ -24,16 +24,15 @@
     </ul>
 
     <ul class="days">
-
         @* Month List *@
-        @{foreach(CalendarDayDetails item in monthView) {
-            @if(item.Date.Month != month) {
+        @{foreach(CalendarDataService.CalendarDayDetails item in CalendarDisplayInfo.monthView) {
+            @if(item.Date.Month != CalendarDisplayInfo.month) {
                 <li
                     class="day @(selectedDate == item.Date.ToShortDateString() ? "selected-date" : "")"
                     id="@(item.Date.ToShortDateString())"
                     @onclick="@( (e) => {CalendarService.setSelectedDate(item.Date.ToShortDateString());  } )"
                 >
-                    <span class=" @(item.Date.Month != month ? "outsideMonth" : "")
+                    <span class=" @(item.Date.Month != CalendarDisplayInfo.month ? "outsideMonth" : "")
                         @( currentDate == item.Date.ToShortDateString() ? "active" : "")
                     "
                     >
@@ -65,142 +64,55 @@
     [Parameter]
     public bool isFirstCalendar { get; set; }
 
-
     protected string selectedDate = "";
 
-    @* Current Day value *@
+    // Current Day value
     protected string currentDate = DateTime.Now.ToShortDateString();
-    
-    // Calendar Event Type
-    protected record CalendarEvents(DateTime Date, string Name, string eventType);
 
     // ----------- Calendar Values ----------- 
-    protected string monthName = "";
-	DateTime monthEnd;
-	protected int monthsAway = 0;
-	protected int year = 0;
-	protected int month = 0;
-	List<CalendarEvents> events = new List<CalendarEvents>();
+	List<CalendarDataService.CalendarEvents> events = new List<CalendarDataService.CalendarEvents>();
 
+    protected List<CalendarDataService.CalendarDayDetails> monthView = new List<CalendarDataService.CalendarDayDetails>();
 
-    // This will be expanded to add the list of events happening each day for the event markers on the calendar
-    protected record CalendarDayDetails(DateTime Date, int numEvents);
-
-    protected List<CalendarDayDetails> monthView = new List<CalendarDayDetails>();
-
-
+    protected CalendarDataService.CalendarLayoutInfo CalendarDisplayInfo { get; set; }
 
     // ------------------- Functions ------------------- 
 
 	protected override void OnInitialized() {
         // Compile all the events for the viewable time period - in Testing mode, so using more than the selectedDay range
-		events.Add(new CalendarEvents(new DateTime(2025, 9, 21), "Test day 1", "venue-event"));
-		events.Add(new CalendarEvents(new DateTime(2025, 8, 31), "Test day 2", "holiday"));
-		events.Add(new CalendarEvents(new DateTime(2025, 9, 25), "Christmas", "birthday"));
-		events.Add(new CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
+		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 2), "Test day 1", "venue-event"));
+		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 31), "Test day 2", "holiday"));
+		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 25), "Christmas", "birthday"));
+		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
         
-        events.Add(new CalendarEvents(new DateTime(2025, 9, 21), "Test day 3", "venue-event"));
-		events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 4", "holiday"));
-		events.Add(new CalendarEvents(new DateTime(2025, 9, 12), "Test Day 5", "birthday"));
-		events.Add(new CalendarEvents(new DateTime(2025, 9, 16), "Test Day 6", "important-event"));
+        events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 2), "Test day 3", "venue-event"));
+		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 30), "Test day 4", "holiday"));
+		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 12), "Test Day 5", "birthday"));
+		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 16), "Test Day 6", "important-event"));
 
-        if(isFirstCalendar == false) {
-            monthsAway++;
-        }
+        // Create the calendar
+        CalendarDisplayInfo = CalendarService.generateCalendarLayout(isFirstCalendar);
 
-        // Create the calendars
-		CreateCalendar();
-
-        @* monthView = CalendarService.GenerateCalendarLayout(); *@
-
+        // Set the values from the Data Service - selectedDate
         CalendarService.selectedDateChange += selectedDateChanged;
-
-
         CalendarService.setSelectedDate(currentDate);
         selectedDate = CalendarService.onSelectedDateChange();
+
+        CalendarService.monthsAwayChange += currentMonthChanged;
 	}
 
-    // Create and Update the First Calendar
-	protected void CreateCalendar() {
-        // Clear the list to keep the formatting correct
-        monthView.Clear();
-
-        // Create a temp data to get the month and year
-        DateTime tempDate = DateTime.Now.AddMonths(monthsAway);
-        month = tempDate.Month;
-        year = tempDate.Year;
-
-        // Set the start and end days for the month
-        DateTime monthStart = new DateTime(year, month, 1);
-        monthEnd = monthStart.AddMonths(1).AddDays(-1);
-        monthName = monthStart.Month switch
-        {
-            1 => "January",
-            2 => "February",
-            3 => "March",
-            4 => "April",
-            5 => "May",
-            6 => "June",
-            7 => "July",
-            8 => "August",
-            9 => "September",
-            10 => "October",
-            11 => "November",
-            12 => "December",
-            _ => ""
-        };
-
-
-        // ---- This Section is for the days that will appear on the calendar outside the current month ---- 
-        
-
-        // Previous Month Section
-
-        // Get the previous month values
-        int prevMonthLastDay = DateTime.DaysInMonth( monthEnd.AddMonths(-1).Year , monthEnd.AddMonths(-1).Month );
-        DateTime temp = new DateTime(monthEnd.AddMonths(-1).Year , monthEnd.AddMonths(-1).Month, prevMonthLastDay);
-        // Now set the values
-        for (int i = 0; i <= (int)temp.DayOfWeek; i++)
-        {
-            monthView.Add(new CalendarDayDetails(new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, (prevMonthLastDay - i ) ), 0));
-        }
-        // Reverse the list so the previous month's days are in the proper order
-        if(monthView.Count() > 0) {
-            monthView.Reverse();
-        }
-        
-        
-        // Current Month
-        for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
-        {
-            monthView.Add(new CalendarDayDetails(new DateTime(year, month, i ), 0));
-        }
-
-        // Next Month Section
-        // Get the next month values
-        int nextMonthLastDayName = (int)new DateTime(monthEnd.AddMonths(1).Year , monthEnd.AddMonths(1).Month, 1).DayOfWeek;
-        // Now set the values
-        for (int i = 0; i < (14 - nextMonthLastDayName) ; i++)
-        {
-            // Stop the list from getting longer than 6 weeks (42 days)
-            if(monthView.Count() >= 42) { break; }
-            monthView.Add(new CalendarDayDetails(new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, ( i + 1 ) ), 0));
-        }
-	}
-
-
-    // Changes the selected Date from the string gotten from the element
-    protected void changeSelectedDate(string value) {
-        @* Console.WriteLine(value); *@
-        selectedDate = value;
-        // Update the forecast details for the new selected date range
-       
-    }
-
-
+    // Event Checker for the selectedDate value in the Calendar Service
     private async void selectedDateChanged(object? sender, string value) {
         await InvokeAsync(() => {
             selectedDate = CalendarService.onSelectedDateChange();
+            StateHasChanged();
+        });
+    }
+
+   // Event Checker for the monthsAway value in the Calendar Service
+    private async void currentMonthChanged(object? sender, int value) {
+        await InvokeAsync(() => {
+            CalendarDisplayInfo = CalendarService.generateCalendarLayout(isFirstCalendar);
             StateHasChanged();
         });
     }

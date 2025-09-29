@@ -344,6 +344,14 @@ ol, ul {
 }
 
 
+.bb {
+  border: 2px solid #757575;
+  background-color: var(--dark-second-color);
+  outline-offset: 5px;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
 
 a, .btn-link {
   color: #006bb7;

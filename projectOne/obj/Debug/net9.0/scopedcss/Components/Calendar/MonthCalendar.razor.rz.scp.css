@@ -96,7 +96,7 @@
   color: var(--font-color-dark);
   /* Grid Styles */
   grid-column-end: span 1;
-  min-height: 42px;
+  min-height: 44px;
   /* Position Styles */
   position: relative;
   z-index: 5;
@@ -120,7 +120,7 @@
   z-index: -1;
   border-radius: 50%;
   background: var(--active-color-dark);
-  transform: translate(-50%, -50%);
+  transform: translate(-49%, -50%);
 }
 
 /* Show which days are outside the current month */
@@ -132,8 +132,8 @@
   background-color: var(--selected-date-color-dark) !important;
   border: 5px solid var(--selected-date-color-dark) !important;
   border-radius: 8px;
-  margin-left: 0.3rem;
-  margin-right: 0.3rem;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
 }
 
 
