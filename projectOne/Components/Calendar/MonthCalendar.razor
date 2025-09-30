@@ -55,17 +55,15 @@
                         </span>
 
                         @* Show if there is an event on this day, generate up to 3 dots for the events, then a plus to show there are more events *@
-                        @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
-                            <div class="event-marker">
-                                @for(int i = 0; i < item.numEvents; i++) {
-                                    <span class="dot">&#11044; </span>
-                                    @if(i == 2) {
-                                        <span class="event-overflow">+</span>
-                                        break;
-                                    }
+                        <div class="event-marker">
+                            @for(int i = 0; i < item.numEvents; i++) {
+                                <span class="dot">&#11044; </span>
+                                @if(i == 2) {
+                                    <span class="event-overflow">+</span>
+                                    break;
                                 }
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </li>
             }
@@ -90,23 +88,21 @@
                     }
 
                     @* The number of the Date *@
-                    <div class="day-container h-100 w-100 ">
+                    <div class="day-container h-100 w-100">
                         <span class="date @( currentDate == item.Date.ToShortDateString() ? "active" : "") @(item.Date.DayOfWeek == DayOfWeek.Saturday ? "weekend" : "") @(item.Date.DayOfWeek == DayOfWeek.Sunday ? "weekend" : "") " >
                             @item.Date.Day
                         </span>
 
                         @* Show if there is an event on this day, generate up to 3 dots for the events, then a plus to show there are more events *@
-                        @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
-                            <div class="event-marker">
-                                @for(int i = 0; i < item.numEvents; i++) {
-                                    <span class="dot">&#11044; </span>
-                                    @if(i == 2) {
-                                        <span class="event-overflow">+</span>
-                                        break;
-                                    }
+                        <div class="event-marker">
+                            @for(int i = 0; i < item.numEvents; i++) {
+                                <span class="dot">&#11044; </span>
+                                @if(i == 2) {
+                                    <span class="event-overflow">+</span>
+                                    break;
                                 }
-                            </div>
-                        }
+                            }
+                        </div>
                     </div>
                 </li>
             }    

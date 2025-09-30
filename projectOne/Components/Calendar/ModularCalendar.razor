@@ -630,7 +630,7 @@
 
     protected List<CalendarDataService.CalendarDayDetails> monthView = new List<CalendarDataService.CalendarDayDetails>();
 
-    protected void CreateCalendar() {
+    @* protected void CreateCalendar() {
         // Clear the list to keep the formatting correct
         monthView.Clear();
 
@@ -695,6 +695,6 @@
             if(monthView.Count() >= 42) { break; }
             monthView.Add(new CalendarDataService.CalendarDayDetails(new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, ( i + 1 ) ), 0));
         }
-	}
+	} *@
 
 }
