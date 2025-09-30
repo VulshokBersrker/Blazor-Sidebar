@@ -12,7 +12,7 @@ public class CalendarDataService : IDataService
 {
     public record CalendarEvents(DateTime Date, string Name, string eventType);
     // This will be expanded to add the list of events happening each day for the event markers on the calendar
-    public record CalendarDayDetails(DateTime Date, int numEvents);
+    public record CalendarDayDetails(DateTime Date, int numEvents, IEnumerable<CalendarEvents> dayEvents);
     public record CalendarLayoutInfo(List<CalendarDayDetails> monthView, string monthName, int month, int year);
 
     // ----------- Calendar Values ----------- 
@@ -31,14 +31,21 @@ public class CalendarDataService : IDataService
         selectedDate = "";
 
         events.Add(new CalendarEvents(new DateTime(2025, 10, 2), "Test day 1", "venue-event"));
-		events.Add(new CalendarEvents(new DateTime(2025, 10, 31), "Test day 2", "holiday"));
+        events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 2", "venue-event"));
+        events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 33", "venue-event"));
+        events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 44", "venue-event"));
+        events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 55", "venue-event"));
+        events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 3", "venue-event"));
+        events.Add(new CalendarEvents(new DateTime(2025, 9, 29), "Test day 4", "venue-event"));
+        events.Add(new CalendarEvents(new DateTime(2025, 9, 28), "Test day 5", "venue-event"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 31), "Test day 6", "holiday"));
 		events.Add(new CalendarEvents(new DateTime(2025, 10, 25), "Christmas", "birthday"));
 		events.Add(new CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
         
-        events.Add(new CalendarEvents(new DateTime(2025, 10, 2), "Test day 3", "venue-event"));
-		events.Add(new CalendarEvents(new DateTime(2025, 10, 30), "Test day 4", "holiday"));
-		events.Add(new CalendarEvents(new DateTime(2025, 10, 12), "Test Day 5", "birthday"));
-        events.Add(new CalendarEvents(new DateTime(2025, 10, 16), "Test Day 6", "important-event"));
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 2), "Test day 7", "venue-event"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 30), "Test day 8", "holiday"));
+		events.Add(new CalendarEvents(new DateTime(2025, 10, 12), "Test Day 9", "birthday"));
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 16), "Test Day 10", "important-event"));
     }
 
     public void Dispose()
@@ -91,13 +98,28 @@ public class CalendarDataService : IDataService
         // Now set the values
         for (int i = 0; i <= (int)temp.DayOfWeek; i++)
         {
-            monthView.Add(new CalendarDayDetails(new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, (prevMonthLastDay - i)), 0));
+            // Find all the events happening on each day
+            string tempD = monthEnd.AddMonths(-1).Month + "/" + (prevMonthLastDay - i) + "/" + monthEnd.AddMonths(-1).Year;
+            IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n =>  n.Date.ToShortDateString() == DateTime.ParseExact(tempD, "d", null).ToString("d") );
+
+            monthView.Add(
+                new CalendarDayDetails( new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, prevMonthLastDay - i),
+                eventsOnThisDay.Count(),
+                eventsOnThisDay
+            ) );
         }
 
         // Current Month
         for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
         {
-            monthView.Add(new CalendarDayDetails(new DateTime(year, month, i), 0));
+            string tempD = monthEnd.Month + "/" + i + "/" + monthEnd.Year;
+            IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n =>  n.Date.ToShortDateString() == DateTime.ParseExact(tempD, "d", null).ToString("d") );
+
+            monthView.Add(
+                new CalendarDayDetails( new DateTime(year, month, i),
+                eventsOnThisDay.Count(),
+                eventsOnThisDay
+            ));
         }
 
         // Next Month Section
@@ -109,7 +131,15 @@ public class CalendarDataService : IDataService
         {
             // Stop the list from getting longer than 6 weeks (42 days)
             if (monthView.Count() >= 42) { break; }
-            monthView.Add(new CalendarDayDetails(new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, (i + 1)), 0));
+
+            string tempD = monthEnd.AddMonths(1).Month + "/" + (i + 1) + "/" + monthEnd.AddMonths(1).Year;
+            IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n =>  n.Date.ToShortDateString() == DateTime.ParseExact(tempD, "d", null).ToString("d") );
+
+            monthView.Add(
+                new CalendarDayDetails( new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, i + 1),
+                eventsOnThisDay.Count(),
+                eventsOnThisDay
+            ));
         }
 
         return new CalendarLayoutInfo(monthView, monthName, month, year);
@@ -150,6 +180,11 @@ public class CalendarDataService : IDataService
             }
         }
         return temp;
+    }
+
+    public List<CalendarEvents> getEventsCalendar()
+    {
+        return events;
     }
 
     // Changes the selected Date from the string gotten from the element

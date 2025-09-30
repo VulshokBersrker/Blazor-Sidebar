@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@using System.Collections.ObjectModel
 
 @rendermode InteractiveServer
 @inject CalendarDataService CalendarService
@@ -32,11 +34,31 @@
                     id="@(item.Date.ToShortDateString())"
                     @onclick="@( (e) => {CalendarService.setSelectedDate(item.Date.ToShortDateString());  } )"
                 >
-                    <span class=" @(item.Date.Month != CalendarDisplayInfo.month ? "outsideMonth" : "")
-                        @( currentDate == item.Date.ToShortDateString() ? "active" : "")
-                    "
-                    >
-                    @item.Date.Day </span>
+                    @* Display the events in the mouse tooltip *@
+                    @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
+                        <div class="event-tooltip">
+                            @foreach(var gathering in item.dayEvents.Select((value, index) => new {value, index}) ) {
+                                <div class="tooltip-text">@gathering.value.Name</div>
+                                @* Only display the first three events *@
+                                @if(gathering.index > 1) {
+                                    <div class="tooltip-text">...</div>
+                                    break;
+                                }
+                            }
+                        </div>
+                    }
+
+                    <div class="day-container h-100 w-100 ">
+                        <span class="@(item.Date.Month != CalendarDisplayInfo.month ? "outsideMonth" : "")  @( currentDate == item.Date.ToShortDateString() ? "active" : "") " >
+                            @item.Date.Day
+                        </span>
+
+                        @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
+                            <div class="event-marker">
+                                &#11044;
+                            </div>
+                        }
+                    </div>
                 </li>
             }
             else {
@@ -45,12 +67,31 @@
                     id="@(item.Date.ToShortDateString())"
                     @onclick="@( (e) => {CalendarService.setSelectedDate(item.Date.ToShortDateString());  } )"
                 >
-                    <span class=" @( currentDate == item.Date.ToShortDateString() ? "active" : "") 
-                        @(item.Date.DayOfWeek == DayOfWeek.Saturday ? "weekend" : "") 
-                        @(item.Date.DayOfWeek == DayOfWeek.Sunday ? "weekend" : "")
-                    "
-                    >
-                    @item.Date.Day </span>
+                    @* Display the events in the mouse tooltip *@
+                    @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
+                        <div class="event-tooltip">
+                            @foreach(var gathering in item.dayEvents.Select((value, index) => new {value, index}) ) {
+                                <div class="tooltip-text">@gathering.value.Name</div>
+                                @* Only display the first three events *@
+                                @if(gathering.index > 1) {
+                                    <div class="tooltip-text">...</div>
+                                    break;
+                                }
+                            }
+                        </div>
+                    }
+
+                    <div class="day-container h-100 w-100 ">
+                        <span class="@( currentDate == item.Date.ToShortDateString() ? "active" : "") @(item.Date.DayOfWeek == DayOfWeek.Saturday ? "weekend" : "") @(item.Date.DayOfWeek == DayOfWeek.Sunday ? "weekend" : "") " >
+                            @item.Date.Day
+                        </span>
+
+                        @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
+                            <div class="event-marker">
+                                &#11044;
+                            </div>
+                        }
+                    </div>
                 </li>
             }    
         }}
@@ -97,6 +138,9 @@
         CalendarService.selectedDateChange += selectedDateChanged;
         CalendarService.setSelectedDate(currentDate);
         selectedDate = CalendarService.onSelectedDateChange();
+
+        // Get the events
+        events = CalendarService.getEventsCalendar();
 
         CalendarService.monthsAwayChange += currentMonthChanged;
 	}

@@ -91,7 +91,7 @@
   /* Scroll Styles */
   overflow-y: scroll;
   overflow-x: hidden;
-  /* min-height: 720px; */
+  /* min-height: 719px; */
   height: 719px;
   scroll-behavior: smooth;
 }
@@ -511,9 +511,9 @@ li:hover span.h[b-vqpjjdyixa]::after {
 }
 /* _content/projectOne/Components/Calendar/MonthCalendar.razor.rz.scp.css */
 .calendar-month-layout[b-0rvo3cyfm9] {
-  border-radius: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
+  position: relative;
 }
 
 .month[b-0rvo3cyfm9] {
@@ -521,12 +521,14 @@ li:hover span.h[b-vqpjjdyixa]::after {
   width: 100%;
   background: var(--dark-first-color);
   text-align: center;  
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 /* Month list */
 .month div[b-0rvo3cyfm9] {
-  margin: 0;
-  padding: 0; 
+  margin: 0px;
+  padding: 0px; 
   position: relative;
 }
 
@@ -557,12 +559,11 @@ li:hover span.h[b-vqpjjdyixa]::after {
   right: 0px;
 }
 
-
 /* Weekdays (Mon-Sun) */
 .weekdays[b-0rvo3cyfm9] {
   /* Layout Styles */
-  margin: 0;
-  padding: 10px 0;
+  margin: 0px;
+  padding: 10px 5px;
   background-color:var(--dark-second-color);
   /* Grid Styles */
   display: grid;
@@ -587,9 +588,11 @@ li:hover span.h[b-vqpjjdyixa]::after {
 /* Days (1-31) */
 .days[b-0rvo3cyfm9] {
   /* Layout Styles */
-  padding: 10px 0;
+  padding: 10px 5px;
   background: var(--dark-first-color);
-  margin: 0;
+  margin: 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   /* Grid Styles */
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -611,7 +614,16 @@ li:hover span.h[b-vqpjjdyixa]::after {
   min-height: 44px;
   /* Position Styles */
   position: relative;
-  z-index: 5;
+  z-index: auto;
+  align-items: center;
+  align-content: center;
+  display: inline-block;
+  cursor: pointer;
+
+  overflow: visible;
+}
+.day-container[b-0rvo3cyfm9] {
+  /* position: relative; */
   align-items: center;
   align-content: center;
 }
@@ -627,12 +639,12 @@ li:hover span.h[b-vqpjjdyixa]::after {
   content: "";
   left: 50%;
   top: 50%;
-  height: 40px;
-  width: 40px;
+  height: 38px;
+  width: 38px;
   z-index: -1;
   border-radius: 50%;
   background: var(--active-color-dark);
-  transform: translate(-49%, -50%);
+  transform: translate(-51%, -50%);
 }
 
 /* Show which days are outside the current month */
@@ -642,99 +654,66 @@ li:hover span.h[b-vqpjjdyixa]::after {
 
 .selected-date[b-0rvo3cyfm9] {
   background-color: var(--selected-date-color-dark) !important;
-  border: 5px solid var(--selected-date-color-dark) !important;
   border-radius: 8px;
-  margin-left: 0.2rem;
-  margin-right: 0.2rem;
 }
-
 
 .weekend[b-0rvo3cyfm9] {
   color: rgb(69, 160, 160) !important;
 }
 
 /* -- Event Styling -- */
-.event-container[b-0rvo3cyfm9] {
-  width: 80%;
-  height: 20%;
-  margin: auto;
-  position: absolute;
-  left: 10%;
-  bottom: 1%;
-}
-ul li[b-0rvo3cyfm9] {
-  list-style-type: none;  
-}
-
-
-span.h[b-0rvo3cyfm9] {
+.event-tooltip[b-0rvo3cyfm9] {
   visibility: hidden;
-  padding: 0.25em 0.5em;
+  padding: 0.1rem 0.25rem 0.25rem 0.25rem;
   background-color: black;
-  color: #fff;
-  font-size: 12px;
-  text-align: center;
-  border-radius: 6px;
-  white-space: nowrap;
-  
+  border-radius: 10px;
+  width: 120px;
+  margin-left: -60px;
   /* Position the tooltip */
   position: absolute;
-  z-index: 5;
-  top: 100%;
-  left: 0%;
+  z-index: 100;
+  top: 110%;
+  left: 50%;
   transition-property: visibility;
   transition-delay: 0s;
 }
 
-li:hover span.h[b-0rvo3cyfm9] {
+li.day:hover .event-tooltip[b-0rvo3cyfm9] {
   visibility: visible;
   transition-delay: 0.3s;
 }
 
-li:hover span.h[b-0rvo3cyfm9]::after {
-  content: " ";
+.event-tooltip[b-0rvo3cyfm9]::after {
+  content: "";
   position: absolute;
-  bottom: 100%;  /* At the top of the tooltip */
+  bottom: 100%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
   border-color: transparent transparent black transparent;
+  z-index: 10;
 }
 
-.birthday[b-0rvo3cyfm9] {
+.event-tooltip .tooltip-text[b-0rvo3cyfm9] {
+  /* Text Styles */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 12px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.event-marker[b-0rvo3cyfm9] {
   position: absolute;
+  left: 50%;
   bottom: 0px;
-  left: 0px;
-  border: #000000 1px solid;
-  height: 0.5rem;
-  width: 0.5rem;
-  z-index: 8;
-  border-radius: 100%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  font-size: 8px;
+  color: rgb(129, 129, 129);
 }
-
-.venue-event[b-0rvo3cyfm9] {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  border: #000000 1px solid;
-  height: 0.5rem;
-  width: 0.5rem;
-  z-index: 8;
-  border-radius: 100%;  
-}
-
-.important-event[b-0rvo3cyfm9] {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  border: #000000 1px solid;
-  height: 0.5rem;
-  width: 0.5rem;
-  z-index: 8;
-  border-radius: 100%;
-}
-
 /* _content/projectOne/Components/Layout/MainLayout.razor.rz.scp.css */
 .page[b-4fh4ctlexs] {
     position: relative;

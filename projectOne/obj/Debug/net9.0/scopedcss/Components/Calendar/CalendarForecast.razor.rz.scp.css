@@ -90,7 +90,7 @@
   /* Scroll Styles */
   overflow-y: scroll;
   overflow-x: hidden;
-  /* min-height: 720px; */
+  /* min-height: 719px; */
   height: 719px;
   scroll-behavior: smooth;
 }
