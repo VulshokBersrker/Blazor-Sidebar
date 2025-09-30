@@ -619,13 +619,16 @@ li:hover span.h[b-vqpjjdyixa]::after {
   align-content: center;
   display: inline-block;
   cursor: pointer;
-
   overflow: visible;
 }
 .day-container[b-0rvo3cyfm9] {
   /* position: relative; */
   align-items: center;
   align-content: center;
+}
+.date[b-0rvo3cyfm9] {
+  position: relative;
+  z-index: 1;
 }
 
 /* Highlight the "current" day */
@@ -634,7 +637,7 @@ li:hover span.h[b-vqpjjdyixa]::after {
   color: white !important;  
 }
 
-.active[b-0rvo3cyfm9]::before {
+.active[b-0rvo3cyfm9]::after {
   position: absolute;
   content: "";
   left: 50%;
@@ -707,12 +710,22 @@ li.day:hover .event-tooltip[b-0rvo3cyfm9] {
 
 .event-marker[b-0rvo3cyfm9] {
   position: absolute;
+  width: 100%;
   left: 50%;
   bottom: 0px;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
+  z-index: 2;
+}
+.event-marker .dot[b-0rvo3cyfm9] {
   font-size: 8px;
-  color: rgb(129, 129, 129);
+  /* color: rgb(129, 129, 129); */
+  color: rgb(69, 160, 160);
+}
+
+.event-marker .event-overflow[b-0rvo3cyfm9] {
+  font-size: 14px;
+  color: rgb(69, 160, 160);
 }
 /* _content/projectOne/Components/Layout/MainLayout.razor.rz.scp.css */
 .page[b-4fh4ctlexs] {

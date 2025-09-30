@@ -107,13 +107,16 @@
   align-content: center;
   display: inline-block;
   cursor: pointer;
-
   overflow: visible;
 }
 .day-container {
   /* position: relative; */
   align-items: center;
   align-content: center;
+}
+.date {
+  position: relative;
+  z-index: 1;
 }
 
 /* Highlight the "current" day */
@@ -122,7 +125,7 @@
   color: white !important;  
 }
 
-.active::before {
+.active::after {
   position: absolute;
   content: "";
   left: 50%;
@@ -195,10 +198,20 @@ li.day:hover .event-tooltip {
 
 .event-marker {
   position: absolute;
+  width: 100%;
   left: 50%;
   bottom: 0px;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
+  z-index: 2;
+}
+.event-marker .dot {
   font-size: 8px;
-  color: rgb(129, 129, 129);
+  /* color: rgb(129, 129, 129); */
+  color: rgb(69, 160, 160);
+}
+
+.event-marker .event-overflow {
+  font-size: 14px;
+  color: rgb(69, 160, 160);
 }

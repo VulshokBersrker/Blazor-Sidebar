@@ -48,14 +48,22 @@
                         </div>
                     }
 
+                    @* The number of the Date *@
                     <div class="day-container h-100 w-100 ">
-                        <span class="@(item.Date.Month != CalendarDisplayInfo.month ? "outsideMonth" : "")  @( currentDate == item.Date.ToShortDateString() ? "active" : "") " >
+                        <span class="date @(item.Date.Month != CalendarDisplayInfo.month ? "outsideMonth" : "")  @( currentDate == item.Date.ToShortDateString() ? "active" : "") " >
                             @item.Date.Day
                         </span>
 
+                        @* Show if there is an event on this day, generate up to 3 dots for the events, then a plus to show there are more events *@
                         @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
                             <div class="event-marker">
-                                &#11044;
+                                @for(int i = 0; i < item.numEvents; i++) {
+                                    <span class="dot">&#11044; </span>
+                                    @if(i == 2) {
+                                        <span class="event-overflow">+</span>
+                                        break;
+                                    }
+                                }
                             </div>
                         }
                     </div>
@@ -81,14 +89,22 @@
                         </div>
                     }
 
+                    @* The number of the Date *@
                     <div class="day-container h-100 w-100 ">
-                        <span class="@( currentDate == item.Date.ToShortDateString() ? "active" : "") @(item.Date.DayOfWeek == DayOfWeek.Saturday ? "weekend" : "") @(item.Date.DayOfWeek == DayOfWeek.Sunday ? "weekend" : "") " >
+                        <span class="date @( currentDate == item.Date.ToShortDateString() ? "active" : "") @(item.Date.DayOfWeek == DayOfWeek.Saturday ? "weekend" : "") @(item.Date.DayOfWeek == DayOfWeek.Sunday ? "weekend" : "") " >
                             @item.Date.Day
                         </span>
 
+                        @* Show if there is an event on this day, generate up to 3 dots for the events, then a plus to show there are more events *@
                         @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
                             <div class="event-marker">
-                                &#11044;
+                                @for(int i = 0; i < item.numEvents; i++) {
+                                    <span class="dot">&#11044; </span>
+                                    @if(i == 2) {
+                                        <span class="event-overflow">+</span>
+                                        break;
+                                    }
+                                }
                             </div>
                         }
                     </div>
