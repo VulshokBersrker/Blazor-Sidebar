@@ -88,6 +88,6 @@ F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\projectOne.pdb
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\projectOne.genruntimeconfig.cache
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\ref\projectOne.dll
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mca1mp0noc-7f3fgcc2h4.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-i3so493i90.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-i3so493i90.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mca1mp0noc-9yvmh5j3kg.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-0att3n6goo.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-0att3n6goo.gz

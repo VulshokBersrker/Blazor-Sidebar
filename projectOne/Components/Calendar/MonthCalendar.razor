@@ -47,9 +47,7 @@
 
                     @* The number of the Date *@
                     <div class="day-container h-100 w-100 ">
-                        <span class="date @(item.Date.Month != CalendarDisplayInfo.month ? "outsideMonth" : "")  @( currentDate == item.Date.ToShortDateString() ? "active" : "") " >
-                            @item.Date.Day
-                        </span>
+                        <span class="date @(item.Date.Month != CalendarDisplayInfo.month ? "outsideMonth" : "")  @( currentDate == item.Date.ToShortDateString() ? "active" : "") " >@item.Date.Day</span>
 
                         @* Show if there is an event on this day, generate up to 3 dots for the events, then a plus to show there are more events *@
                         <div class="event-marker">

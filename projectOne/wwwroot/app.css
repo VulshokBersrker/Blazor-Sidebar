@@ -281,6 +281,42 @@ ol, ul {
   }
 }
 
+
+
+.main-calendar-wrapper-full {
+  max-height: 100%;
+}
+.main-calendar-wrapper-compact {
+  max-height: 450px;
+  /* overflow: hidden; */
+}
+
+.calendar-full-display {
+  border: 2px solid #757575;
+  background-color: var(--dark-second-color);
+  outline-offset: 5px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  height: 100%;
+}
+.calendar-compact-display {
+  border: 2px solid #757575;
+  background-color: var(--dark-second-color);
+  outline-offset: 5px;
+  border-radius: 10px;
+  /* height: 100% */
+}
+
+.testy {
+  /* Smallest size with proper formatting is 630x400 */
+  max-width: 630px;
+  /* max-height: 400px; */
+  /* overflow: hidden; */
+}
+
+
+
+
 /* styles for old Phones */
 @media screen and (min-width: 320px) and (max-width: 399px) {
   
@@ -300,6 +336,24 @@ ol, ul {
     .content {
       position: fixed;
     }
+  }
+
+  .main-calendar-wrapper-full {
+    /* max-height: 100%; */
+    overflow: hidden;
+  }
+  .main-calendar-wrapper-compact {
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  .calendar-full-display {
+    margin-left: 1rem;
+    grid-column-end: span 20 !important;
+  }
+  .calendar-compact-display {
+    margin-left: 1rem;
+    grid-column-end: span 20 !important;
   }
   
 }
@@ -324,7 +378,72 @@ ol, ul {
     }
   }
 
+  .main-calendar-wrapper-full {
+    max-height: 100%;
+    overflow: hidden;
+  }
+  .main-calendar-wrapper-compact {
+    max-height: 100%;
+    overflow: hidden;
+  }
+
+  .calendar-full-display {
+    margin-left: 1rem;
+    grid-column-end: span 20 !important;
+  }
+  .calendar-compact-display {
+    margin-left: 1rem;
+    grid-column-end: span 20 !important;
+  }
   
+}
+/* styles for smaller iPads/Kindle */
+@media screen and (min-width: 766px) and (max-width: 838px) { 
+
+  .calendar-full-display {
+    grid-column-end: span 10 !important;
+  }
+  .calendar-compact-display {
+    grid-column-end: span 5 !important;
+  }
+}
+/* styles for newer iPads */
+@media screen and (min-width: 1010px) and (max-width: 1030px) {
+
+   .calendar-full-display {
+    grid-column-end: span 10 !important;
+  }
+  .calendar-compact-display {
+    grid-column-end: span 5 !important;
+  }
+}
+/* Laptop with MDPI Screen - 720p Screens - 1280x720, plus landscape iPad */
+@media screen and (min-width: 1040px) and (max-width: 1366px) {
+
+  .main-calendar-wrapper-compact {
+    max-height: 550px;
+    /* overflow: hidden; */
+  }
+
+  .calendar-full-display {
+    grid-column-end: span 7 !important;
+  }
+}
+/* Laptop with HiDPI Screen */
+@media screen and (min-width: 1367px) and (max-width: 1440px) {
+    
+}
+/* 2K Resolutions - 2560x1440 */
+@media screen and (min-width: 1921px) and (max-width: 3839px) {
+  
+  .main-calendar-wrapper-compact {
+    max-height: 590px;
+  }  
+
+  .testy {
+    /* Smallest size with proper formatting is 930x600 */
+    max-width: 930px;
+  }
 }
 @media screen and (min-width: 3840px) { 
 
@@ -341,39 +460,14 @@ ol, ul {
       padding-left: 480px;
     }
   }
+
+  .main-calendar-wrapper-compact {
+    max-height: 890px;
+  }
+
 }
 
 
-.main-calendar-wrapper-full {
-  max-height: 100%;
-}
-.main-calendar-wrapper-compact {
-  max-height: 450px;
-  overflow: hidden;
-}
-
-.calendar-full-display {
-  border: 2px solid #757575;
-  background-color: var(--dark-second-color);
-  outline-offset: 5px;
-  border-radius: 10px;
-  padding: 0.5rem;
-  height: 100%;
-}
-.calendar-compact-display {
-  border: 2px solid #757575;
-  background-color: var(--dark-second-color);
-  outline-offset: 5px;
-  border-radius: 10px;
-  /* height: 100% */
-}
-
-.testy {
-  /* Smallest size with proper formatting is 630x400 */
-  max-width: 630px;
-  max-height: 400px;
-  overflow: hidden;
-}
 
 
 

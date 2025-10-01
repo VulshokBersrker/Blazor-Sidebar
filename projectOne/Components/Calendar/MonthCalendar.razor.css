@@ -233,3 +233,266 @@ li.day:hover .event-tooltip {
 .important-event {
   color: #fbe161 !important;;  
 }
+
+
+@media screen and (min-width: 320px) and (max-width: 399px) {
+  
+  .calendar-arrow-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .calendar-arrow-icon.arrow-left {
+    top: 5px;
+  }
+  .calendar-arrow-icon.arrow-right {
+    top: 5px;
+  }
+  
+}
+/* styles for smaller Phones */
+@media screen and (min-width: 320px) and (max-width: 765px) {
+
+  .calendar-arrow-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .calendar-arrow-icon.arrow-left {
+    top: 5px;
+    left: -14px;
+  }
+  .calendar-arrow-icon.arrow-right {
+    top: 5px;
+    right: -14px;
+  }
+
+  .active::after {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 32px;
+    width: 32px;
+    z-index: -1;
+    border-radius: 50%;
+    background: var(--active-color-dark);
+    transform: translate(-51%, -50%);
+  }
+
+  /* ----------------- CALENDAR COMPACT SECTION ----------------- */
+
+  .event-marker .dot {
+    font-size: 7px;
+  }
+  .event-marker .event-overflow {
+    font-size: 11px;
+  }
+  
+  
+}
+/* styles for smaller iPads/Kindle */
+@media screen and (min-width: 766px) and (max-width: 838px) { 
+
+}
+/* styles for newer iPads */
+@media screen and (min-width: 1010px) and (max-width: 1030px) {
+ 
+}
+/* Laptop with MDPI Screen - 720p Screens - 1280x720, plus landscape iPad */
+@media screen and (min-width: 1040px) and (max-width: 1366px) {
+  .month div span {
+    font-size: 20px;
+  }
+
+  .calendar-arrow-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .calendar-arrow-icon.arrow-left {
+    top: 5px;
+  }
+  .calendar-arrow-icon.arrow-right {
+    top: 5px;
+  }
+
+  /* Weekdays (Mon-Sun) */
+  .weekdays {
+    /* Layout Styles */
+    font-size: 16px;
+  }
+
+  /* Days (1-31) */
+  .days {
+    /* Layout Styles */
+    padding: 0.4rem 0.2rem;
+    /* Grid Styles */
+    -moz-column-gap: 10px;
+    column-gap: 0.3rem;
+    row-gap: 0.2rem;
+  }
+
+  .days li.day {
+    /* Text Styles */
+    font-size: 14px;
+    /* Grid Styles */
+    min-height: 36px;
+  }
+
+  .active::after {
+    height: 30px;
+    width: 30px;
+  }
+
+  /* ----------------- CALENDAR COMPACT SECTION ----------------- */
+
+  .event-tooltip .tooltip-text {
+    font-size: 12px;
+  }
+  .event-marker .dot {
+    font-size: 8px;
+  }
+  .event-marker .event-overflow {
+    font-size: 14px;
+  }
+}
+/* Laptop with HiDPI Screen */
+@media screen and (min-width: 1367px) and (max-width: 1440px) {
+    
+}
+/* 2K Resolutions - 2560x1440 */
+@media screen and (min-width: 1921px) and (max-width: 3839px) {
+
+  .month div span {
+    font-size: 32px;
+  }
+
+  .calendar-arrow-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .calendar-arrow-icon.arrow-left {
+    top: 10px;
+  }
+  .calendar-arrow-icon.arrow-right {
+    top: 10px;
+  }
+
+  /* Weekdays (Mon-Sun) */
+  .weekdays {
+    /* Layout Styles */
+    font-size: 24px;
+  }
+
+  /* Days (1-31) */
+  .days {
+    /* Layout Styles */
+    padding: 0.4rem 0.2rem;
+    /* Grid Styles */
+    -moz-column-gap: 10px;
+    column-gap: 0.3rem;
+    row-gap: 0.2rem;
+  }
+
+  .days li.day {
+    /* Text Styles */
+    font-size: 20px;
+    /* Grid Styles */
+    min-height: 65px;
+  }
+
+  .active::after {
+    height: 55px;
+    width: 55px;
+  }
+
+  /* ----------------- CALENDAR COMPACT SECTION ----------------- */
+
+  .event-tooltip .tooltip-text {
+    font-size: 18px;
+  }
+  .event-marker .dot {
+    font-size: 12px;
+  }
+  .event-marker .event-overflow {
+    font-size: 20px;
+  }
+  
+}
+/* 4K Resolutions - 3840x2160 */
+@media screen and (min-width: 3840px) {
+
+  .month {
+    padding: 20px 25px;
+    width: 100%;
+  }
+
+  .month div span {
+    font-size: 42px;
+  }
+
+  .calendar-arrow-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .calendar-arrow-icon.arrow-left {
+    top: 10px;
+  }
+  .calendar-arrow-icon.arrow-right {
+    top: 10px;
+  }
+
+  /* Weekdays (Mon-Sun) */
+  .weekdays {
+    /* Layout Styles */
+    font-size: 30px;
+  }
+
+  /* Days (1-31) */
+  .days {
+    /* Layout Styles */
+    padding: 0.4rem 0.2rem;
+    /* Grid Styles */
+    -moz-column-gap: 10px;
+    column-gap: 0.3rem;
+    row-gap: 0.2rem;
+  }
+
+  .days li.day {
+    /* Text Styles */
+    font-size: 34px;
+    /* Grid Styles */
+    min-height: 115px;
+  }
+
+  .active::after {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 82px;
+    width: 82px;
+    z-index: -1;
+    border-radius: 50%;
+    background: var(--active-color-dark);
+    transform: translate(-51%, -50%);
+  }
+
+
+  /* ----------------- CALENDAR COMPACT SECTION ----------------- */
+
+  .event-tooltip .tooltip-text {
+    font-size: 22px;
+  }
+
+  .event-marker .dot {
+    font-size: 16px;
+  }
+
+  .event-marker .event-overflow {
+    font-size: 24px;
+  }
+}

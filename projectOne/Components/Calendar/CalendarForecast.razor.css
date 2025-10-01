@@ -163,3 +163,609 @@
   padding: 0.8rem 0.5rem 0.5rem 2.2rem;
   position: relative;
 }
+
+
+/* styles for smaller Phones */
+@media screen and (min-width: 320px) and (max-width: 765px) {
+
+  .forecast-full-display {
+    margin-left: 1rem;
+    grid-column-end: span 20 !important;
+  }
+  
+  .calendar-arrow-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .calendar-arrow-icon.arrow-down {
+    top: 15px;
+    left: 20px;
+  }
+
+  /* ----------------- FORECAST SECTION ----------------- */
+
+  .forecast-full-display {
+    padding: 0.5rem;
+  }
+
+  .forecast-full-display ::deep .forecast {
+    padding: 20px 25px;
+    /* Font Styles */
+    font-size: 22px; 
+  }
+
+  .forecast-days {
+    /* Format Styles */
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    overflow-x: scroll;
+  }
+
+  .day-name {
+    font-size: 18px;
+  }
+  /* First day styles */
+  .day-name.today {
+    font-size: 14px;
+  }
+  .day-number {
+    font-size: 12px;
+  }
+  .event-number {
+    font-size: 16px;
+  }
+
+  .forecast-full-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    margin-top: 1rem;
+    height: 480px;
+  }
+
+  .forecast-full-display ::deep .event-breakdown {
+    padding: 1rem 1rem 1rem 2.6rem;
+  }
+  .event-date {
+    padding-left: 2rem;
+    font-size: 18px;
+  }
+  .event-name {
+    padding-left: 4rem;
+    font-size: 12px;
+  }
+
+  .event-name.open {
+    padding-top: 7px;
+    max-height: 3020px;
+  }
+
+  /* ----------------- FORECAST COMPACT SECTION ----------------- */
+
+  .forecast-compact-display {
+    margin-left: 1rem;
+    grid-column-end: span 20 !important;
+  }
+
+  .forecast-compact-display ::deep .forecast {
+    padding: 20px 5px;
+    width: 100%;
+    /* Font Styles */
+    font-size: 22px;
+    letter-spacing: 3px;   
+  }
+
+  .forecast-compact-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    max-height: auto;
+    /* Scroll Styles */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    height: 350px;
+  }
+
+  .forecast-compact-display ::deep .event-breakdown {
+    padding: 0.8rem 0.5rem 0.5rem 2.2rem;
+    position: relative;
+  }
+  
+}
+/* styles for smaller iPads/Kindle */
+@media screen and (min-width: 766px) and (max-width: 838px) { 
+  .forecast-full-display {
+    grid-column-end: span 10 !important;
+  }
+  
+  .calendar-arrow-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .calendar-arrow-icon.arrow-down {
+    top: 17px;
+    left: 20px;
+  }
+
+  /* ----------------- FORECAST SECTION ----------------- */
+
+  .forecast-full-display {
+    padding: 0.5rem;
+  }
+
+  .forecast-full-display ::deep .forecast {
+    padding: 20px 25px;
+    /* Font Styles */
+    font-size: 22px; 
+  }
+
+  .forecast-days {
+    /* Format Styles */
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    overflow-x: scroll;
+  }
+
+  .day-name {
+    font-size: 18px;
+  }
+  /* First day styles */
+  .day-name.today {
+    font-size: 14px;
+  }
+  .day-number {
+    font-size: 12px;
+  }
+  .event-number {
+    font-size: 16px;
+  }
+
+  .forecast-full-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    margin-top: 1rem;
+    height: 593px;
+  }
+
+  .forecast-full-display ::deep .event-breakdown {
+    padding: 1rem 1rem 1rem 2.6rem;
+  }
+  .event-date {
+    padding-left: 2rem;
+    font-size: 18px;
+  }
+  .event-name {
+    padding-left: 4rem;
+    font-size: 12px;
+  }
+
+  .event-name.open {
+    padding-top: 7px;
+    max-height: 3020px;
+  }
+
+  /* ----------------- FORECAST COMPACT SECTION ----------------- */
+
+  .forecast-compact-display {
+    grid-column-end: span 5 !important;
+  }
+
+  .forecast-compact-display ::deep .forecast {
+    padding: 20px 5px;
+    width: 100%;
+    /* Font Styles */
+    font-size: 22px;
+    letter-spacing: 3px;   
+  }
+
+  .forecast-compact-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    max-height: auto;
+    /* Scroll Styles */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    height: 310px;
+  }
+
+  .forecast-compact-display ::deep .event-breakdown {
+    padding: 0.8rem 0.5rem 0.5rem 2.2rem;
+    position: relative;
+  }
+}
+/* styles for newer iPads */
+@media screen and (min-width: 1010px) and (max-width: 1030px) {
+   .forecast-full-display {
+    grid-column-end: span 10 !important;
+  }
+  
+  .calendar-arrow-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .calendar-arrow-icon.arrow-down {
+    top: 17px;
+    left: 20px;
+  }
+
+  /* ----------------- FORECAST SECTION ----------------- */
+
+  .forecast-full-display {
+    padding: 0.5rem;
+  }
+
+  .forecast-full-display ::deep .forecast {
+    padding: 20px 25px;
+    /* Font Styles */
+    font-size: 22px; 
+  }
+
+  .forecast-days {
+    /* Format Styles */
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    overflow-x: scroll;
+  }
+
+  .day-name {
+    font-size: 18px;
+  }
+  /* First day styles */
+  .day-name.today {
+    font-size: 14px;
+  }
+  .day-number {
+    font-size: 12px;
+  }
+  .event-number {
+    font-size: 16px;
+  }
+
+  .forecast-full-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    margin-top: 1rem;
+    height: 593px;
+  }
+
+  .forecast-full-display ::deep .event-breakdown {
+    padding: 1rem 1rem 1rem 2.6rem;
+  }
+  .event-date {
+    padding-left: 2rem;
+    font-size: 18px;
+  }
+  .event-name {
+    padding-left: 4rem;
+    font-size: 12px;
+  }
+
+  .event-name.open {
+    padding-top: 7px;
+    max-height: 3020px;
+  }
+
+  /* ----------------- FORECAST COMPACT SECTION ----------------- */
+
+  .forecast-compact-display {
+    grid-column-end: span 5 !important;
+  }
+
+  .forecast-compact-display ::deep .forecast {
+    padding: 20px 5px;
+    width: 100%;
+    /* Font Styles */
+    font-size: 22px;
+    letter-spacing: 3px;   
+  }
+
+  .forecast-compact-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    max-height: auto;
+    /* Scroll Styles */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    height: 310px;
+  }
+
+  .forecast-compact-display ::deep .event-breakdown {
+    padding: 0.8rem 0.5rem 0.5rem 2.2rem;
+    position: relative;
+  }
+}
+/* Laptop with MDPI Screen - 720p Screens - 1280x720, plus landscape iPad */
+@media screen and (min-width: 1040px) and (max-width: 1366px) {
+  .forecast-full-display {
+    grid-column-end: span 13 !important;
+  }
+  
+  .calendar-arrow-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .calendar-arrow-icon.arrow-down {
+    top: 15px;
+    left: 20px;
+  }
+
+  /* ----------------- FORECAST SECTION ----------------- */
+
+  .forecast-full-display {
+    padding: 0.5rem;
+  }
+
+  .forecast-full-display ::deep .forecast {
+    padding: 20px 25px;
+    /* Font Styles */
+    font-size: 22px; 
+  }
+
+  .forecast-days {
+    /* Format Styles */
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .day-name {
+    font-size: 18px;
+  }
+  /* First day styles */
+  .day-name.today {
+    font-size: 14px;
+  }
+  .day-number {
+    font-size: 12px;
+  }
+  .event-number {
+    font-size: 16px;
+  }
+
+  .forecast-full-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    margin-top: 1rem;
+    height: 537px;
+  }
+
+  .forecast-full-display ::deep .event-breakdown {
+    padding: 1rem 1rem 1rem 2.6rem;
+  }
+  .event-date {
+    padding-left: 2rem;
+    font-size: 18px;
+  }
+  .event-name {
+    padding-left: 4rem;
+    font-size: 12px;
+  }
+
+  .event-name.open {
+    padding-top: 7px;
+    max-height: 3020px;
+  }
+
+  /* ----------------- FORECAST COMPACT SECTION ----------------- */
+
+  .forecast-compact-display ::deep .forecast {
+    padding: 20px 5px;
+    width: 100%;
+    /* Font Styles */
+    font-size: 22px;
+    letter-spacing: 3px;   
+  }
+
+  .forecast-compact-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    max-height: auto;
+    /* Scroll Styles */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    height: 275px;
+  }
+
+  .forecast-compact-display ::deep .event-breakdown {
+    padding: 0.8rem 0.5rem 0.5rem 2.2rem;
+    position: relative;
+  }
+}
+/* Laptop with HiDPI Screen */
+@media screen and (min-width: 1367px) and (max-width: 1440px) {
+    
+}
+/* 2K Resolutions - 2560x1440 */
+@media screen and (min-width: 1921px) and (max-width: 3839px) {
+  .calendar-arrow-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .calendar-arrow-icon.arrow-down {
+    top: 18px;
+    left: 20px;
+  }
+
+  /* ----------------- FORECAST SECTION ----------------- */
+
+  .forecast-full-display {
+    padding: 0.5rem;
+  }
+
+  .forecast-full-display ::deep .forecast {
+    padding: 20px 25px;
+    /* Font Styles */
+    font-size: 32px; 
+  }
+
+  .forecast-days {
+    /* Format Styles */
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .day-name {
+    font-size: 18px;
+  }
+  /* First day styles */
+  .day-name.today {
+    font-size: 16px;
+  }
+  .day-number {
+    font-size: 14px;
+  }
+  .event-number {
+    font-size: 18px;
+  }
+
+  .forecast-full-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    margin-top: 1rem;
+    height: 925px;
+  }
+
+  .forecast-full-display ::deep .event-breakdown {
+    padding: 1rem 1rem 1rem 2.6rem;
+  }
+  .event-date {
+    padding-left: 2rem;
+    font-size: 24px;
+  }
+  .event-name {
+    padding-left: 4rem;
+    font-size: 18px;
+  }
+
+  .event-name.open {
+    padding-top: 7px;
+    max-height: 3020px;
+  }
+
+  /* ----------------- FORECAST COMPACT SECTION ----------------- */
+
+  .forecast-compact-display ::deep .forecast {
+    padding: 20px 5px;
+    width: 100%;
+    /* Font Styles */
+    font-size: 44px;
+    letter-spacing: 3px;   
+  }
+
+  .forecast-compact-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    max-height: auto;
+    /* Scroll Styles */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    height: 450px;
+  }
+
+  .forecast-compact-display ::deep .event-breakdown {
+    padding: 0.8rem 0.5rem 0.5rem 2.2rem;
+    position: relative;
+  }
+  
+}
+/* 4K Resolutions - 3840x2160 */
+@media screen and (min-width: 3840px) {
+
+  .calendar-arrow-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .calendar-arrow-icon.arrow-down {
+    top: 22px;
+    left: 20px;
+  }
+
+  /* ----------------- FORECAST SECTION ----------------- */
+
+  .forecast-full-display {
+    padding: 0.5rem;
+    border: 2px solid #757575;
+    background-color: var(--dark-second-color);
+    border-radius: 10px;
+  }
+
+
+  .forecast-full-display ::deep .forecast {
+    padding: 20px 25px;
+    /* Font Styles */
+    font-size: 42px; 
+  }
+
+  .forecast-days {
+    /* Format Styles */
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .day-name {
+    font-size: 22px;
+  }
+  /* First day styles */
+  .day-name.today {
+    font-size: 24px;
+  }
+  .day-number {
+    font-size: 22px;
+  }
+  .event-number {
+    font-size: 28px;
+  }
+
+  .forecast-full-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    margin-top: 1rem;
+    height: 1344px;
+  }
+
+  .forecast-full-display ::deep .event-breakdown {
+    padding: 1rem 1rem 1rem 2.6rem;
+  }
+  .event-date {
+    padding-left: 3rem;
+    font-size: 32px;
+  }
+  .event-name {
+    padding-left: 6rem;
+    font-size: 22px;
+  }
+
+  .event-name.open {
+    padding-top: 7px;
+    max-height: 3020px;
+  }
+
+  /* ----------------- FORECAST COMPACT SECTION ----------------- */
+
+  .forecast-compact-display ::deep .forecast {
+    padding: 20px 5px;
+    width: 100%;
+    /* Font Styles */
+    font-size: 44px;
+    letter-spacing: 3px;   
+  }
+
+  .forecast-compact-display ::deep .forecast-breakdown-container {
+    /* Format Styles */
+    max-height: auto;
+    /* Scroll Styles */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    height: 770px;
+  }
+
+  .forecast-compact-display ::deep .event-breakdown {
+    padding: 0.8rem 0.5rem 0.5rem 2.2rem;
+    position: relative;
+  }
+
+}

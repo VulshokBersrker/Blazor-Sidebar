@@ -1,7 +1,12 @@
 @page "/modular-calendar"
 
-@* The compact version will scale to the size of its parent down to 630x400 before losing bad *@
-@* <div class="testy">
-    <CalendarMain displayType=@(1) venueName="RDV" />
-</div> *@
+
 <CalendarMain displayType=@(0) venueName="RDV" />
+
+
+
+@* The compact version with container to adjust size, will break formatting if it gets small enough *@
+<div class="py-5"></div>
+<div class="testy">
+    <CalendarMain displayType=@(1) venueName="RDV" />
+</div>
