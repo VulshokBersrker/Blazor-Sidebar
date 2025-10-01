@@ -1,4 +1,7 @@
 @page "/modular-calendar"
 
-
-<CalendarMain />
+@* The compact version will scale to the size of its parent down to 630x400 before losing bad *@
+@* <div class="testy">
+    <CalendarMain displayType=@(1) venueName="RDV" />
+</div> *@
+<CalendarMain displayType=@(0) venueName="RDV" />

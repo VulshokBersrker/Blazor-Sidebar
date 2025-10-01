@@ -1,9 +1,3 @@
-.calendar-month-layout {
-  /* overflow: hidden; */
-  width: 100%;
-  position: relative;
-}
-
 .month {
   padding: 20px 25px;
   width: 100%;
@@ -76,7 +70,7 @@
 /* Days (1-31) */
 .days {
   /* Layout Styles */
-  padding: 10px 5px;
+  padding: 0.4rem 0.1rem;
   background: var(--dark-first-color);
   margin: 0px;
   border-bottom-left-radius: 10px;
@@ -86,9 +80,9 @@
   grid-template-columns: repeat(7, 1fr);
   grid-auto-rows: -webkit-min-content;
   grid-auto-rows: min-content;
-  -moz-column-gap: 25px;
-  column-gap: 5px;
-  row-gap: 10px;
+  -moz-column-gap: 10px;
+  column-gap: 0.2rem;
+  row-gap: 0.1rem;
 }
 
 .days li.day {
@@ -99,7 +93,7 @@
   color: var(--font-color-dark);
   /* Grid Styles */
   grid-column-end: span 1;
-  min-height: 44px;
+  min-height: 42px;
   /* Position Styles */
   position: relative;
   z-index: auto;
@@ -110,7 +104,6 @@
   overflow: visible;
 }
 .day-container {
-  /* position: relative; */
   align-items: center;
   align-content: center;
 }
@@ -152,6 +145,13 @@
   color: rgb(69, 160, 160) !important;
 }
 
+
+/* ----------------- CALENDAR COMPACT SECTION ----------------- */
+
+.calendar-compact-display .calendar-month-layout {
+  position: relative;
+}
+
 /* -- Event Styling -- */
 .event-tooltip {
   visibility: hidden;
@@ -171,7 +171,7 @@
 
 li.day:hover .event-tooltip {
   visibility: visible;
-  transition-delay: 0.3s;
+  transition-delay: 0s;
 }
 
 .event-tooltip::after {
@@ -199,19 +199,37 @@ li.day:hover .event-tooltip {
 .event-marker {
   position: absolute;
   width: 100%;
-  left: 50%;
+  left: 51.5%;
   bottom: 0px;
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-51.5%);
+  transform: translateX(-51.5%);
   z-index: 2;
 }
 .event-marker .dot {
   font-size: 8px;
-  /* color: rgb(129, 129, 129); */
-  color: rgb(69, 160, 160);
+  /* Base color for the event markers if you don't want the colors */
+  /* color: rgb(69, 160, 160); */
 }
 
 .event-marker .event-overflow {
   font-size: 14px;
   color: rgb(69, 160, 160);
+}
+
+/* Different Event Types */
+
+.venue-event {
+  color: #ef6be6 !important;
+}
+.birthday-event {
+  color: #15d58f !important;;
+}
+.company-event {
+  color: #f44336 !important;;
+}
+.holiday-event {
+  color: #008CBA !important;;
+}
+.important-event {
+  color: #fbe161 !important;;  
 }

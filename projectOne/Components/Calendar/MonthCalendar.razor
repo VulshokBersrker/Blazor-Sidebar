@@ -1,11 +1,8 @@
-@using Microsoft.AspNetCore.Mvc.ModelBinding
-@using System.Collections.ObjectModel
-
 @rendermode InteractiveServer
 @inject CalendarDataService CalendarService
 
 
-<div class="calendar-month-layout section-10">
+<div class="section-10">
     <div class="month">
         <div>
             @* These arrows will change the months *@
@@ -35,7 +32,7 @@
                     @onclick="@( (e) => {CalendarService.setSelectedDate(item.Date.ToShortDateString());  } )"
                 >
                     @* Display the events in the mouse tooltip *@
-                    @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
+                    @if(item.numEvents != 0 ) {
                         <div class="event-tooltip">
                             @foreach(var gathering in item.dayEvents.Select((value, index) => new {value, index}) ) {
                                 <div class="tooltip-text">@gathering.value.Name</div>
@@ -56,9 +53,16 @@
 
                         @* Show if there is an event on this day, generate up to 3 dots for the events, then a plus to show there are more events *@
                         <div class="event-marker">
-                            @for(int i = 0; i < item.numEvents; i++) {
-                                <span class="dot">&#11044; </span>
-                                @if(i == 2) {
+                            @foreach(var gathering in item.dayEvents.Select((value, index) => new {value, index}) ) {
+                                <span class="dot @(gathering.value.eventType == "holiday" ? "holiday-event" : "") 
+                                    @(gathering.value.eventType == "venue-event" ? "venue-event" : "")
+                                    @(gathering.value.eventType == "birthday" ? "birthday-event" : "")
+                                    @(gathering.value.eventType == "company-event" ? "company-event" : "")
+                                    @(gathering.value.eventType == "important-event" ? "important-event" : "")
+                                    "
+                                >&#11044; </span>
+                                @* Only display the first three events *@
+                                @if(gathering.index == 2) {
                                     <span class="event-overflow">+</span>
                                     break;
                                 }
@@ -74,7 +78,7 @@
                     @onclick="@( (e) => {CalendarService.setSelectedDate(item.Date.ToShortDateString());  } )"
                 >
                     @* Display the events in the mouse tooltip *@
-                    @if(events.Any(n =>  n.Date.ToShortDateString() == item.Date.ToShortDateString() )  ) {
+                    @if(item.numEvents != 0 ) {
                         <div class="event-tooltip">
                             @foreach(var gathering in item.dayEvents.Select((value, index) => new {value, index}) ) {
                                 <div class="tooltip-text">@gathering.value.Name</div>
@@ -89,15 +93,20 @@
 
                     @* The number of the Date *@
                     <div class="day-container h-100 w-100">
-                        <span class="date @( currentDate == item.Date.ToShortDateString() ? "active" : "") @(item.Date.DayOfWeek == DayOfWeek.Saturday ? "weekend" : "") @(item.Date.DayOfWeek == DayOfWeek.Sunday ? "weekend" : "") " >
-                            @item.Date.Day
-                        </span>
+                        <span class="date @( currentDate == item.Date.ToShortDateString() ? "active" : "") @(item.Date.DayOfWeek == DayOfWeek.Saturday ? "weekend" : "") @(item.Date.DayOfWeek == DayOfWeek.Sunday ? "weekend" : "") " >@item.Date.Day</span>
 
                         @* Show if there is an event on this day, generate up to 3 dots for the events, then a plus to show there are more events *@
                         <div class="event-marker">
-                            @for(int i = 0; i < item.numEvents; i++) {
-                                <span class="dot">&#11044; </span>
-                                @if(i == 2) {
+                            @foreach(var gathering in item.dayEvents.Select((value, index) => new {value, index}) ) {
+                                <span class="dot @(gathering.value.eventType == "holiday" ? "holiday-event" : "") 
+                                    @(gathering.value.eventType == "venue-event" ? "venue-event" : "")
+                                    @(gathering.value.eventType == "birthday" ? "birthday-event" : "")
+                                    @(gathering.value.eventType == "company-event" ? "company-event" : "")
+                                    @(gathering.value.eventType == "important-event" ? "important-event" : "")
+                                    "
+                                >&#11044; </span>
+                                @* Only display the first three events *@
+                                @if(gathering.index == 2) {
                                     <span class="event-overflow">+</span>
                                     break;
                                 }
@@ -107,7 +116,6 @@
                 </li>
             }    
         }}
-
     </ul>
 </div>
 
@@ -123,25 +131,12 @@
     protected string currentDate = DateTime.Now.ToShortDateString();
 
     // ----------- Calendar Values ----------- 
-	List<CalendarDataService.CalendarEvents> events = new List<CalendarDataService.CalendarEvents>();
-
-    protected List<CalendarDataService.CalendarDayDetails> monthView = new List<CalendarDataService.CalendarDayDetails>();
 
     public required CalendarDataService.CalendarLayoutInfo CalendarDisplayInfo { get; set; }
 
     // ------------------- Functions ------------------- 
 
 	protected override void OnInitialized() {
-        // Compile all the events for the viewable time period - in Testing mode, so using more than the selectedDay range
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 2), "Test day 1", "venue-event"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 31), "Test day 2", "holiday"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 25), "Christmas", "birthday"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
-        
-        events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 2), "Test day 3", "venue-event"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 30), "Test day 4", "holiday"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 12), "Test Day 5", "birthday"));
-		events.Add(new CalendarDataService.CalendarEvents(new DateTime(2025, 10, 16), "Test Day 6", "important-event"));
 
         // Create the calendar
         CalendarDisplayInfo = CalendarService.generateCalendarLayout(isFirstCalendar);
@@ -151,8 +146,6 @@
         CalendarService.setSelectedDate(currentDate);
         selectedDate = CalendarService.onSelectedDateChange();
 
-        // Get the events
-        events = CalendarService.getEventsCalendar();
 
         CalendarService.monthsAwayChange += currentMonthChanged;
 	}

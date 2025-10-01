@@ -344,13 +344,40 @@ ol, ul {
 }
 
 
-.bb {
+.main-calendar-wrapper-full {
+  max-height: 100%;
+}
+.main-calendar-wrapper-compact {
+  max-height: 450px;
+  overflow: hidden;
+}
+
+.calendar-full-display {
   border: 2px solid #757575;
   background-color: var(--dark-second-color);
   outline-offset: 5px;
   border-radius: 10px;
   padding: 0.5rem;
+  height: 100%;
 }
+.calendar-compact-display {
+  border: 2px solid #757575;
+  background-color: var(--dark-second-color);
+  outline-offset: 5px;
+  border-radius: 10px;
+  /* height: 100% */
+}
+
+.testy {
+  /* Smallest size with proper formatting is 630x400 */
+  max-width: 630px;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+
+
+
 
 
 a, .btn-link {

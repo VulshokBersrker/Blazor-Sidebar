@@ -1,39 +1,76 @@
-@using Microsoft.Extensions.WebEncoders.Testing
 @rendermode InteractiveServer
 @inject CalendarDataService CalendarService
 
-<div class="section-10 forecast-border">
-    <div class="forecast-container">
-        <div class="forecast">FORECAST</div>
-            
-        <div class="forecast-days">
-            @for(int i = 0; i < 13; i++) {
-                string dayName = DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("ddd");
-                int dayNumber = DateTime.ParseExact(selectedDate, "d", null).AddDays(i).Day;
 
-                // The first day of the forecast
-                @if(i == 0) {
-                    <div
-                        class="section-1"
-                        id="@DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy")"
-                    >
-                        <div class="day-name today">Today</div>
-                        <div class="event-number">@forecastArray[i]</div>
-                    </div>
+
+
+@if(displayType == 0) {
+    <div class="section-10 forecast-full-display">
+        <div class="forecast-container">
+            <div class="forecast">FORECAST</div>
+                
+            <div class="forecast-days">
+                @for(int i = 0; i < 13; i++) {
+                    string dayName = DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("ddd");
+                    int dayNumber = DateTime.ParseExact(selectedDate, "d", null).AddDays(i).Day;
+
+                    // The first day of the forecast
+                    @if(i == 0) {
+                        <div
+                            class="section-1"
+                            id="@DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy")"
+                        >
+                            <div class="day-name today">Today</div>
+                            <div class="event-number">@forecastArray[i]</div>
+                        </div>
+                    }
+                    else {
+                        <div
+                            class="section-1"
+                            id="@DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy")"
+                        >
+                            <div class="day-name">@dayName</div>
+                            <div class="day-number">@dayNumber</div>
+                            <div class="event-number">@forecastArray[i]</div>
+                        </div>
+                    }
                 }
-                else {
-                    <div
-                        class="section-1"
-                        id="@DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("MM/dd/yyyy")"
-                    >
-                        <div class="day-name">@dayName</div>
-                        <div class="day-number">@dayNumber</div>
-                        <div class="event-number">@forecastArray[i]</div>
-                    </div>
-                }
-            }
+            </div>
+
+            @* Display the list of events on the forecast days *@
+            <div class="forecast-breakdown-container">
+                <ul>
+                    @* Cycle through the days in the forecast *@
+                    @for(int i = 0; i < 13; i++) {
+                        int t = i;
+                        @* Find all the events in that day *@
+                        IEnumerable<CalendarDataService.CalendarEvents>? eventsOnThisDay = events.Where(n => 
+                            n.Date.ToShortDateString() == DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("d")  
+                        );
+                        if(eventsOnThisDay.Count() != 0) {
+                            <li class="event-breakdown">
+                                <span
+                                    class="calendar-arrow-icon arrow-down icon-size icon @(forecastMenus[t] ? "arrow-up" : "arrow-down")"
+                                    id="@i"
+                                    @onclick="@(() => toggleForecastList(t))"
+                                />
+                                <div class="event-date font-2"> @DateTime.ParseExact(selectedDate, "d", null).AddDays(i).ToString("ddd, MMM dd")</div>
+                                
+                                @foreach(CalendarDataService.CalendarEvents item in eventsOnThisDay) {
+                                    <div class="event-name font-1  @(forecastMenus[t] ? "closed" : "open") ">@item.Name</div>
+                                }
+                                    
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
         </div>
-
+    </div>
+}
+else if(displayType == 1) {
+    <div class="section-5 forecast-compact-display">
+        <div class="forecast">FORECAST</div>
 
         @* Display the list of events on the forecast days *@
         <div class="forecast-breakdown-container">
@@ -62,12 +99,15 @@
                     }
                 }
             </ul>
-        </div>
+        </div>        
     </div>
-</div>
+}
 
 
 @code {
+
+    [Parameter]
+    public int displayType { get; set; }
 
     protected string selectedDate = "";
 

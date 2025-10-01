@@ -108,15 +108,16 @@ public class CalendarDataService : IDataService
                 eventsOnThisDay
             ) );
         }
+        monthView.Reverse();
 
         // Current Month
         for (int i = 1; i <= DateTime.DaysInMonth(year, month); i++)
         {
             string tempD = monthEnd.Month + "/" + i + "/" + monthEnd.Year;
-            IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n =>  n.Date.ToShortDateString() == DateTime.ParseExact(tempD, "d", null).ToString("d") );
+            IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n => n.Date.ToShortDateString() == DateTime.ParseExact(tempD, "d", null).ToString("d"));
 
             monthView.Add(
-                new CalendarDayDetails( new DateTime(year, month, i),
+                new CalendarDayDetails(new DateTime(year, month, i),
                 eventsOnThisDay.Count(),
                 eventsOnThisDay
             ));

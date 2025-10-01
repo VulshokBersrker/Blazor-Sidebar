@@ -18,7 +18,6 @@ F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\scopedcss\Components\Calendar\CalendarForecast.razor.rz.scp.css
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\scopedcss\Components\Calendar\ModularCalendar.razor.rz.scp.css
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\scopedcss\Components\Calendar\MonthCalendar.razor.rz.scp.css
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
@@ -90,5 +89,5 @@ F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\projectOne.genruntimeconfig.cache
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\ref\projectOne.dll
 F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\mca1mp0noc-7f3fgcc2h4.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-5omijh7nn2.gz
-F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-5omijh7nn2.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\67u8n59w31-i3so493i90.gz
+F:\Documents\Coding\NET\Blazor\LProject\Blazor-Sidebar\projectOne\obj\Debug\net9.0\compressed\bvxvif4my5-i3so493i90.gz

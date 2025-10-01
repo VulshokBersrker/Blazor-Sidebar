@@ -1,20 +1,36 @@
 
 
-<div class="grid-20">
-    <div class="section-5 grid-10 bb">
-        <MonthCalendar isFirstCalendar=@true />
-        <MonthCalendar isFirstCalendar=@false />
+
+@* Full display *@
+@if(displayType == 0) {
+    <div class="grid-20 main-calendar-wrapper-full">
+        <div class="calendar-full-display section-5 grid-10">
+            <MonthCalendar isFirstCalendar=@true />
+            <MonthCalendar isFirstCalendar=@false />
+        </div>
+        
+        <CalendarForecast />
     </div>
-    
-    <CalendarForecast />
-</div>
+}
+@* Compact *@
+else if(displayType == 1) {
+    <div class="grid-10 main-calendar-wrapper-compact">
+        <div class="calendar-compact-display section-5 grid-10">
+            <MonthCalendar isFirstCalendar=@true />
+        </div>        
+        <CalendarForecast displayType=@(displayType)/>
+    </div>
+}
 
 @code {
 
-    // 0 - full view, 1 - venue specific (compact),
-    int displayType = 0;
+    // 0 - full view, 1 - compact
+    [Parameter]
+    public int displayType { get; set; }
 
-    string venueName= "";
+    // Could be used in a fetch to get the venue's events for the version of a venue page
+    [Parameter]
+    public string venueName { get; set; }
 
 
 }

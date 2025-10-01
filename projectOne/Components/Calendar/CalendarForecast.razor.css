@@ -14,26 +14,24 @@
 
 /* ----------------- FORECAST SECTION ----------------- */
 
-.forecast-border {
+.forecast-full-display {
   padding: 0.5rem;
   border: 2px solid #757575;
   background-color: var(--dark-second-color);
   border-radius: 10px;
-  overflow: hidden;
-}
-.forecast-container {
-  border-radius: 10px;
-  overflow: hidden;
 }
 
-.forecast {
+
+.forecast-full-display ::deep .forecast {
   text-align: center;
   padding: 20px 25px;
   width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   background: var(--dark-first-color);
-  text-align: center;
   /* Font Styles */
   font-size: 24px;
+  text-align: center;
   text-transform: uppercase;
   letter-spacing: 3px;   
 }
@@ -81,21 +79,20 @@
   color: rgb(69, 160, 160) !important;
 }
 
-
-.forecast-breakdown-container {
+.forecast-full-display ::deep .forecast-breakdown-container {
   /* Format Styles */
   margin-top: 1rem;
   background: var(--dark-first-color);
-  
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   /* Scroll Styles */
   overflow-y: scroll;
   overflow-x: hidden;
-  /* min-height: 719px; */
-  height: 719px;
-  scroll-behavior: smooth;
+  height: 597px;
+  scroll-behavior: smooth;  
 }
 
-.event-breakdown {
+.forecast-full-display ::deep .event-breakdown {
   padding: 0.8rem 0.8rem 0.8rem 2.6rem;
   position: relative;
 }
@@ -129,4 +126,40 @@
   max-height: 0px;
   transform: translateY(20%);
   transition: 0.5s ease-in-out;
+}
+
+
+/* ----------------- FORECAST COMPACT SECTION ----------------- */
+
+.forecast-compact-display {
+  border: 2px solid #757575;
+  background: var(--dark-first-color);
+  height: auto;
+  border-radius: 10px;
+}
+
+.forecast-compact-display ::deep .forecast {
+  text-align: center;
+  padding: 20px 5px;
+  width: 100%;
+  /* Font Styles */
+  font-size: 24px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;   
+}
+
+.forecast-compact-display ::deep .forecast-breakdown-container {
+  /* Format Styles */
+  max-height: auto;
+  /* Scroll Styles */
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  height: 310px;
+}
+
+.forecast-compact-display ::deep .event-breakdown {
+  padding: 0.8rem 0.5rem 0.5rem 2.2rem;
+  position: relative;
 }
