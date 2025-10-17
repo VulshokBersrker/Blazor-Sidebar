@@ -1,4 +1,6 @@
 
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+
 public interface IDataService : IDisposable
 {
     public record CalendarDayDetails(DateTime Date, int numEvents);
@@ -38,13 +40,13 @@ public class CalendarDataService : IDataService
         events.Add(new CalendarEvents(new DateTime(2025, 9, 30), "Test day 3", "venue-event"));
         events.Add(new CalendarEvents(new DateTime(2025, 9, 29), "Test day 4", "venue-event"));
         events.Add(new CalendarEvents(new DateTime(2025, 9, 28), "Test day 5", "venue-event"));
-		events.Add(new CalendarEvents(new DateTime(2025, 10, 31), "Test day 6", "holiday"));
-		events.Add(new CalendarEvents(new DateTime(2025, 10, 25), "Christmas", "birthday"));
-		events.Add(new CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
-        
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 31), "Test day 6", "holiday"));
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 25), "Christmas", "birthday"));
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 1), "New Years", "important-event"));
+
         events.Add(new CalendarEvents(new DateTime(2025, 10, 2), "Test day 7", "venue-event"));
-		events.Add(new CalendarEvents(new DateTime(2025, 10, 30), "Test day 8", "holiday"));
-		events.Add(new CalendarEvents(new DateTime(2025, 10, 12), "Test Day 9", "birthday"));
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 30), "Test day 8", "holiday"));
+        events.Add(new CalendarEvents(new DateTime(2025, 10, 12), "Test Day 9", "birthday"));
         events.Add(new CalendarEvents(new DateTime(2025, 10, 16), "Test Day 10", "important-event"));
     }
 
@@ -100,13 +102,13 @@ public class CalendarDataService : IDataService
         {
             // Find all the events happening on each day
             string tempD = monthEnd.AddMonths(-1).Month + "/" + (prevMonthLastDay - i) + "/" + monthEnd.AddMonths(-1).Year;
-            IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n =>  n.Date.ToShortDateString() == DateTime.ParseExact(tempD, "d", null).ToString("d") );
+            IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n => n.Date.ToShortDateString() == DateTime.ParseExact(tempD, "d", null).ToString("d"));
 
             monthView.Add(
-                new CalendarDayDetails( new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, prevMonthLastDay - i),
+                new CalendarDayDetails(new DateTime(monthEnd.AddMonths(-1).Year, monthEnd.AddMonths(-1).Month, prevMonthLastDay - i),
                 eventsOnThisDay.Count(),
                 eventsOnThisDay
-            ) );
+            ));
         }
         monthView.Reverse();
 
@@ -134,10 +136,10 @@ public class CalendarDataService : IDataService
             if (monthView.Count() >= 42) { break; }
 
             string tempD = monthEnd.AddMonths(1).Month + "/" + (i + 1) + "/" + monthEnd.AddMonths(1).Year;
-            IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n =>  n.Date.ToShortDateString() == DateTime.ParseExact(tempD, "d", null).ToString("d") );
+            IEnumerable<CalendarEvents>? eventsOnThisDay = events.Where(n => n.Date.ToShortDateString() == DateTime.ParseExact(tempD, "d", null).ToString("d"));
 
             monthView.Add(
-                new CalendarDayDetails( new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, i + 1),
+                new CalendarDayDetails(new DateTime(monthEnd.AddMonths(1).Year, monthEnd.AddMonths(1).Month, i + 1),
                 eventsOnThisDay.Count(),
                 eventsOnThisDay
             ));
@@ -150,7 +152,7 @@ public class CalendarDataService : IDataService
     {
         int[] forecastArray = new int[13];
 
-        foreach(CalendarEvents item in events)
+        foreach (CalendarEvents item in events)
         {
             for (int j = 0; j < forecastArray.Length; j++)
             {
@@ -206,7 +208,7 @@ public class CalendarDataService : IDataService
         monthsAway += value;
         monthsAwayChange?.Invoke(this, value);
     }
-    
+
 
     // Placeholder functions that can be used for fetches on the event data
     public Task<string> GetValueAsync()
@@ -219,5 +221,5 @@ public class CalendarDataService : IDataService
         Console.WriteLine($"TODO: Save value '{value}' to database...");
         return Task.FromResult(true);
     }
-
+    
 }
