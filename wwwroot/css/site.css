@@ -69,10 +69,13 @@ ol, ul {
 
 /* Padding for when the sidebar is collapsed */
 .sidebar-padding {
-  padding-left: 265px;
+  padding-left: 80px;
   transition: 0.5s ease-in-out;
+  main.content {
+    width: 100%;
+    height: 100%;
+  }
 }
-
 
 /*-------------- Custom Column Tags --------------- */
 .section-1 {
@@ -149,3 +152,28 @@ ol, ul {
   row-gap: 15px;
 }
 
+
+@media screen and (min-width: 300px) and (max-width: 739px) {
+  .sidebar-padding {
+    padding-left: 0px;
+    padding-top: 55px;
+  }
+}
+
+@media screen and (min-width: 740px) and (max-width: 838px) {  
+  .sidebar-padding {
+    padding-left: 80px;
+  }
+}
+
+@media screen and (min-width: 1010px) and (max-width: 1030px) {
+  .sidebar-padding {
+    padding-left: 0px;
+  }
+}
+
+@media screen and (min-width: 3840px) { 
+  .sidebar-padding {
+    padding-left: 98px;
+  }
+}

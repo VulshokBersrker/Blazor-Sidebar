@@ -40,6 +40,7 @@
     z-index: 100;
     height: 50px;
     background-color: #0c0c0c;
+    position: relative;
 }
 
 .nav-item {
@@ -446,7 +447,6 @@
 @media screen and (min-width: 300px) and (max-width: 739px) {
     
     /* --------------------------- OPEN Side Navbar Styles ---------------------------*/
-
     .side-navbar.show {
         width: 100vw;
         height: 100vh;
@@ -458,7 +458,7 @@
             right: 10px;
             top: 0px;
             padding-top: 5px;  
-            width: 50%;
+            width: auto;
         }
 
         .nav-scrollable {
@@ -506,12 +506,8 @@
     .side-navbar.collapse:not(.show),
     .side-navbar.collapsing {
         width: 100vw;
-        max-height: 50px;
+        height: 50px;
         transition: 0.2s ease-in-out;
-
-        .top-row {
-            display: block;
-        }
 
         .logo-container {
             display: block;
@@ -521,7 +517,7 @@
             right: 10px;
             top: 0px;
             padding-top: 5px;  
-            width: 50%;
+            width: auto;
         }
 
         .nav-item {
@@ -532,6 +528,12 @@
             display: none;
         }
     }  
+
+    .side-navbar.collapse:not(.show) {
+        .nav-scrollable {
+            display: none;
+        }
+    }
 }
 /* styles for smaller iPads/Kindle */
 @media screen and (min-width: 740px) and (max-width: 838px) { 
