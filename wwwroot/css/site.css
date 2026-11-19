@@ -68,8 +68,19 @@ ol, ul {
 
 
 /* Padding for when the sidebar is collapsed */
+body:has(.side-navbar.collapse.show) {
+  .sidebar-padding {
+    padding-left: 265px;
+  }
+}
+body:has(.side-navbar.collapse:not(.show)),
+body:has(.side-navbar.collapsing) {
+  .sidebar-padding {
+    padding-left: 76px;
+  }
+}
+
 .sidebar-padding {
-  padding-left: 80px;
   transition: 0.5s ease-in-out;
   main.content {
     width: 100%;
@@ -155,25 +166,49 @@ ol, ul {
 
 @media screen and (min-width: 300px) and (max-width: 739px) {
   .sidebar-padding {
-    padding-left: 0px;
-    padding-top: 55px;
+    padding-left: 0px !important;
+    padding-top: 55px !important;
   }
 }
 
 @media screen and (min-width: 740px) and (max-width: 838px) {  
-  .sidebar-padding {
-    padding-left: 80px;
+  body:has(.side-navbar.collapse.show) {
+    .sidebar-padding {
+      padding-left: 265px;
+    }
+  }
+  body:has(.side-navbar.collapse:not(.show)),
+  body:has(.side-navbar.collapsing) {
+    .sidebar-padding {
+      padding-left: 80px;
+    }
   }
 }
 
 @media screen and (min-width: 1010px) and (max-width: 1030px) {
-  .sidebar-padding {
-    padding-left: 0px;
+  body:has(.side-navbar.collapse.show) {
+    .sidebar-padding {
+      padding-left: 265px;
+    }
+  }
+  body:has(.side-navbar.collapse:not(.show)),
+  body:has(.side-navbar.collapsing) {
+    .sidebar-padding {
+      padding-left: 90px;
+    }
   }
 }
 
 @media screen and (min-width: 3840px) { 
-  .sidebar-padding {
-    padding-left: 98px;
+  body:has(.side-navbar.collapse.show) {
+    .sidebar-padding {
+      padding-left: 420px;
+    }
+  }
+  body:has(.side-navbar.collapse:not(.show)),
+  body:has(.side-navbar.collapsing) {
+    .sidebar-padding {
+      padding-left: 95px;
+    }
   }
 }
